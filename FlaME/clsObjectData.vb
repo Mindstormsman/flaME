@@ -39,39 +39,56 @@ Public Class clsObjectData
 
         Public ResultData As New SimpleList(Of String())
 
-        Public Function CalcIsFieldCountValid() As Boolean
+        'Find the Value between Two Delimiters after Keyword in Entry
+        Public Function FindInString(Entry As String, Keyword As String, Delimiter1 As String, Delimiter2 As String) As String
+            Dim Start As Integer
+            Dim Finish As Integer
+            Dim Key As Integer
+            Dim Value As String
+            Dim Length As Integer
 
-            Dim Text() As String
-            For Each Text In ResultData
-                If Text.GetLength(0) <> FieldCount Then
-                    Return False
-                End If
-            Next
-
-            Return True
-        End Function
-
-        Public Function CalcUniqueField() As Boolean
-            Dim A As Integer
-            Dim B As Integer
-            Dim Text As String
-
-            If UniqueField >= 0 Then
-                For A = 0 To ResultData.Count - 1
-                    Text = ResultData(A)(UniqueField)
-                    For B = A + 1 To ResultData.Count - 1
-                        If Text = ResultData(B)(UniqueField) Then
-                            Return False
-                        End If
-                    Next
-                Next
+            Key = InStr(Entry, Keyword)
+            If Key = 0 Then
+                Return "Default"
             End If
+            Start = InStr(Key + Len(Keyword), Entry, Delimiter1)
+            Finish = InStr(Start + 1, Entry, Delimiter2)
+            If Finish = 0 Then
+                Finish = InStr(Start + 1, Entry, "}")
+            End If
+            Length = Finish - Start - 1
+            Value = Mid(Entry, Start + 1, Length)
+            Value = Replace(Value, "}", "")
+            Value = Value.Trim
 
-            Return True
+            Return Value
         End Function
 
-        Public Function LoadCommaFile(Path As String) As clsResult
-            Dim Result As New clsResult("Loading comma separated file " & ControlChars.Quote & SubDirectory & ControlChars.Quote)
+        Public Function FindBodyProps(Entry As String, Keyword As String, Delimiter1 As String, Delimiter2 As String) As String
+            Dim Start As Integer
+            Dim Finish As Integer
+            Dim Key As Integer
+            Dim Value As String
+            Dim Length As Integer
+
+            Key = InStr(Entry, Keyword)
+            If Key = 0 Then
+                Return "Default"
+            End If
+            Start = InStr(Key + Len(Keyword), Entry, Delimiter1)
+            Finish = InStrRev(Entry, Delimiter2)
+            Finish = InStrRev(Entry, Delimiter2, Finish - 1)
+            Length = Finish - Start - 1
+            Value = Mid(Entry, Start + 1, Length)
+            Value = Replace(Value, ControlChars.Quote, "")
+            Value = Replace(Value, " ", "")
+            Value = Value.Trim
+
+            Return Value
+        End Function
+
+        Public Function LoadJsonFile(Path As String) As clsResult
+            Dim Result As New clsResult("Loading Json file " & ControlChars.Quote & SubDirectory & ControlChars.Quote)
             Dim Reader As IO.StreamReader
 
             Try
@@ -81,147 +98,176 @@ Public Class clsObjectData
                 Return Result
             End Try
 
+            Dim Entry As String = ""
             Dim Line As String
-            Dim LineFields() As String
-            Dim A As Integer
+            Dim Layer As Integer = 0
 
             Do Until Reader.EndOfStream
-                Line = Reader.ReadLine
+                Line = Reader.ReadLine 'get a line
                 Line = Line.Trim
-                If Line.Length > 0 Then
-                    LineFields = Line.Split(","c)
-                    For A = 0 To LineFields.GetUpperBound(0)
-                        LineFields(A) = LineFields(A).Trim
-                    Next
-                    ResultData.Add(LineFields)
+                Entry &= Line 'add it to Entry
+                If InStr(Line, "{") > 0 Then
+                    Layer += 1
                 End If
-            Loop
-
-            Reader.Close()
-
-            Return Result
-        End Function
-
-        Public Function LoadNamesFile(Path As String) As clsResult
-            Dim Result As New clsResult("Loading names file " & ControlChars.Quote & SubDirectory & ControlChars.Quote)
-            Dim File As IO.FileStream
-            Dim Reader As IO.BinaryReader
-
-            Try
-                File = New IO.FileStream(Path & SubDirectory, IO.FileMode.Open)
-            Catch ex As Exception
-                Result.ProblemAdd(ex.Message)
-                Return Result
-            End Try
-
-            Try
-                Reader = New IO.BinaryReader(File, UTF8Encoding)
-            Catch ex As Exception
-                File.Close()
-                Result.ProblemAdd(ex.Message)
-                Return Result
-            End Try
-
-            Dim CurrentChar As Char
-            Dim InLineComment As Boolean
-            Dim InCommentBlock As Boolean
-            Dim PrevChar As Char
-            Dim Line As String = ""
-            Dim PrevCharExists As Boolean
-            Dim CurrentCharExists As Boolean = False
-
-            Do
-MonoContinueDo:
-                PrevChar = CurrentChar
-                PrevCharExists = CurrentCharExists
-                Try
-                    CurrentChar = Reader.ReadChar
-                    CurrentCharExists = True
-                Catch ex As Exception
-                    CurrentCharExists = False
-                End Try
-                If CurrentCharExists Then
-                    Select Case CurrentChar
-                        Case ControlChars.Cr, ControlChars.Lf
-                            InLineComment = False
-                            If PrevCharExists Then
-                                Line &= PrevChar
-                            End If
-                            CurrentCharExists = False
-
-                            If Line.Length > 0 Then
-                                Dim EndCodeTab As Integer = Line.IndexOf(ControlChars.Tab)
-                                Dim EndCodeSpace As Integer = Line.IndexOf(" "c)
-                                Dim EndCode As Integer = EndCodeTab
-                                If EndCodeSpace >= 0 And (EndCodeSpace < EndCode Or EndCode < 0) Then
-                                    EndCode = EndCodeSpace
-                                End If
-                                If EndCode >= 0 Then
-                                    Dim FirstQuote As Integer = Line.IndexOf(ControlChars.Quote, EndCode + 1, Line.Length - (EndCode + 1))
-                                    If FirstQuote >= 0 Then
-                                        Dim SecondQuote As Integer = Line.IndexOf(ControlChars.Quote, FirstQuote + 1, Line.Length - (FirstQuote + 1))
-                                        If SecondQuote >= 0 Then
-                                            Dim Value(1) As String
-                                            Value(0) = Line.Substring(0, EndCode)
-                                            Value(1) = Line.Substring(FirstQuote + 1, SecondQuote - (FirstQuote + 1))
-                                            ResultData.Add(Value)
-                                        End If
-                                    End If
-                                End If
-                                Line = ""
-                            End If
-
-                            GoTo MonoContinueDo
-                        Case "*"c
-                            If PrevCharExists And PrevChar = "/"c Then
-                                InCommentBlock = True
-                                CurrentCharExists = False
-                                GoTo MonoContinueDo
-                            End If
-                        Case "/"c
-                            If PrevCharExists Then
-                                If PrevChar = "/"c Then
-                                    InLineComment = True
-                                    CurrentCharExists = False
-                                    GoTo MonoContinueDo
-                                ElseIf PrevChar = "*"c Then
-                                    InCommentBlock = False
-                                    CurrentCharExists = False
-                                    GoTo MonoContinueDo
-                                End If
-                            End If
-                    End Select
-                Else
-                    If PrevCharExists Then
-                        Line &= PrevChar
-                    End If
-                    If Line.Length > 0 Then
-                        Dim EndCodeTab As Integer = Line.IndexOf(ControlChars.Tab)
-                        Dim EndCodeSpace As Integer = Line.IndexOf(" "c)
-                        Dim EndCode As Integer = EndCodeTab
-                        If EndCodeSpace >= 0 And (EndCodeSpace < EndCode Or EndCode < 0) Then
-                            EndCode = EndCodeSpace
+                If InStr(Line, "}") > 0 Then
+                    Layer -= 1
+                    If Layer = 1 Then 'If we closed a nest and are now on Layer 1 then we know we reached the end of the entry
+                        'data collected'
+                        'find values and clean data'
+                        'everything has an ID, make that 0th value
+                        Dim Id As String = FindInString(Entry, "", ControlChars.Quote, ControlChars.Quote)
+                        If Id = "Default" Then
+                            Result.ProblemAdd("Something very bad happened while reading IDs from Json! No ID in Entry")
+                            Return Result
                         End If
-                        If EndCode >= 0 Then
-                            Dim FirstQuote As Integer = Line.IndexOf(ControlChars.Quote, EndCode + 1, Line.Length - (EndCode + 1))
-                            If FirstQuote >= 0 Then
-                                Dim SecondQuote As Integer = Line.IndexOf(ControlChars.Quote, FirstQuote + 1, Line.Length - (FirstQuote + 1))
-                                If SecondQuote >= 0 Then
-                                    Dim Value(1) As String
-                                    Value(0) = Line.Substring(0, EndCode)
-                                    Value(1) = Line.Substring(FirstQuote + 1, SecondQuote - (FirstQuote + 1))
-                                    ResultData.Add(Value)
-                                End If
-                            End If
-                        End If
-                        Line = ""
-                    End If
 
-                    Exit Do
-                End If
-                If PrevCharExists Then
-                    If Not (InCommentBlock Or InLineComment) Then
-                        Line &= PrevChar
+                        'Get name from Json as 1st value, default to ID if name is missing
+                        Dim Name As String = FindInString(Entry, ControlChars.Quote & "name" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Name = "Default" Then
+                            Name = Id
+                        End If
+
+                        'lots of things have designable, make that 2nd value, default to 0?
+                        Dim Designable As String = FindInString(Entry, ControlChars.Quote & "designable" & ControlChars.Quote, ":", ",")
+                        If Designable = "Default" Then
+                            Designable = "0"
+                        End If
+
+                        'hitpoints 3rd
+                        Dim Hitpoints As String = FindInString(Entry, ControlChars.Quote & "hitpoints" & ControlChars.Quote, ":", ",")
+                        If Hitpoints = "Default" Then
+                            Hitpoints = "0"
+                        End If
+
+                        '1 or 2 used for most things: Model, SensorModel, MountModel make 4th-6th values
+                        Dim Model As String = FindInString(Entry, ControlChars.Quote & "model" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Model = "Default" Then
+                            Model = "0"
+                        End If
+
+                        Dim SensorModel As String = FindInString(Entry, ControlChars.Quote & "sensorModel" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If SensorModel = "Default" Then
+                            SensorModel = "0"
+                        End If
+
+                        Dim MountModel As String = FindInString(Entry, ControlChars.Quote & "mountModel" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If MountModel = "Default" Then
+                            MountModel = "0"
+                        End If
+
+                        'Turret is used by Brains to associate them with a weapon, 7th
+                        Dim Turret As String = FindInString(Entry, ControlChars.Quote & "turret" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Turret = "Default" Then
+                            Turret = "0"
+                        End If
+
+                        'Location is used by Sensors, 8th
+                        Dim Location As String = FindInString(Entry, ControlChars.Quote & "location" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Location = "Default" Then
+                            Location = "0"
+                        End If
+
+                        'Type 9th
+                        Dim Type As String = FindInString(Entry, ControlChars.Quote & "type" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Type = "Default" Then
+                            Type = "0"
+                        End If
+
+                        'Width 10th
+                        Dim Width As String = FindInString(Entry, ControlChars.Quote & "width" & ControlChars.Quote, ":", ",")
+                        If Width = "Default" Then
+                            Width = "0"
+                        End If
+
+                        'Breadth 11th
+                        Dim Breadth As String = FindInString(Entry, ControlChars.Quote & "breadth" & ControlChars.Quote, ":", ",")
+                        If Breadth = "Default" Then
+                            Breadth = "0"
+                        End If
+
+                        'BaseModel 12th
+                        Dim BaseModel As String = FindInString(Entry, ControlChars.Quote & "baseModel" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If BaseModel = "Default" Then
+                            BaseModel = "0"
+                        End If
+
+                        'ECMId 13th
+                        Dim ECMId As String = FindInString(Entry, ControlChars.Quote & "ecmID" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If ECMId = "Default" Then
+                            ECMId = "0"
+                        End If
+
+                        'SensorId 14th
+                        Dim SensorId As String = FindInString(Entry, ControlChars.Quote & "sensorID" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If SensorId = "Default" Then
+                            SensorId = "0"
+                        End If
+
+                        'Body 15th
+                        Dim Body As String = FindInString(Entry, ControlChars.Quote & "body" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Body = "Default" Then
+                            Body = "0"
+                        End If
+
+                        'Brain 16th
+                        Dim Brain As String = FindInString(Entry, ControlChars.Quote & "brain" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Brain = "Default" Then
+                            Brain = "0"
+                        End If
+
+                        'Construct 17th
+                        Dim Construct As String = FindInString(Entry, ControlChars.Quote & "construct" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Construct = "Default" Then
+                            Construct = "0"
+                        End If
+
+                        'Repair 18th
+                        Dim Repair As String = FindInString(Entry, ControlChars.Quote & "repair" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Repair = "Default" Then
+                            Repair = "0"
+                        End If
+
+                        'Sensor 19th
+                        Dim Sensor As String = FindInString(Entry, ControlChars.Quote & "sensor" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Sensor = "Default" Then
+                            Sensor = "0"
+                        End If
+
+                        'Propulsion 20th
+                        Dim Propulsion As String = FindInString(Entry, ControlChars.Quote & "propulsion" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                        If Propulsion = "Default" Then
+                            Propulsion = "0"
+                        End If
+
+                        'Weapons 21st
+                        Dim Weapons As String = FindInString(Entry, ControlChars.Quote & "weapons" & ControlChars.Quote, "[", "]")
+                        Weapons = Replace(Weapons, ControlChars.Quote, "")
+                        If Weapons = "Default" Then
+                            Weapons = "0"
+                        End If
+
+                        'StructureModels 22nd
+                        Dim StructureModels As String = FindInString(Entry, ControlChars.Quote & "structureModel" & ControlChars.Quote, "[", "]")
+                        StructureModels = Replace(StructureModels, ControlChars.Quote, "")
+                        If StructureModels = "Default" Then
+                            StructureModels = "0"
+                        End If
+
+                        'PropulsionArray 23rd
+                        Dim PropulsionArray As String = FindBodyProps(Entry, ControlChars.Quote & "propulsionExtraModels" & ControlChars.Quote, "{", "}")
+                        If PropulsionArray = "Default" Then
+                            PropulsionArray = "0"
+                        End If
+
+                        'need to read left and right propulsions from Body.json in some way to replace bodypropulsionimd.txt
+
+                        Dim Results() As String = {Id, Name, Designable, Hitpoints, Model, SensorModel, MountModel, Turret, Location,
+                            Type, Width, Breadth, BaseModel, ECMId, SensorId, Body, Brain, Construct, Repair, Sensor, Propulsion,
+                            Weapons, StructureModels, PropulsionArray}
+                        ResultData.Add(Results)
+                        'Debug line to see output
+                        'Result.WarningAdd("Loaded " & Id)
+                        Entry = ""
                     End If
                 End If
             Loop
@@ -239,15 +285,14 @@ MonoContinueDo:
 
     Public Function LoadDirectory(Path As String) As clsResult
         Dim ReturnResult As New clsResult("Loading object data from " & ControlChars.Quote & Path & ControlChars.Quote)
+        'ReturnResult.WarningAdd("Test")
 
         Path = EndWithPathSeperator(Path)
 
-        Dim SubDirNames As String
         Dim SubDirStructures As String
         Dim SubDirBrain As String
         Dim SubDirBody As String
         Dim SubDirPropulsion As String
-        Dim SubDirBodyPropulsion As String
         Dim SubDirConstruction As String
         Dim SubDirSensor As String
         Dim SubDirRepair As String
@@ -260,135 +305,87 @@ MonoContinueDo:
         Dim SubDirPropPIE As String
         Dim SubDirWeaponsPIE As String
         Dim SubDirTexpages As String
-        Dim SubDirAssignWeapons As String
         Dim SubDirFeaturePIE As String
-        Dim SubDirStructureWeapons As String
         Dim SubDirPIEs As String
 
-        SubDirNames = "messages" & PlatformPathSeparator & "strings" & PlatformPathSeparator & "names.txt"
-        SubDirStructures = "stats" & PlatformPathSeparator & "structures.txt"
-        SubDirBrain = "stats" & PlatformPathSeparator & "brain.txt"
-        SubDirBody = "stats" & PlatformPathSeparator & "body.txt"
-        SubDirPropulsion = "stats" & PlatformPathSeparator & "propulsion.txt"
-        SubDirBodyPropulsion = "stats" & PlatformPathSeparator & "bodypropulsionimd.txt"
-        SubDirConstruction = "stats" & PlatformPathSeparator & "construction.txt"
-        SubDirSensor = "stats" & PlatformPathSeparator & "sensor.txt"
-        SubDirRepair = "stats" & PlatformPathSeparator & "repair.txt"
-        SubDirTemplates = "stats" & PlatformPathSeparator & "templates.txt"
-        SubDirWeapons = "stats" & PlatformPathSeparator & "weapons.txt"
-        SubDirECM = "stats" & PlatformPathSeparator & "ecm.txt"
-        SubDirFeatures = "stats" & PlatformPathSeparator & "features.txt"
+        SubDirStructures = "stats" & PlatformPathSeparator & "structure.json"
+        SubDirBrain = "stats" & PlatformPathSeparator & "brain.json"
+        SubDirBody = "stats" & PlatformPathSeparator & "body.json"
+        SubDirPropulsion = "stats" & PlatformPathSeparator & "propulsion.json"
+        SubDirConstruction = "stats" & PlatformPathSeparator & "construction.json"
+        SubDirSensor = "stats" & PlatformPathSeparator & "sensor.json"
+        SubDirRepair = "stats" & PlatformPathSeparator & "repair.json"
+        SubDirTemplates = "stats" & PlatformPathSeparator & "templates.json"
+        SubDirWeapons = "stats" & PlatformPathSeparator & "weapons.json"
+        SubDirECM = "stats" & PlatformPathSeparator & "ecm.json"
+        SubDirFeatures = "stats" & PlatformPathSeparator & "features.json"
         SubDirPIEs = "pies" & PlatformPathSeparator
-        'SubDirStructurePIE = "structs" & ospathseperator
+        'SubDirStructurePIE = "structs" & PlatformPathSeparator
         SubDirStructurePIE = SubDirPIEs
-        'SubDirBodiesPIE = "components" & ospathseperator & "bodies" & ospathseperator 
+        'SubDirBodiesPIE = "components" & PlatformPathSeparator & "bodies" & PlatformPathSeparator
         SubDirBodiesPIE = SubDirPIEs
-        'SubDirPropPIE = "components" & ospathseperator & "prop" & ospathseperator
+        'SubDirPropPIE = "components" & PlatformPathSeparator & "prop" & PlatformPathSeparator
         SubDirPropPIE = SubDirPIEs
-        'SubDirWeaponsPIE = "components" & ospathseperator & "weapons" & ospathseperator 
+        'SubDirWeaponsPIE = "components" & PlatformPathSeparator & "weapons" & PlatformPathSeparator
         SubDirWeaponsPIE = SubDirPIEs
         SubDirTexpages = "texpages" & PlatformPathSeparator
-        SubDirAssignWeapons = "stats" & PlatformPathSeparator & "assignweapons.txt"
-        'SubDirFeaturePIE = "features" & ospathseperator 
+        'SubDirFeaturePIE = "features" & PlatformPathSeparator
         SubDirFeaturePIE = SubDirPIEs
-        SubDirStructureWeapons = "stats" & PlatformPathSeparator & "structureweapons.txt"
 
-        Dim CommaFiles As New SimpleList(Of clsTextFile)
 
-        Dim DataNames As New clsTextFile
-        DataNames.SubDirectory = SubDirNames
-        DataNames.UniqueField = 0
 
-        ReturnResult.Add(DataNames.LoadNamesFile(Path))
-        If Not DataNames.CalcUniqueField Then
-            ReturnResult.ProblemAdd("There are two entries for the same code in " & SubDirNames & ".")
-        End If
+        Dim JsonFiles As New SimpleList(Of clsTextFile)
 
         Dim DataStructures As New clsTextFile
         DataStructures.SubDirectory = SubDirStructures
-        DataStructures.FieldCount = 25
-        CommaFiles.Add(DataStructures)
+        JsonFiles.Add(DataStructures)
 
         Dim DataBrain As New clsTextFile
         DataBrain.SubDirectory = SubDirBrain
-        DataBrain.FieldCount = 9
-        CommaFiles.Add(DataBrain)
+        JsonFiles.Add(DataBrain)
 
         Dim DataBody As New clsTextFile
         DataBody.SubDirectory = SubDirBody
-        DataBody.FieldCount = 25
-        CommaFiles.Add(DataBody)
+        JsonFiles.Add(DataBody)
 
         Dim DataPropulsion As New clsTextFile
         DataPropulsion.SubDirectory = SubDirPropulsion
-        DataPropulsion.FieldCount = 12
-        CommaFiles.Add(DataPropulsion)
-
-        Dim DataBodyPropulsion As New clsTextFile
-        DataBodyPropulsion.SubDirectory = SubDirBodyPropulsion
-        DataBodyPropulsion.FieldCount = 5
-        DataBodyPropulsion.UniqueField = -1 'no unique requirement
-        CommaFiles.Add(DataBodyPropulsion)
+        JsonFiles.Add(DataPropulsion)
 
         Dim DataConstruction As New clsTextFile
         DataConstruction.SubDirectory = SubDirConstruction
-        DataConstruction.FieldCount = 12
-        CommaFiles.Add(DataConstruction)
+        JsonFiles.Add(DataConstruction)
 
         Dim DataSensor As New clsTextFile
         DataSensor.SubDirectory = SubDirSensor
-        DataSensor.FieldCount = 16
-        CommaFiles.Add(DataSensor)
+        JsonFiles.Add(DataSensor)
 
         Dim DataRepair As New clsTextFile
         DataRepair.SubDirectory = SubDirRepair
-        DataRepair.FieldCount = 14
-        CommaFiles.Add(DataRepair)
+        JsonFiles.Add(DataRepair)
 
         Dim DataTemplates As New clsTextFile
         DataTemplates.SubDirectory = SubDirTemplates
-        DataTemplates.FieldCount = 12
-        CommaFiles.Add(DataTemplates)
+        JsonFiles.Add(DataTemplates)
 
         Dim DataECM As New clsTextFile
         DataECM.SubDirectory = SubDirECM
-        DataECM.FieldCount = 14
-        CommaFiles.Add(DataECM)
+        JsonFiles.Add(DataECM)
 
         Dim DataFeatures As New clsTextFile
         DataFeatures.SubDirectory = SubDirFeatures
-        DataFeatures.FieldCount = 11
-        CommaFiles.Add(DataFeatures)
-
-        Dim DataAssignWeapons As New clsTextFile
-        DataAssignWeapons.SubDirectory = SubDirAssignWeapons
-        DataAssignWeapons.FieldCount = 5
-        CommaFiles.Add(DataAssignWeapons)
+        JsonFiles.Add(DataFeatures)
 
         Dim DataWeapons As New clsTextFile
         DataWeapons.SubDirectory = SubDirWeapons
-        DataWeapons.FieldCount = 53
-        CommaFiles.Add(DataWeapons)
-
-        Dim DataStructureWeapons As New clsTextFile
-        DataStructureWeapons.SubDirectory = SubDirStructureWeapons
-        DataStructureWeapons.FieldCount = 6
-        CommaFiles.Add(DataStructureWeapons)
+        JsonFiles.Add(DataWeapons)
 
         Dim TextFile As clsTextFile
 
-        For Each TextFile In CommaFiles
-            Dim Result As clsResult = TextFile.LoadCommaFile(Path)
+        'Load Json Files
+        For Each TextFile In JsonFiles
+            Dim Result As clsResult = TextFile.LoadJsonFile(Path)
             ReturnResult.Add(Result)
-            If Not Result.HasProblems Then
-                If TextFile.CalcIsFieldCountValid Then
-                    If Not TextFile.CalcUniqueField Then
-                        ReturnResult.ProblemAdd("An entry in field " & TextFile.UniqueField & " was not unique for file " & TextFile.SubDirectory & ".")
-                    End If
-                Else
-                    ReturnResult.ProblemAdd("There were entries with the wrong number of fields for file " & TextFile.SubDirectory & ".")
-                End If
-            End If
         Next
 
         If ReturnResult.HasProblems Then
@@ -489,10 +486,10 @@ MonoContinueDo:
             Body = New clsBody
             Body.ObjectDataLink.Connect(Bodies)
             Body.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Body, ReturnResult)
-            InvariantParse_int(Fields(6), Body.Hitpoints)
-            Body.Designable = (Fields(24) <> "0")
-            Body.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(7).ToLower, ReturnResult))
+            Body.Name = Fields(1)
+            InvariantParse_int(Fields(3), Body.Hitpoints)
+            Body.Designable = (Fields(2) <> "0")
+            Body.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(4).ToLower, ReturnResult)) 'Model
         Next
 
         'interpret propulsion
@@ -501,15 +498,15 @@ MonoContinueDo:
             Propulsion = New clsPropulsion(Bodies.Count)
             Propulsion.ObjectDataLink.Connect(Propulsions)
             Propulsion.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Propulsion, ReturnResult)
-            InvariantParse_int(Fields(7), Propulsion.HitPoints)
+            Propulsion.Name = Fields(1)
+            InvariantParse_int(Fields(3), Propulsion.HitPoints)
             '.Propulsions(Propulsion_Num).PIE = LCase(DataPropulsion.Entries(Propulsion_Num).FieldValues(8))
-            Propulsion.Designable = (Fields(11) <> "0")
+            Propulsion.Designable = (Fields(2) <> "0")
         Next
 
         'interpret body-propulsions
 
-        Dim BodyPropulsionPIEs(Bodies.Count - 1, Propulsions.Count - 1) As BodyProp
+        Dim BodyPropulsionPIEs(Bodies.Count - 1, Propulsions.Count - 1) As BodyProp 'BodyPropulsions.txt is part of Body.Json, Gonna have to rewrite this...
         For A As Integer = 0 To Bodies.Count - 1
             For B As Integer = 0 To Propulsions.Count - 1
                 BodyPropulsionPIEs(A, B) = New BodyProp
@@ -518,16 +515,37 @@ MonoContinueDo:
             Next
         Next
 
-        For Each Fields In DataBodyPropulsion.ResultData
+        For Each Fields In DataBody.ResultData
             Body = FindBodyCode(Fields(0))
-            Propulsion = FindPropulsionCode(Fields(1))
-            If Body IsNot Nothing And Propulsion IsNot Nothing Then
-                If Fields(2) <> "0" Then
-                    BodyPropulsionPIEs(Body.ObjectDataLink.ArrayPosition, Propulsion.ObjectDataLink.ArrayPosition).LeftPIE = Fields(2).ToLower
-                End If
-                If Fields(3) <> "0" Then
-                    BodyPropulsionPIEs(Body.ObjectDataLink.ArrayPosition, Propulsion.ObjectDataLink.ArrayPosition).RightPIE = Fields(3).ToLower
-                End If
+
+            If Fields(23) <> "0" Then
+                Dim Temp1() As String = Fields(23).Split("}"c)   'Seperate Propulsions
+
+                For A As Integer = 0 To Temp1.GetUpperBound(0) - 1
+
+                    Dim Temp2() As String = Temp1(A).Split("{"c) 'Isolate Propulsion
+                    Temp2(0) = Replace(Temp2(0), ":", "")       'Remove : from Propulsion
+                    Temp2(0) = Replace(Temp2(0), ",", "")       'Remove , from Propulsion
+
+                    Propulsion = FindPropulsionCode(Temp2(0))
+
+                    Dim Temp3() As String = Temp2(1).Split(","c) 'Seperate Sides/Types
+
+                    For B As Integer = 0 To Temp3.GetUpperBound(0)
+
+                        Dim Temp4() As String = Temp3(B).Split(":"c) 'Seperate Side and Model
+
+                        Select Case Temp4(0)
+                            Case "left"
+                                BodyPropulsionPIEs(Body.ObjectDataLink.ArrayPosition, Propulsion.ObjectDataLink.ArrayPosition).LeftPIE = Temp4(1).ToLower
+                            Case "right"
+                                BodyPropulsionPIEs(Body.ObjectDataLink.ArrayPosition, Propulsion.ObjectDataLink.ArrayPosition).RightPIE = Temp4(1).ToLower
+                            Case "moving"
+                            Case Else
+                                ReturnResult.WarningAdd("Model type was not left right or moving during Body-Prop association for " & Fields(0) & " and " & Temp2(0))
+                        End Select
+                    Next
+                Next
             End If
         Next
 
@@ -551,9 +569,9 @@ MonoContinueDo:
             Construct.ObjectDataLink.Connect(Constructors)
             Construct.TurretObjectDataLink.Connect(Turrets)
             Construct.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Construct, ReturnResult)
-            Construct.Designable = (Fields(11) <> "0")
-            Construct.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(8).ToLower, ReturnResult))
+            Construct.Name = Fields(1)
+            Construct.Designable = (Fields(2) <> "0")
+            Construct.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(5).ToLower, ReturnResult)) 'SensorModel
         Next
 
         'interpret weapons
@@ -563,11 +581,11 @@ MonoContinueDo:
             Weapon.ObjectDataLink.Connect(Weapons)
             Weapon.TurretObjectDataLink.Connect(Turrets)
             Weapon.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Weapon, ReturnResult)
-            InvariantParse_int(Fields(7), Weapon.HitPoints)
-            Weapon.Designable = (Fields(51) <> "0")
-            Weapon.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(8).ToLower, ReturnResult))
-            Weapon.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(9).ToLower, ReturnResult))
+            Weapon.Name = Fields(1)
+            InvariantParse_int(Fields(3), Weapon.HitPoints)
+            Weapon.Designable = (Fields(2) <> "0")
+            Weapon.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(4).ToLower, ReturnResult)) 'Model
+            Weapon.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(6).ToLower, ReturnResult)) 'MountModel
         Next
 
         'interpret sensor
@@ -577,10 +595,10 @@ MonoContinueDo:
             Sensor.ObjectDataLink.Connect(Sensors)
             Sensor.TurretObjectDataLink.Connect(Turrets)
             Sensor.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Sensor, ReturnResult)
-            InvariantParse_int(Fields(7), Sensor.HitPoints)
-            Sensor.Designable = (Fields(15) <> "0")
-            Select Case Fields(11).ToLower
+            Sensor.Name = Fields(1)
+            InvariantParse_int(Fields(3), Sensor.HitPoints)
+            Sensor.Designable = (Fields(2) <> "0")
+            Select Case Fields(8).ToLower 'Loction
                 Case "turret"
                     Sensor.Location = clsSensor.enumLocation.Turret
                 Case "default"
@@ -588,8 +606,8 @@ MonoContinueDo:
                 Case Else
                     Sensor.Location = clsSensor.enumLocation.Invisible
             End Select
-            Sensor.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(8).ToLower, ReturnResult))
-            Sensor.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(9).ToLower, ReturnResult))
+            Sensor.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(5).ToLower, ReturnResult)) 'SensorModel
+            Sensor.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(6).ToLower, ReturnResult)) 'MountModel
         Next
 
         'interpret repair
@@ -599,10 +617,10 @@ MonoContinueDo:
             Repair.ObjectDataLink.Connect(Repairs)
             Repair.TurretObjectDataLink.Connect(Turrets)
             Repair.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Repair, ReturnResult)
-            Repair.Designable = (Fields(13) <> "0")
-            Repair.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(9).ToLower, ReturnResult))
-            Repair.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(10).ToLower, ReturnResult))
+            Repair.Name = Fields(1)
+            Repair.Designable = (Fields(2) <> "0")
+            Repair.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(4).ToLower, ReturnResult)) 'Model
+            Repair.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(6).ToLower, ReturnResult)) 'MountModel
         Next
 
         'interpret brain
@@ -612,9 +630,9 @@ MonoContinueDo:
             Brain.ObjectDataLink.Connect(Brains)
             Brain.TurretObjectDataLink.Connect(Turrets)
             Brain.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, Brain, ReturnResult)
+            Brain.Name = Fields(1)
             Brain.Designable = True
-            Weapon = FindWeaponCode(Fields(7))
+            Weapon = FindWeaponCode(Fields(7)) 'Turret
             If Weapon IsNot Nothing Then
                 Brain.Weapon = Weapon
                 Brain.Attachment = Weapon.Attachment
@@ -628,10 +646,10 @@ MonoContinueDo:
             ECM.ObjectDataLink.Connect(ECMs)
             ECM.TurretObjectDataLink.Connect(Turrets)
             ECM.Code = Fields(0)
-            SetComponentName(DataNames.ResultData, ECM, ReturnResult)
-            InvariantParse_int(Fields(7), ECM.HitPoints)
+            ECM.Name = Fields(1)
+            InvariantParse_int(Fields(3), ECM.HitPoints)
             ECM.Designable = False
-            ECM.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(8).ToLower, ReturnResult))
+            ECM.Attachment.Models.Add(GetModelForPIE(PIE_List, Fields(5).ToLower, ReturnResult)) 'SensorModel
         Next
 
         'interpret feature
@@ -641,19 +659,19 @@ MonoContinueDo:
             FeatureType.UnitType_ObjectDataLink.Connect(UnitTypes)
             FeatureType.FeatureType_ObjectDataLink.Connect(FeatureTypes)
             FeatureType.Code = Fields(0)
-            If Fields(7) = "OIL RESOURCE" Then 'type
+            If Fields(9) = "OIL RESOURCE" Then 'type
                 FeatureType.FeatureType = clsFeatureType.enumFeatureType.OilResource
             End If
-            SetFeatureName(DataNames.ResultData, FeatureType, ReturnResult)
-            If Not InvariantParse_int(Fields(1), FeatureType.Footprint.X) Then
+            FeatureType.Name = Fields(1)
+            If Not InvariantParse_int(Fields(10), FeatureType.Footprint.X) Then 'Width
                 ReturnResult.WarningAdd("Feature footprint-x was not an integer for " & FeatureType.Code & ".")
             End If
-            If Not InvariantParse_int(Fields(2), FeatureType.Footprint.Y) Then
+            If Not InvariantParse_int(Fields(11), FeatureType.Footprint.Y) Then 'Breadth
                 ReturnResult.WarningAdd("Feature footprint-y was not an integer for " & FeatureType.Code & ".")
             End If
             FeatureType.BaseAttachment = New clsUnitType.clsAttachment
             BaseAttachment = FeatureType.BaseAttachment
-            Text = Fields(6).ToLower
+            Text = Fields(4).ToLower 'Model
             Attachment = BaseAttachment.CreateAttachment()
             Attachment.Models.Add(GetModelForPIE(PIE_List, Text, ReturnResult))
         Next
@@ -662,15 +680,15 @@ MonoContinueDo:
 
         For Each Fields In DataStructures.ResultData
             Dim StructureCode As String = Fields(0)
-            Dim StructureTypeText As String = Fields(1)
-            Dim StructurePIEs() As String = Fields(21).ToLower.Split("@"c)
+            Dim StructureTypeText As String = Fields(9) 'type
+            Dim StructurePIEs() As String = Fields(22).ToLower.Split(","c)
             Dim StructureFootprint As sXY_int
-            Dim StructureBasePIE As String = Fields(22).ToLower
-            If Not InvariantParse_int(Fields(5), StructureFootprint.X) Then
-                ReturnResult.WarningAdd("Structure footprint-x was not an integer for " & StructureCode & ".")
+            Dim StructureBasePIE As String = Fields(12).ToLower 'BaseModel
+            If Not InvariantParse_int(Fields(10), StructureFootprint.X) Then 'Width
+                ReturnResult.WarningAdd("Structure footprint-x was not an integer for " & StructureCode & ". " & Fields(10))
             End If
-            If Not InvariantParse_int(Fields(6), StructureFootprint.Y) Then
-                ReturnResult.WarningAdd("Structure footprint-y was not an integer for " & StructureCode & ".")
+            If Not InvariantParse_int(Fields(11), StructureFootprint.Y) Then 'Breadth
+                ReturnResult.WarningAdd("Structure footprint-y was not an integer for " & StructureCode & ". " & Fields(11))
             End If
             If StructureTypeText <> "WALL" Or StructurePIEs.GetLength(0) <> 4 Then
                 'this is NOT a generic wall
@@ -678,7 +696,7 @@ MonoContinueDo:
                 StructureType.UnitType_ObjectDataLink.Connect(UnitTypes)
                 StructureType.StructureType_ObjectDataLink.Connect(StructureTypes)
                 StructureType.Code = StructureCode
-                SetStructureName(DataNames.ResultData, StructureType, ReturnResult)
+                StructureType.Name = Fields(1)
                 StructureType.Footprint = StructureFootprint
                 Select Case StructureTypeText
                     Case "DEMOLISH"
@@ -733,15 +751,15 @@ MonoContinueDo:
                 If BaseAttachment.Models.Count = 1 Then
                     If BaseAttachment.Models.Item(0).ConnectorCount >= 1 Then
                         Connector = BaseAttachment.Models.Item(0).Connectors(0)
-                        Dim StructureWeapons As SimpleList(Of String())
-                        StructureWeapons = GetRowsWithValue(DataStructureWeapons.ResultData, StructureType.Code)
-                        If StructureWeapons.Count > 0 Then
-                            Weapon = FindWeaponCode(StructureWeapons(0)(1))
+                        Dim StructureWeapons() As String
+                        StructureWeapons = Fields(21).Split(","c)
+                        If StructureWeapons(0) <> Nothing Then
+                            Weapon = FindWeaponCode(StructureWeapons(0))
                         Else
                             Weapon = Nothing
                         End If
-                        ECM = FindECMCode(Fields(18))
-                        Sensor = FindSensorCode(Fields(19))
+                        ECM = FindECMCode(Fields(13)) 'ECMId
+                        Sensor = FindSensorCode(Fields(14)) 'SensorId
                         If Weapon IsNot Nothing Then
                             If Weapon.Code <> "ZNULLWEAPON" Then
                                 Attachment = BaseAttachment.CopyAttachment(Weapon.Attachment)
@@ -767,7 +785,7 @@ MonoContinueDo:
                 Dim NewWall As New clsWallType
                 NewWall.WallType_ObjectDataLink.Connect(WallTypes)
                 NewWall.Code = StructureCode
-                SetWallName(DataNames.ResultData, NewWall, ReturnResult)
+                NewWall.Name = Fields(1)
                 Dim WallBasePlate As clsModel = GetModelForPIE(PIE_List, StructureBasePIE, ReturnResult)
 
                 Dim WallNum As Integer
@@ -810,7 +828,7 @@ MonoContinueDo:
             Template.UnitType_ObjectDataLink.Connect(UnitTypes)
             Template.DroidTemplate_ObjectDataLink.Connect(DroidTemplates)
             Template.Code = Fields(0)
-            SetTemplateName(DataNames.ResultData, Template, ReturnResult)
+            Template.Name = Fields(1)
             Select Case Fields(9) 'type
                 Case "ZNULLDROID"
                     Template.TemplateDroidType = TemplateDroidType_Null
@@ -828,33 +846,36 @@ MonoContinueDo:
                     Template.TemplateDroidType = TemplateDroidType_Transporter
                 Case "PERSON"
                     Template.TemplateDroidType = TemplateDroidType_Person
+                Case "DROID_COMMAND"
+                    Template.TemplateDroidType = TemplateDroidType_Droid
+                Case "CONSTRUCT"
+                    Template.TemplateDroidType = TemplateDroidType_Droid
                 Case Else
-                    Template.TemplateDroidType = Nothing
-                    ReturnResult.WarningAdd("Template " & Template.GetDisplayTextCode & " had an unrecognised type.")
+                    Template.TemplateDroidType = TemplateDroidType_Droid
+                    ReturnResult.WarningAdd("Template " & Template.GetDisplayTextCode & " had an unrecognised type: " & Fields(9) & ". Defaulting to Droid")
             End Select
             Dim LoadPartsArgs As New clsDroidDesign.sLoadPartsArgs
-            LoadPartsArgs.Body = FindBodyCode(Fields(2))
-            LoadPartsArgs.Brain = FindBrainCode(Fields(3))
-            LoadPartsArgs.Construct = FindConstructorCode(Fields(4))
-            LoadPartsArgs.ECM = FindECMCode(Fields(5))
-            LoadPartsArgs.Propulsion = FindPropulsionCode(Fields(7))
-            LoadPartsArgs.Repair = FindRepairCode(Fields(8))
-            LoadPartsArgs.Sensor = FindSensorCode(Fields(10))
-            Dim TemplateWeapons As SimpleList(Of String()) = GetRowsWithValue(DataAssignWeapons.ResultData, Template.Code)
-            If TemplateWeapons.Count > 0 Then
-                Text = TemplateWeapons(0)(1)
-                If Text <> "NULL" Then
-                    LoadPartsArgs.Weapon1 = FindWeaponCode(Text)
+            LoadPartsArgs.Body = FindBodyCode(Fields(15)) 'Body
+            LoadPartsArgs.Brain = FindBrainCode(Fields(16)) 'Brain
+            LoadPartsArgs.Construct = FindConstructorCode(Fields(17)) 'Construct
+            LoadPartsArgs.ECM = FindECMCode(Fields(13)) 'ECMId
+            LoadPartsArgs.Propulsion = FindPropulsionCode(Fields(20)) 'Propulsion
+            LoadPartsArgs.Repair = FindRepairCode(Fields(18)) 'Repair
+            LoadPartsArgs.Sensor = FindSensorCode(Fields(19)) 'Sensor
+            Dim TemplateWeapons() As String = Fields(21).Split(","c)
+            Try
+                If TemplateWeapons(0) <> Nothing Then
+                    LoadPartsArgs.Weapon1 = FindWeaponCode(TemplateWeapons(0))
                 End If
-                Text = TemplateWeapons(0)(2)
-                If Text <> "NULL" Then
-                    LoadPartsArgs.Weapon2 = FindWeaponCode(Text)
+                If TemplateWeapons(1) <> Nothing Then
+                    LoadPartsArgs.Weapon2 = FindWeaponCode(TemplateWeapons(1))
                 End If
-                Text = TemplateWeapons(0)(3)
-                If Text <> "NULL" Then
-                    LoadPartsArgs.Weapon3 = FindWeaponCode(Text)
+                If TemplateWeapons(2) <> Nothing Then
+                    LoadPartsArgs.Weapon3 = FindWeaponCode(TemplateWeapons(2))
                 End If
-            End If
+            Catch ex As Exception
+                'do nothing because we know not everything will have all 3 weapons :)
+            End Try
             If Not Template.LoadParts(LoadPartsArgs) Then
                 If TurretConflictCount < 16 Then
                     ReturnResult.WarningAdd("Template " & Template.GetDisplayTextCode & " had multiple conflicting turrets.")
@@ -947,7 +968,7 @@ MonoContinueDo:
 
     Public Function GetModelForPIE(PIE_List As SimpleList(Of clsPIE), PIE_LCaseFileTitle As String, ResultOutput As clsResult) As clsModel
 
-        If PIE_LCaseFileTitle = "0" Then
+        If PIE_LCaseFileTitle = "0" Or PIE_LCaseFileTitle = "znullbody.pie" Or PIE_LCaseFileTitle = "znullgun.pie" Or PIE_LCaseFileTitle = "znullturret.pie" Then
             Return Nothing
         End If
 
