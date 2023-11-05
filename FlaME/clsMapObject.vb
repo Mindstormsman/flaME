@@ -120,6 +120,42 @@ Partial Public Class clsMap
             End If
         End Function
 
+        Public Function HasLabel() As Boolean
+            If _Label IsNot Nothing Then
+                Return True
+            Else
+                Return False
+            End If
+        End Function
+
+        Public Sub WriteJson(File As clsJSONWrite, PlayerCount As Integer)
+
+            If HasLabel() Then
+                File.WriteName("object_" & InvariantToString_int(MapLink.ArrayPosition))
+                File.WriteProperty("label", _Label)
+                File.EndLine()
+                Dim TypeNum As Integer
+                Select Case Type.Type
+                    Case clsUnitType.enumType.PlayerDroid
+                        TypeNum = 0
+                    Case clsUnitType.enumType.PlayerStructure
+                        TypeNum = 1
+                    Case clsUnitType.enumType.Feature
+                        TypeNum = 2
+                    Case Else
+                        Exit Sub
+                End Select
+                File.WriteNum("id", InvariantToString_uint(ID))
+                If PlayerCount >= 0 Then
+                    File.EndLine()
+                    File.WriteNum("player", InvariantToString_int(UnitGroup.GetPlayerNum(PlayerCount)))
+                    File.EndLine()
+                    File.WriteNum("type", InvariantToString_int(TypeNum))
+                End If
+                File.EndEntry()
+                End If
+        End Sub
+
         Public Sub WriteWZLabel(File As clsINIWrite, PlayerCount As Integer)
 
             If _Label IsNot Nothing Then

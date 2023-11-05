@@ -28,7 +28,7 @@ Public Module modMain
         OpenGL2 = New OpenTK.GLControl(New GraphicsMode(New ColorFormat(InitializeSettings.TextureViewBPP), InitializeSettings.TextureViewDepth, 0))
 
         Do While OpenGL1.Context Is Nothing Or OpenGL2.Context Is Nothing
-            'todo, why is this needed?
+            ' todo, why is this needed?
         Loop
 
         frmMainInstance = New frmMain

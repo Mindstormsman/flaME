@@ -478,7 +478,7 @@ Public Module modProgram
         Next
 
         For Each Tileset In Tilesets
-            If Tileset.Name = "tertilesc1hw" Then
+            If Tileset.Name = "tertilesc1hw" Then 'TODO Tilesets aren't organized into seperate directories in Warzone
                 Tileset.Name = "Arizona"
                 Tileset_Arizona = Tileset
                 Tileset.IsOriginal = True

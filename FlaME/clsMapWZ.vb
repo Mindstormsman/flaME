@@ -486,7 +486,7 @@ Partial Public Class clsMap
             ReturnResult.Add(Result)
         End If
 
-        If INIStructures Is Nothing Then
+        If INIDroids Is Nothing Then
             Dim Result As New clsResult("dinit.bjo")
             SubResult = TryOpenFileStream(GameFilesPath & "dinit.bjo", File)
             If Not SubResult.Success Then
@@ -513,8 +513,20 @@ Partial Public Class clsMap
         SubResult = TryOpenFileStream(GameFilesPath & "labels.ini", File)
         If Not SubResult.Success Then
 
+            Dim Result As New clsResult("labels.json")
+            SubResult = TryOpenFileStream(GameFilesPath & "labels.json", File)
+
+            If Not SubResult.Success Then
+                Result.WarningAdd("labels.json file not found")
+            Else
+                File.Close()
+                Result.Take(LoadJsonLabel(GameFilesPath & "labels.json"))
+                ReturnResult.Add(Result)
+            End If
+
         Else
             Dim Result As New clsResult("labels.ini")
+            Result.WarningAdd("Json support has been added, If you want to load labels.json remove labels.ini")
             Dim LabelsINI As New clsINIRead
             Dim LabelsINI_Reader As New IO.StreamReader(File)
             Result.Take(LabelsINI.ReadFile(LabelsINI_Reader))
@@ -1550,6 +1562,127 @@ Partial Public Class clsMap
         Return ReturnResult
     End Function
 
+    'Find the Value between Two Delimiters after Keyword in Entry
+    Public Function FindInString(Entry As String, Keyword As String, Delimiter1 As String, Delimiter2 As String) As String
+        Dim Start As Integer
+        Dim Finish As Integer
+        Dim Key As Integer
+        Dim Value As String
+        Dim Length As Integer
+
+        Key = InStr(Entry, Keyword)
+        If Key = 0 Then
+            Return "Default"
+        End If
+        Start = InStr(Key + Len(Keyword), Entry, Delimiter1)
+        Finish = InStr(Start + 1, Entry, Delimiter2)
+        If Finish = 0 Then
+            Finish = InStr(Start + 1, Entry, "}")
+        End If
+        Length = Finish - Start - 1
+        Value = Mid(Entry, Start + 1, Length)
+        Value = Replace(Value, "}", "")
+        Value = Value.Trim
+
+        Return Value
+    End Function
+
+    Public Function LoadJsonLabel(Path As String) As clsResult
+        Dim Result As New clsResult("Loading Json file " & ControlChars.Quote & Path & ControlChars.Quote)
+        Dim Reader As IO.StreamReader
+
+        Try
+            Reader = New IO.StreamReader(Path, UTF8Encoding)
+        Catch ex As Exception
+            Result.ProblemAdd(ex.Message)
+            Return Result
+        End Try
+
+        Dim Entry As String = ""
+        Dim Line As String
+        Dim Layer As Integer = 0
+
+        Do Until Reader.EndOfStream
+            Line = Reader.ReadLine 'get a line
+            Line = Line.Trim
+            Entry &= Line 'add it to Entry
+            If InStr(Line, "{") > 0 Then
+                Layer += 1
+            End If
+            If InStr(Line, "}") > 0 Then
+                Layer -= 1
+                If Layer = 1 Then 'If we closed a nest and are now on Layer 1 then we know we reached the end of the entry
+
+                    Dim Name As String = FindInString(Entry, "", ControlChars.Quote, ControlChars.Quote)
+                    Dim LabelType As String = FindInString(Entry, "", ControlChars.Quote, "_")
+                    Dim Label As String = FindInString(Entry, ControlChars.Quote & "label" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+
+                    Select Case LabelType
+
+                        Case "position"
+                            Dim Pos As String = FindInString(Entry, ControlChars.Quote & "pos" & ControlChars.Quote, "[", "]")
+                            Dim Position = New clsPositionFromText
+                            If Position.Translate(Pos) Then
+                                Dim NewPosition = clsMap.clsScriptPosition.Create(Me)
+                                NewPosition.PosX = Position.Pos.X
+                                NewPosition.PosY = Position.Pos.Y
+                                NewPosition.SetLabel(Label)
+                            Else
+                                Result.WarningAdd("Failed to add position data for Label " & Name & " in " & Path)
+                            End If
+
+                        Case "area"
+                            Dim Pos1 As String = FindInString(Entry, ControlChars.Quote & "pos1" & ControlChars.Quote, "[", "]")
+                            Dim Pos2 As String = FindInString(Entry, ControlChars.Quote & "pos2" & ControlChars.Quote, "[", "]")
+                            Dim Position1 = New clsPositionFromText
+                            Dim Position2 = New clsPositionFromText
+                            If Position1.Translate(Pos1) And Position2.Translate(Pos2) Then
+                                Dim NewArea = clsMap.clsScriptArea.Create(Me)
+                                NewArea.SetPositions(Position1.Pos, Position2.Pos)
+                                NewArea.SetLabel(Label)
+                            Else
+                                Result.WarningAdd("Failed to add position data for Label " & Name & " in " & Path)
+                            End If
+
+                        Case "object"
+                            Dim Id As UInteger
+                            Dim IdRaw As String = FindInString(Entry, "id", ":", ",")
+                            If InvariantParse_uint(IdRaw, Id) Then
+                                Dim Unit As clsUnit = IDUsage(Id)
+                                If Unit IsNot Nothing Then
+                                    If Not Unit.SetLabel(Label).Success Then
+                                        Result.WarningAdd("Failed to set label " & Label & " on unit with Id " & IdRaw)
+                                    End If
+                                Else
+                                    Result.WarningAdd("Failed to find Unit with Id " & IdRaw & " when creating label " & Name & " in " & Path)
+                                End If
+                            End If
+
+                        Case "radius" 'TODO: Implement Radius Type Labels
+                            Result.WarningAdd("Radius labels are not supported yet, Importing as Position for label " & Name & " (" & Label & ") in " & Path)
+                            Dim Pos As String = FindInString(Entry, ControlChars.Quote & "pos" & ControlChars.Quote, "[", "]")
+                            Dim Position = New clsPositionFromText
+                            If Position.Translate(Pos) Then
+                                Dim NewPosition = clsMap.clsScriptPosition.Create(Me)
+                                NewPosition.PosX = Position.Pos.X
+                                NewPosition.PosY = Position.Pos.Y
+                                NewPosition.SetLabel(Label)
+                            Else
+                                Result.WarningAdd("Failed to add position data for Label " & Name & " in " & Path)
+                            End If
+                        Case Else
+                            Result.WarningAdd("Unknown Label Type " & LabelType & " for Label " & Name & " in " & Path)
+                    End Select
+                    Entry = ""
+                End If
+            End If
+        Loop
+
+        Reader.Close()
+
+        Return Result
+    End Function
+
     Public Function Read_WZ_Labels(INI As clsINIRead, IsFMap As Boolean) As clsResult
         Dim ReturnResult As New clsResult("Reading labels")
 
@@ -1732,7 +1865,7 @@ Partial Public Class clsMap
                                     ModuleMin.Y = OtherUnit.Pos.Horizontal.Y - CInt(Footprint.Y * TerrainGridSpacing / 2.0#)
                                     ModuleMax.X = OtherUnit.Pos.Horizontal.X + CInt(Footprint.X * TerrainGridSpacing / 2.0#)
                                     ModuleMax.Y = OtherUnit.Pos.Horizontal.Y + CInt(Footprint.Y * TerrainGridSpacing / 2.0#)
-                                    If Unit.Pos.Horizontal.X >= ModuleMin.X And Unit.Pos.Horizontal.X < ModuleMax.X And _
+                                    If Unit.Pos.Horizontal.X >= ModuleMin.X And Unit.Pos.Horizontal.X < ModuleMax.X And
                                       Unit.Pos.Horizontal.Y >= ModuleMin.Y And Unit.Pos.Horizontal.Y < ModuleMax.Y Then
                                         UnitModuleCount(OtherUnit.MapLink.ArrayPosition) += 1
                                         Underneath = OtherUnit
@@ -1983,6 +2116,82 @@ Partial Public Class clsMap
         Return ReturnResult
     End Function
 
+    Public Function Serialize_WZ_LabelsJSON(File As clsJSONWrite, PlayerCount As Integer) As clsResult
+        Dim ReturnResult As New clsResult("Serializing labels JSON")
+        Dim ScriptPosition As clsScriptPosition
+        Dim ScriptArea As clsScriptArea
+        Dim Unit As clsUnit
+        Dim Labels As Integer
+        Dim Done As Integer
+
+        Try
+            For Each ScriptPosition In ScriptPositions
+                Labels += 1
+            Next
+
+            For Each ScriptArea In ScriptAreas
+                Labels += 1
+            Next
+
+            For Each Unit In Units
+                If Unit.HasLabel() Then
+                    Labels += 1
+                End If
+            Next
+
+            File.StartFile()
+
+            For Each ScriptPosition In ScriptPositions
+                ScriptPosition.WriteJson(File)
+                Done += 1
+                If Done = Labels Then
+                    File.AddGap()
+                    File.EndFile()
+                    Return ReturnResult
+                End If
+                File.EndLine()
+                File.AddGap()
+                File.AddGap()
+            Next
+
+            For Each ScriptArea In ScriptAreas
+                ScriptArea.WriteJson(File)
+                Done += 1
+                If Done = Labels Then
+                    File.AddGap()
+                    File.EndFile()
+                    Return ReturnResult
+                End If
+                File.EndLine()
+                File.AddGap()
+                File.AddGap()
+            Next
+
+            For Each Unit In Units
+                If Unit.HasLabel() Then
+                    Unit.WriteJson(File, PlayerCount)
+                    Done += 1
+                    If Done = Labels Then
+                        File.AddGap()
+                        File.EndFile()
+                        Return ReturnResult
+                    End If
+                    File.EndLine()
+                    File.AddGap()
+                    File.AddGap()
+                End If
+            Next
+
+            File.EndFile()
+            ReturnResult.WarningAdd("Ran out of labels while writing to labels.json! An extra comma was added after the last entry that may need to be removed")
+
+        Catch ex As Exception
+            ReturnResult.WarningAdd(ex.Message)
+        End Try
+
+        Return ReturnResult
+    End Function
+
     Public Function Serialize_WZ_LabelsINI(File As clsINIWrite, PlayerCount As Integer) As clsResult
         Dim ReturnResult As New clsResult("Serializing labels INI")
 
@@ -2098,6 +2307,8 @@ Partial Public Class clsMap
             Dim INI_droid As clsINIWrite = clsINIWrite.CreateFile(INI_droid_Memory)
             Dim INI_Labels_Memory As New IO.MemoryStream
             Dim INI_Labels As clsINIWrite = clsINIWrite.CreateFile(INI_Labels_Memory)
+            Dim File_LabelsJson_Memory As New IO.MemoryStream
+            Dim File_LabelsJson As clsJSONWrite = clsJSONWrite.CreateFile(File_LabelsJson_Memory)
 
             Dim PlayersPrefix As String = ""
             Dim PlayersText As String = ""
@@ -2366,14 +2577,17 @@ Partial Public Class clsMap
                 File_droidBJO.Write(DintZeroBytes)
             Next
 
+
             ReturnResult.Add(Serialize_WZ_FeaturesINI(INI_feature))
             If Args.CompileType = sWrite_WZ_Args.enumCompileType.Multiplayer Then
                 ReturnResult.Add(Serialize_WZ_StructuresINI(INI_struct, Args.Multiplayer.PlayerCount))
                 ReturnResult.Add(Serialize_WZ_DroidsINI(INI_droid, Args.Multiplayer.PlayerCount))
                 ReturnResult.Add(Serialize_WZ_LabelsINI(INI_Labels, Args.Multiplayer.PlayerCount))
+                ReturnResult.Add(Serialize_WZ_LabelsJSON(File_LabelsJson, Args.Multiplayer.PlayerCount))
             ElseIf Args.CompileType = sWrite_WZ_Args.enumCompileType.Campaign Then
                 ReturnResult.Add(Serialize_WZ_StructuresINI(INI_struct, -1))
                 ReturnResult.Add(Serialize_WZ_DroidsINI(INI_droid, -1))
+                ReturnResult.Add(Serialize_WZ_LabelsJSON(File_LabelsJson, 0))
                 ReturnResult.Add(Serialize_WZ_LabelsINI(INI_Labels, 0)) 'interprets -1 players as an FMap
             End If
 
@@ -2388,6 +2602,7 @@ Partial Public Class clsMap
             File_droidBJO.Flush()
             INI_droid.File.Flush()
             INI_Labels.File.Flush()
+            File_LabelsJson.File.Flush()
 
             If Args.CompileType = sWrite_WZ_Args.enumCompileType.Multiplayer Then
 
@@ -2525,6 +2740,16 @@ Partial Public Class clsMap
                         End If
                     End If
 
+                    If File_LabelsJson_Memory.Length > 0 Then
+                        ZipPath = "multiplay/maps/" & PlayersPrefix & Args.MapName & "/" & "labels.ini"
+                        ZipEntry = ZipMakeEntry(WZStream, ZipPath, ReturnResult)
+                        If ZipEntry IsNot Nothing Then
+                            ReturnResult.Add(WriteMemoryToZipEntryAndFlush(File_LabelsJson_Memory, WZStream))
+                        Else
+                            ReturnResult.ProblemAdd("Unable to make entry " & ZipPath)
+                        End If
+                    End If
+
                     WZStream.Finish()
                     WZStream.Close()
                     Return ReturnResult
@@ -2583,6 +2808,9 @@ Partial Public Class clsMap
 
                 FilePath = CampDirectory & "labels.ini"
                 ReturnResult.Add(WriteMemoryToNewFile(INI_Labels_Memory, FilePath))
+
+                FilePath = CampDirectory & "labels.json"
+                ReturnResult.Add(WriteMemoryToNewFile(File_LabelsJson_Memory, FilePath))
             End If
 
         Catch ex As Exception
@@ -2633,4 +2861,66 @@ Partial Public Class clsMap
         ReturnResult.Success = True
         Return ReturnResult
     End Function
+End Class
+
+Public Class clsJSONWrite
+
+    Public File As IO.StreamWriter
+    Public Enter As String = ControlChars.NewLine
+    Public Tab As Char = ControlChars.Tab
+    Public Quote As Char = ControlChars.Quote
+
+    Public Shared Function CreateFile(Output As IO.Stream) As clsJSONWrite
+        Dim NewJson As New clsJSONWrite
+
+        NewJson.File = New IO.StreamWriter(Output, UTF8Encoding)
+
+        Return NewJson
+    End Function
+
+    Public Function StartFile() As Object
+        File.Write("{"c & Enter)
+        Return True
+    End Function
+
+    Public Function WriteName(Name As String) As Object
+        File.Write(Tab & Quote & Name & Quote & ": {" & Enter)
+        Return True
+    End Function
+
+    Public Function WriteProperty(Index As String, Value As String) As Object
+        File.Write(Tab & Tab & Quote & Index & Quote & ": " & Quote & Value & Quote)
+        Return True
+    End Function
+
+    Public Function WriteCoordinate(Index As String, X As String, Y As String) As Object
+        File.Write(Tab & Tab & Quote & Index & Quote & ": [" & X & ", " & Y & "]"c)
+        Return True
+    End Function
+
+    Public Function EndLine() As Object
+        File.Write(","c & Enter)
+        Return True
+    End Function
+
+    Public Function EndEntry() As Object
+        File.Write(Enter & Tab & "}"c)
+        Return True
+    End Function
+
+    Public Function EndFile() As Object
+        File.Write("}"c)
+        Return True
+    End Function
+
+    Public Function AddGap() As Object
+        File.Write(Enter)
+        Return True
+    End Function
+
+    Public Function WriteNum(Index As String, X As String) As Object
+        File.Write(Tab & Tab & Quote & Index & Quote & ": " & X)
+        Return True
+    End Function
+
 End Class

@@ -158,6 +158,16 @@ Partial Public Class clsMap
             PosY = _Pos.Y - PosOffset.Y
         End Sub
 
+        Public Sub WriteJson(File As clsJSONWrite)
+            If _Label <> Nothing Then
+                File.WriteName("position_" & InvariantToString_int(_ParentMapLink.ArrayPosition))
+                File.WriteProperty("label", _Label)
+                File.EndLine()
+                File.WriteCoordinate("pos", InvariantToString_int(_Pos.X), InvariantToString_int(_Pos.Y))
+                File.EndEntry()
+            End If
+        End Sub
+
         Public Sub WriteWZ(File As clsINIWrite)
 
             File.SectionName_Append("position_" & InvariantToString_int(_ParentMapLink.ArrayPosition))
@@ -314,6 +324,17 @@ Partial Public Class clsMap
         Public Sub MapResizing(PosOffset As sXY_int)
 
             SetPositions(New sXY_int(_PosA.X - PosOffset.X, _PosA.Y - PosOffset.Y), New sXY_int(_PosB.X - PosOffset.X, _PosB.Y - PosOffset.Y))
+        End Sub
+
+        Public Sub WriteJson(File As clsJSONWrite)
+
+            File.WriteName("area_" & InvariantToString_int(_ParentMapLink.ArrayPosition))
+            File.WriteProperty("label", _Label)
+            File.EndLine()
+            File.WriteCoordinate("pos1", InvariantToString_int(_PosA.X), InvariantToString_int(_PosA.Y))
+            File.EndLine()
+            File.WriteCoordinate("pos2", InvariantToString_int(_PosB.X), InvariantToString_int(_PosB.Y))
+            File.EndEntry()
         End Sub
 
         Public Sub WriteWZ(File As clsINIWrite)

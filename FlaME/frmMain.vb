@@ -588,7 +588,7 @@ Partial Public Class frmMain
         View_DrawViewLater()
     End Sub
 
-    Public Sub Load_TTP_Prompt()
+    Public Sub Load_TTP_Prompt() 'TODO Warzone dosen't use .ttp for tilesets anymore, add ability to load tileTypes.json
         Dim Dialog As New OpenFileDialog
 
         Dim Map As clsMap = MainMap
@@ -1296,7 +1296,7 @@ Partial Public Class frmMain
         If Not InvariantParse_int(txtObjectRotation.Text, Angle) Then
             'MsgBox("Invalid rotation value.", (MsgBoxStyle.OkOnly or MsgBoxStyle.Information), "")
             'SelectedObject_Changed()
-            'todo
+            ' todo
             Exit Sub
         End If
 
@@ -2074,7 +2074,7 @@ Partial Public Class frmMain
         If Map.SelectedUnits.Count > 1 Then
             If MsgBox("Change player of multiple objects?", MsgBoxStyle.OkCancel, "") <> MsgBoxResult.Ok Then
                 'SelectedObject_Changed()
-                'todo
+                ' todo
                 Exit Sub
             End If
         End If
@@ -2299,14 +2299,14 @@ Partial Public Class frmMain
         If Not InvariantParse_int(txtObjectPriority.Text, Priority) Then
             'MsgBox("Entered text is not a valid number.", (MsgBoxStyle.OkOnly or MsgBoxStyle.Information), "")
             'SelectedObject_Changed()
-            'todo
+            ' todo
             Exit Sub
         End If
 
         If Map.SelectedUnits.Count > 1 Then
             If MsgBox("Change priority of multiple objects?", (MsgBoxStyle.OkCancel Or MsgBoxStyle.Question), "") <> MsgBoxResult.Ok Then
                 'SelectedObject_Changed()
-                'todo
+                ' todo
                 Exit Sub
             End If
         ElseIf Map.SelectedUnits.Count = 1 Then
@@ -2340,7 +2340,7 @@ Partial Public Class frmMain
         Dim Health As Double
         If Not InvariantParse_dbl(txtObjectHealth.Text, Health) Then
             'SelectedObject_Changed()
-            'todo
+            ' todo
             Exit Sub
         End If
 
@@ -2349,7 +2349,7 @@ Partial Public Class frmMain
         If Map.SelectedUnits.Count > 1 Then
             If MsgBox("Change health of multiple objects?", (MsgBoxStyle.OkCancel Or MsgBoxStyle.Question), "") <> MsgBoxResult.Ok Then
                 'SelectedObject_Changed()
-                'todo
+                ' todo
                 Exit Sub
             End If
         End If
@@ -3101,7 +3101,7 @@ Partial Public Class frmMain
 
         ScriptMarkerLists_Update()
 
-        Map.SetChanged() 'todo: remove if areas become undoable
+        Map.SetChanged() ' todo: remove if areas become undoable
         View_DrawViewLater()
     End Sub
 

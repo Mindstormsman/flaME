@@ -31,6 +31,16 @@ Public Module modIO
         Return Value.ToString(CultureInfo.InvariantCulture)
     End Function
 
+    Public Function InvariantToString_long(Value As Long) As String
+
+        Return Value.ToString(CultureInfo.InvariantCulture)
+    End Function
+
+    Public Function InvariantToString_ulong(Value As ULong) As String
+
+        Return Value.ToString(CultureInfo.InvariantCulture)
+    End Function
+
     Public Function InvariantToString_int(Value As Integer) As String
 
         Return Value.ToString(CultureInfo.InvariantCulture)

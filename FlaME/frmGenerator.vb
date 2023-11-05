@@ -663,7 +663,7 @@ Partial Public Class frmGenerator
 
     Private Sub lstResult_AddResult(Result As clsResult)
 
-        'todo
+        ' todo
 
         'Dim A As Integer
 
