@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FlaME",
-    "\\FlaME\\bin",
-    "\\FlaME\\bin\\MonoDevelop",
-    "\\FlaME\\obj\\x86",
-    "\\FlaME\\obj\\x86\\Debug"
+    "\\FlaME"
   ],
+  "SelectedNode": "\\FlaME\\FlaME MonoDevelop.vbproj",
   "PreviewInSolutionExplorer": false
 }
