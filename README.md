@@ -22,15 +22,21 @@ Once other todos are completed, repath objectData to be able to load from the Wa
 
 Windows Defender Wacatac.B!ml False Positive:
 
-      Windows Defender seems to think the executables in this repo are Trojan Horse Viruses of a specific variety that commonly hides in "Homebrew" and "Cracked" video games
+      Windows Defender seems to think the executables in this repo are Trojan Horse Viruses of a specific
+      
+      variety that commonly hides in "Homebrew" and "Cracked" video games
 
-      Don't run anything you don't think is safe and if you don't know if it's safe you can use a number of online tools such as VirusTotal.com to check
+      Don't run anything you don't think is safe and if you don't know if it's safe you can use a number
+      
+      of online tools such as VirusTotal.com to check
 
 Errors and Exceptions from FlaMe:
 
       I try my best to keep the error log clean aside from normal and informative error messages.
 
-      If you can't understand why a certain error is happening please screen shot the error message and provide the files Flame is loading
+      If you can't understand why a certain error is happening please screen shot the error message and
+
+      provide the files Flame is loading
 
       this includes the folders with the tilesets and object data as well as the map file
 
