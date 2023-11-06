@@ -1,7 +1,7 @@
 ﻿
 Public Module modProgram
 
-    Public Const ProgramName As String = "FlaME"
+    Public Const ProgramName As String = "FlaME - Json"
 
     Public Const ProgramVersionNumber As String = "1.29.1"
 
