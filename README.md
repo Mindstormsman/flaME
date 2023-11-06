@@ -42,6 +42,8 @@ Errors and Exceptions from FlaMe:
 
       When sending maps make sure you send the folder with the map data as well if applicable to the map format
 
-      ( For example, when loading cam1a.gam files are loaded from a folder called cam1a located in the same folder as cam1a.gam)
+      ( For example, when loading cam1a.gam files are loaded from a folder called cam1a located in the same folder
+
+      as cam1a.gam)
 
       I can be found on Discord as Mindstormsman
