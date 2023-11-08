@@ -8,3 +8,10 @@
 *.vsidx
 .vs/flaME/v17/workspaceFileList.bin
 FlaME/bin/Debug/settings.ini
+.vs/flaME/v17/.wsuo
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+FlaME/bin/Debug/FlaME.pdb
+FlaME/bin/Debug/settings.ini
+FlaME/bin/MonoDevelop/FlaME.pdb
+FlaME/obj/x86/Debug/FlaME.pdb
