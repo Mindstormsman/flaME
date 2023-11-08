@@ -588,7 +588,7 @@ Partial Public Class frmMain
         View_DrawViewLater()
     End Sub
 
-    Public Sub Load_TTP_Prompt() 'TODO Warzone dosen't use .ttp for tilesets anymore, add ability to load tileTypes.json
+    Public Sub Load_TTP_Prompt() 'TODO This is for load Tile Types from the toolbar after loading the map. Add .json support
         Dim Dialog As New OpenFileDialog
 
         Dim Map As clsMap = MainMap
@@ -1872,7 +1872,7 @@ Partial Public Class frmMain
 
         NewTileType = New clsTileType
         With NewTileType
-            .Name = "Rubble"
+            .Name = "Baked Earth"
             .DisplayColour.Red = 0.25F
             .DisplayColour.Green = 0.25F
             .DisplayColour.Blue = 0.25F
@@ -1935,7 +1935,7 @@ Partial Public Class frmMain
 
         NewTileType = New clsTileType
         With NewTileType
-            .Name = "Baked Earth"
+            .Name = "Rubble"
             .DisplayColour.Red = 0.5F
             .DisplayColour.Green = 0.0F
             .DisplayColour.Blue = 0.0F

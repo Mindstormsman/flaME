@@ -78,7 +78,7 @@ Public Class clsTileset
     End Function
 
     Public Function LoadDirectory(Path As String) As clsResult
-        Dim ReturnResult As New clsResult("Loading tileset from " & ControlChars.Quote & Path & ControlChars.Quote) 'TODO Tileset loading
+        Dim ReturnResult As New clsResult("Loading tileset from " & ControlChars.Quote & Path & ControlChars.Quote) 'TODO Tileset loading, called from LoadTilesets at Initialization
 
         Dim Bitmap As Bitmap = Nothing
         Dim SplitPath As New sSplitPath(Path)

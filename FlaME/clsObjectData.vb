@@ -409,7 +409,7 @@ Public Class clsObjectData
         Dim BitmapTextureArgs As sBitmapGLTexture
         Dim BitmapResult As sResult
 
-        For Each Text In TexFiles
+        For Each Text In TexFiles 'TODO move texture page loading to "Get_TexturePage_GLTexture" to load only the textures we need, otherwise we run into OutOfMemory Exception
             If Right(Text, 4).ToLower = ".png" Then
                 Dim Result As New clsResult("Loading texture page " & ControlChars.Quote & Text & ControlChars.Quote)
                 If IO.File.Exists(Text) Then

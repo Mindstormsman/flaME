@@ -122,25 +122,27 @@ Public Class clsModel
 Reeval:
             If Left(strTemp, 3) = "PIE" Then
                 PIEVersion = CInt(Right(strTemp, strTemp.Length - 4))
-                If PIEVersion <> 2 And PIEVersion <> 3 Then             'TODO Warzone uses PIE 4 now, and some files lack compatability features, Implement support for PIE 4
+                If PIEVersion <> 2 And PIEVersion <> 3 And PIEVersion <> 4 Then             'DONE? Warzone uses PIE 4 now, and some files lack compatability features, Implement support for PIE 4
                     ReturnResult.ProblemAdd("Version is unknown.")
                     Return ReturnResult
                 End If
             ElseIf Left(strTemp, 4) = "TYPE" Then
             ElseIf Left(strTemp, 7) = "TEXTURE" Then
                 TextureName = Right(strTemp, strTemp.Length - 10)
-                A = InStrRev(TextureName, " ")
-                If A > 0 Then
-                    A = InStrRev(TextureName, " ", A - 1)
-                Else
-                    ReturnResult.ProblemAdd("Bad texture name.")
-                    Return ReturnResult
-                End If
-                If A > 0 Then
-                    TextureName = Left(TextureName, A - 1)
-                Else
-                    ReturnResult.ProblemAdd("Bad texture name.")
-                    Return ReturnResult
+                If PIEVersion <> 4 Then                            'Checks for Texture Size information that isn't included in PIE 4
+                    A = InStrRev(TextureName, " ")
+                    If A > 0 Then
+                        A = InStrRev(TextureName, " ", A - 1)
+                    Else
+                        ReturnResult.ProblemAdd("Bad texture name.")
+                        Return ReturnResult
+                    End If
+                    If A > 0 Then
+                        TextureName = Left(TextureName, A - 1)
+                    Else
+                        ReturnResult.ProblemAdd("Bad texture name.")
+                        Return ReturnResult
+                    End If
                 End If
             ElseIf Left(strTemp, 6) = "LEVELS" Then
                 LevelCount = CInt(Right(strTemp, strTemp.Length - 7))
@@ -232,8 +234,8 @@ Reeval:
                             C += 1
                         End If
 
-                        If PIEVersion = 3 Then
-                            '200, pointcount, points, texcoords
+                        If PIEVersion = 3 Or PIEVersion = 4 Then
+                            'Flag, pointcount, points, animation block, texcoords
                             If C < 2 Then
                                 ReturnResult.ProblemAdd("Too few fields for polygon " & A)
                                 Return ReturnResult
@@ -252,13 +254,30 @@ Reeval:
                             ElseIf Count = 4 Then
                                 NewQuadCount += 1
                             End If
-                            Select Case SplitText.GetUpperBound(0) + 1
-                                Case 0
-                                    GoTo Reeval
-                                Case Is <> 2 + Count * 3
-                                    ReturnResult.ProblemAdd("Wrong number of fields (" & SplitText.GetUpperBound(0) + 1 & ") for polygon " & A)
-                                    Return ReturnResult
-                            End Select
+                            If SplitText.GetUpperBound(0) + 1 = 0 Then
+                                GoTo Reeval
+                            Else
+                                Select Case SplitText(0)
+                                    Case Is = "200"
+                                        If SplitText.GetUpperBound(0) + 1 <> 2 + Count * 3 Then
+                                            ReturnResult.ProblemAdd("Wrong number of fields (" & SplitText.GetUpperBound(0) + 1 & ") for polygon " & A)
+                                            Return ReturnResult
+                                        End If
+                                    Case Is = "4000"
+                                        If SplitText.GetUpperBound(0) + 1 <> 6 + Count * 3 Then
+                                            ReturnResult.ProblemAdd("Wrong number of fields (" & SplitText.GetUpperBound(0) + 1 & ") for polygon " & A)
+                                            Return ReturnResult
+                                        End If
+                                    Case Is = "4200"
+                                        If SplitText.GetUpperBound(0) + 1 <> 6 + Count * 3 Then
+                                            ReturnResult.ProblemAdd("Wrong number of fields (" & SplitText.GetUpperBound(0) + 1 & ") for polygon " & A)
+                                            Return ReturnResult
+                                        End If
+                                    Case Else
+                                        ReturnResult.ProblemAdd("Unrecognized Flag (" & SplitText(0) & ") for polygon " & A)
+                                        Return ReturnResult
+                                End Select
+                            End If
                             For B = 0 To Count - 1
                                 Try
                                     Levels(LevelNum).Polygon(A).PointNum(B) = CInt(SplitText(2 + B))
@@ -281,8 +300,8 @@ Reeval:
                                 End Try
                             Next
                             A += 1
-                        ElseIf PIEVersion = 2 Then
-                            D = 0
+                            ElseIf PIEVersion = 2 Then
+                                D = 0
                             Do
                                 'flag, numpoints, points[], x4 ignore if animated, texcoord[]xy
                                 Levels(LevelNum).Polygon(A).PointCount = CInt(SplitText(D + 1))
@@ -307,7 +326,7 @@ Reeval:
                                 Next
                                 D = C
                                 A += 1
-                            Loop While D < SplitText.GetUpperBound(0)
+                            Loop While D <SplitText.GetUpperBound(0)
                         End If
                     ElseIf strTemp2 = "" Then
 
@@ -393,7 +412,7 @@ FileFinished:
                         Triangles(NewTriCount).TexCoordB.Y = CSng(Levels(LevelNum).Polygon(A).TexCoord(1).Y / 255.0#)
                         Triangles(NewTriCount).TexCoordC.X = CSng(Levels(LevelNum).Polygon(A).TexCoord(2).X / 255.0#)
                         Triangles(NewTriCount).TexCoordC.Y = CSng(Levels(LevelNum).Polygon(A).TexCoord(2).Y / 255.0#)
-                    ElseIf PIEVersion = 3 Then
+                    ElseIf PIEVersion = 3 Or PIEVersion = 4 Then
                         Triangles(NewTriCount).TexCoordA = Levels(LevelNum).Polygon(A).TexCoord(0)
                         Triangles(NewTriCount).TexCoordB = Levels(LevelNum).Polygon(A).TexCoord(1)
                         Triangles(NewTriCount).TexCoordC = Levels(LevelNum).Polygon(A).TexCoord(2)
@@ -413,7 +432,7 @@ FileFinished:
                         Quads(NewQuadCount).TexCoordC.Y = CSng(Levels(LevelNum).Polygon(A).TexCoord(2).Y / 255.0#)
                         Quads(NewQuadCount).TexCoordD.X = CSng(Levels(LevelNum).Polygon(A).TexCoord(3).X / 255.0#)
                         Quads(NewQuadCount).TexCoordD.Y = CSng(Levels(LevelNum).Polygon(A).TexCoord(3).Y / 255.0#)
-                    ElseIf PIEVersion = 3 Then
+                    ElseIf PIEVersion = 3 Or PIEVersion = 4 Then
                         Quads(NewQuadCount).TexCoordA = Levels(LevelNum).Polygon(A).TexCoord(0)
                         Quads(NewQuadCount).TexCoordB = Levels(LevelNum).Polygon(A).TexCoord(1)
                         Quads(NewQuadCount).TexCoordC = Levels(LevelNum).Polygon(A).TexCoord(2)

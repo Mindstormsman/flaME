@@ -1616,8 +1616,9 @@ Partial Public Class clsMap
                     Dim Name As String = FindInString(Entry, "", ControlChars.Quote, ControlChars.Quote)
                     Dim LabelType As String = FindInString(Entry, "", ControlChars.Quote, "_")
                     Dim Label As String = FindInString(Entry, ControlChars.Quote & "label" & ControlChars.Quote, ControlChars.Quote, ControlChars.Quote)
+                    Dim Subscriber As String = FindInString(Entry, ControlChars.Quote & "subscriber" & ControlChars.Quote, ": ", ",")
 
-                    Select Case LabelType
+                    Select Case LabelType 'DONE? add "subscriber" property support
 
                         Case "position"
                             Dim Pos As String = FindInString(Entry, ControlChars.Quote & "pos" & ControlChars.Quote, "[", "]")
@@ -1628,8 +1629,9 @@ Partial Public Class clsMap
                                 NewPosition.PosY = Position.Pos.Y
                                 NewPosition.SetLabel(Label)
                             Else
-                                Result.WarningAdd("Failed to add position data for Label " & Name & " in " & Path)
+                                Result.WarningAdd("Failed to add position data for Label: " & Label)
                             End If
+
 
                         Case "area"
                             Dim Pos1 As String = FindInString(Entry, ControlChars.Quote & "pos1" & ControlChars.Quote, "[", "]")
@@ -1640,8 +1642,12 @@ Partial Public Class clsMap
                                 Dim NewArea = clsMap.clsScriptArea.Create(Me)
                                 NewArea.SetPositions(Position1.Pos, Position2.Pos)
                                 NewArea.SetLabel(Label)
+                                If Subscriber <> "Default" Then
+                                    InvariantParse_int(Subscriber, NewArea.Subscriber)
+                                    Result.WarningAdd("Subscriber property is only partially supported, Label: " & Label)
+                                End If
                             Else
-                                Result.WarningAdd("Failed to add position data for Label " & Name & " in " & Path)
+                                Result.WarningAdd("Failed to add position data for Label: " & Label)
                             End If
 
                         Case "object"
@@ -1654,24 +1660,30 @@ Partial Public Class clsMap
                                         Result.WarningAdd("Failed to set label " & Label & " on unit with Id " & IdRaw)
                                     End If
                                 Else
-                                    Result.WarningAdd("Failed to find Unit with Id " & IdRaw & " when creating label " & Name & " in " & Path)
+                                    Result.WarningAdd("Failed to find Unit with Id " & IdRaw & " when creating Label: " & Label)
                                 End If
                             End If
 
-                        Case "radius" 'TODO: Implement Radius Type Labels
-                            Result.WarningAdd("Radius labels are not supported yet, Importing as Position for label " & Name & " (" & Label & ") in " & Path)
+                        Case "radius" 'DONE? Implement Radius Type Labels
+                            Result.WarningAdd("Radius labels are only partially supported, Label: " & Label)
                             Dim Pos As String = FindInString(Entry, ControlChars.Quote & "pos" & ControlChars.Quote, "[", "]")
                             Dim Position = New clsPositionFromText
+                            Dim Radius As String = FindInString(Entry, ControlChars.Quote & "radius" & ControlChars.Quote, ": ", ",")
                             If Position.Translate(Pos) Then
-                                Dim NewPosition = clsMap.clsScriptPosition.Create(Me)
-                                NewPosition.PosX = Position.Pos.X
-                                NewPosition.PosY = Position.Pos.Y
-                                NewPosition.SetLabel(Label)
+                                Dim NewRadius = clsMap.clsScriptRadius.Create(Me)
+                                NewRadius.PosX = Position.Pos.X
+                                NewRadius.PosY = Position.Pos.Y
+                                NewRadius.SetLabel(Label)
+                                If Subscriber <> "Default" Then
+                                    InvariantParse_int(Subscriber, NewRadius.Subscriber)
+                                    Result.WarningAdd("Subscriber property is only partially supported, Label: " & Label)
+                                End If
+                                InvariantParse_int(Radius, NewRadius.Radius)
                             Else
-                                Result.WarningAdd("Failed to add position data for Label " & Name & " in " & Path)
+                                Result.WarningAdd("Failed to add position data for Label: " & Label)
                             End If
                         Case Else
-                            Result.WarningAdd("Unknown Label Type " & LabelType & " for Label " & Name & " in " & Path)
+                            Result.WarningAdd("Unknown Label Type " & LabelType & " for Label: " & Label)
                     End Select
                     Entry = ""
                 End If
@@ -2121,6 +2133,7 @@ Partial Public Class clsMap
         Dim ScriptPosition As clsScriptPosition
         Dim ScriptArea As clsScriptArea
         Dim Unit As clsUnit
+        Dim ScriptRadius As clsScriptRadius
         Dim Labels As Integer
         Dim Done As Integer
 
@@ -2139,37 +2152,16 @@ Partial Public Class clsMap
                 End If
             Next
 
-            File.StartFile()
-
-            For Each ScriptPosition In ScriptPositions
-                ScriptPosition.WriteJson(File)
-                Done += 1
-                If Done = Labels Then
-                    File.AddGap()
-                    File.EndFile()
-                    Return ReturnResult
-                End If
-                File.EndLine()
-                File.AddGap()
-                File.AddGap()
+            For Each ScriptRadius In ScriptRadii
+                Labels += 1
             Next
 
-            For Each ScriptArea In ScriptAreas
-                ScriptArea.WriteJson(File)
-                Done += 1
-                If Done = Labels Then
-                    File.AddGap()
-                    File.EndFile()
-                    Return ReturnResult
-                End If
-                File.EndLine()
-                File.AddGap()
-                File.AddGap()
-            Next
 
-            For Each Unit In Units
-                If Unit.HasLabel() Then
-                    Unit.WriteJson(File, PlayerCount)
+            If Labels > 0 Then
+                File.StartFile()
+
+                For Each ScriptPosition In ScriptPositions
+                    ScriptPosition.WriteJson(File)
                     Done += 1
                     If Done = Labels Then
                         File.AddGap()
@@ -2179,11 +2171,54 @@ Partial Public Class clsMap
                     File.EndLine()
                     File.AddGap()
                     File.AddGap()
-                End If
-            Next
+                Next
 
-            File.EndFile()
-            ReturnResult.WarningAdd("Ran out of labels while writing to labels.json! An extra comma was added after the last entry that may need to be removed")
+                For Each ScriptArea In ScriptAreas
+                    ScriptArea.WriteJson(File)
+                    Done += 1
+                    If Done = Labels Then
+                        File.AddGap()
+                        File.EndFile()
+                        Return ReturnResult
+                    End If
+                    File.EndLine()
+                    File.AddGap()
+                    File.AddGap()
+                Next
+
+                Dim A As Integer = 0
+                For Each Unit In Units
+                    If Unit.HasLabel() Then
+                        Unit.WriteJson(File, PlayerCount, A)
+                        Done += 1
+                        If Done = Labels Then
+                            File.AddGap()
+                            File.EndFile()
+                            Return ReturnResult
+                        End If
+                        File.EndLine()
+                        File.AddGap()
+                        File.AddGap()
+                        A += 1
+                    End If
+                Next
+
+                For Each ScriptRadius In ScriptRadii
+                    ScriptRadius.WriteJson(File)
+                    Done += 1
+                    If Done = Labels Then
+                        File.AddGap()
+                        File.EndFile()
+                        Return ReturnResult
+                    End If
+                    File.EndLine()
+                    File.AddGap()
+                    File.AddGap()
+                Next
+
+                File.EndFile()
+                ReturnResult.WarningAdd("Ran out of labels while writing to labels.json! An extra comma was added after the last entry that may need to be removed")
+            End If
 
         Catch ex As Exception
             ReturnResult.WarningAdd(ex.Message)

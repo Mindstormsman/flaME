@@ -1,12 +1,10 @@
 
-.vs/*
+.vs/VSWorkspaceState.json
+*.wsuo
+*.pdb
 *.sln
-
-.vs/flaME/v17/.wsuo
-.vs/flaME/v17/.wsuo
-.vs/slnx.sqlite
-FlaME/bin/Debug/FlaME.pdb
-FlaME/bin/MonoDevelop/FlaME.pdb
-FlaME/obj/x86/Debug/FlaME.pdb
-FlaME/obj/x86/Release/FlaME.pdb
-FlaME/obj/x86/Release/FlaME.vbproj.AssemblyReference.cache
+*.sqlite
+*.cache
+*.vsidx
+.vs/flaME/v17/workspaceFileList.bin
+FlaME/bin/Debug/settings.ini

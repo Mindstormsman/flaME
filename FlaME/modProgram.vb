@@ -3,7 +3,7 @@ Public Module modProgram
 
     Public Const ProgramName As String = "FlaME - Json"
 
-    Public Const ProgramVersionNumber As String = "1.29.1"
+    Public Const ProgramVersionNumber As String = "1.29.2"
 
 #If Mono <> 0.0# Then
     Public Const ProgramPlatform As String = "Mono 2.10"
@@ -23,7 +23,7 @@ Public Module modProgram
 
     Public Const MaxDroidWeapons As Integer = 3
 
-    Public Const WZMapMaxSize As Integer = 250
+    Public Const WZMapMaxSize As Integer = 256
     Public Const MapMaxSize As Integer = 512
 
     Public Const MinimapMaxSize As Integer = 512
@@ -449,7 +449,7 @@ Public Module modProgram
         End Sub
     End Class
 
-    Public Function LoadTilesets(TilesetsPath As String) As clsResult
+    Public Function LoadTilesets(TilesetsPath As String) As clsResult 'TODO This loads Tilesets at Initialization
         Dim ReturnResult As New clsResult("Loading tilesets")
 
         Dim TilesetDirs() As String

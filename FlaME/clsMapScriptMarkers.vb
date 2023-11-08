@@ -4,6 +4,7 @@ Partial Public Class clsMap
 
     Public ScriptPositions As New ConnectedList(Of clsScriptPosition, clsMap)(Me)
     Public ScriptAreas As New ConnectedList(Of clsScriptArea, clsMap)(Me)
+    Public ScriptRadii As New ConnectedList(Of clsScriptRadius, clsMap)(Me)
 
     Public Function GetDefaultScriptLabel(Prefix As String) As String
         Dim Number As Integer = 1
@@ -46,7 +47,7 @@ Partial Public Class clsMap
 
         Invalid = False
         For Each CurrentChar In LCaseText
-            If Not ((CurrentChar >= "a"c And CurrentChar <= "z"c) Or (CurrentChar >= "0"c And CurrentChar <= "9"c) Or CurrentChar = "_"c) Then
+            If Not ((CurrentChar >= "a"c And CurrentChar <= "z"c) Or (CurrentChar >= "0"c And CurrentChar <= "9"c) Or CurrentChar = "-"c Or CurrentChar = "_"c) Then
                 Invalid = True
                 Exit For
             End If
@@ -71,6 +72,15 @@ Partial Public Class clsMap
 
         For Each ScriptPosition In ScriptPositions
             If LCaseText = ScriptPosition.Label.ToLower Then
+                ReturnResult.Problem = "Label text is already in use."
+                Return ReturnResult
+            End If
+        Next
+
+        Dim ScriptRadius As clsScriptRadius
+
+        For Each ScriptRadius In ScriptRadii
+            If LCaseText = ScriptRadius.Label.ToLower Then
                 ReturnResult.Problem = "Label text is already in use."
                 Return ReturnResult
             End If
@@ -192,6 +202,120 @@ Partial Public Class clsMap
         End Sub
     End Class
 
+    Public Class clsScriptRadius
+
+        Private _ParentMapLink As New ConnectedListLink(Of clsScriptRadius, clsMap)(Me)
+        Public ReadOnly Property ParentMap As ConnectedListLink(Of clsScriptRadius, clsMap)
+            Get
+                Return _ParentMapLink
+            End Get
+        End Property
+
+        Private _Label As String
+        Public ReadOnly Property Label As String
+            Get
+                Return _Label
+            End Get
+        End Property
+
+        Private _Pos As sXY_int
+        Public Property PosX As Integer
+            Get
+                Return _Pos.X
+            End Get
+            Set(value As Integer)
+                _Pos.X = Clamp_int(value, 0, _ParentMapLink.Source.Terrain.TileSize.X * TerrainGridSpacing - 1)
+            End Set
+        End Property
+        Public Property PosY As Integer
+            Get
+                Return _Pos.Y
+            End Get
+            Set(value As Integer)
+                _Pos.Y = Clamp_int(value, 0, _ParentMapLink.Source.Terrain.TileSize.Y * TerrainGridSpacing - 1)
+            End Set
+        End Property
+
+        Public Property Subscriber As Integer = -1
+
+        Public Property Radius As Integer = 0
+
+        Private Sub New()
+
+        End Sub
+
+        Public Shared Function Create(Map As clsMap) As clsScriptRadius
+            Dim Result As New clsScriptRadius
+
+            Result._Label = Map.GetDefaultScriptLabel("Radius")
+
+            Result._ParentMapLink.Connect(Map.ScriptRadii)
+
+            Return Result
+        End Function
+
+        Public Sub GLDraw()
+
+            Dim Drawer As New clsMap.clsDrawHorizontalPosOnTerrain
+            Drawer.Map = _ParentMapLink.Source
+            Drawer.Horizontal = _Pos
+            If frmMainInstance.SelectedScriptMarker Is Me Then
+                GL.LineWidth(4.5F)
+                Drawer.Colour = New sRGBA_sng(1.0F, 1.0F, 0.5F, 1.0F)
+            Else
+                GL.LineWidth(3.0F)
+                Drawer.Colour = New sRGBA_sng(1.0F, 1.0F, 0.0F, 0.75F)
+            End If
+            Drawer.ActionPerform()
+        End Sub
+
+        Public Sub MapResizing(PosOffset As sXY_int)
+
+            PosX = _Pos.X - PosOffset.X
+            PosY = _Pos.Y - PosOffset.Y
+        End Sub
+
+        Public Sub WriteJson(File As clsJSONWrite)
+            If _Label <> Nothing Then
+                File.WriteName("radius_" & InvariantToString_int(_ParentMapLink.ArrayPosition))
+                File.WriteProperty("label", _Label)
+                File.EndLine()
+                File.WriteCoordinate("pos", InvariantToString_int(_Pos.X), InvariantToString_int(_Pos.Y))
+                If Subscriber > -1 Then
+                    File.EndLine()
+                    File.WriteNum("subscriber", InvariantToString_int(Subscriber))
+                End If
+                File.EndLine()
+                File.WriteNum("radius", InvariantToString_int(Radius))
+                File.EndEntry()
+                
+            End If
+        End Sub
+
+        Public Sub WriteWZ(File As clsINIWrite)
+
+            File.SectionName_Append("radius_" & InvariantToString_int(_ParentMapLink.ArrayPosition))
+            File.Property_Append("pos", InvariantToString_int(_Pos.X) & ", " & InvariantToString_int(_Pos.Y))
+            File.Property_Append("label", _Label)
+            File.Gap_Append()
+        End Sub
+
+        Public Function SetLabel(Text As String) As sResult
+            Dim Result As sResult
+
+            Result = _ParentMapLink.Source.ScriptLabelIsValid(Text)
+            If Result.Success Then
+                _Label = Text
+            End If
+            Return Result
+        End Function
+
+        Public Sub Deallocate()
+
+            _ParentMapLink.Deallocate()
+        End Sub
+    End Class
+
     Public Class clsScriptArea
 
         Private _ParentMapLink As New ConnectedListLink(Of clsScriptArea, clsMap)(Me)
@@ -262,6 +386,8 @@ Partial Public Class clsMap
                 ReorderXY(_PosA, _PosB, _PosA, _PosB)
             End Set
         End Property
+
+        Public Property Subscriber As Integer = -1
 
         Protected Sub New()
 
@@ -334,6 +460,10 @@ Partial Public Class clsMap
             File.WriteCoordinate("pos1", InvariantToString_int(_PosA.X), InvariantToString_int(_PosA.Y))
             File.EndLine()
             File.WriteCoordinate("pos2", InvariantToString_int(_PosB.X), InvariantToString_int(_PosB.Y))
+            If Subscriber > -1 Then
+                File.EndLine()
+                File.WriteNum("subscriber", InvariantToString_int(Subscriber))
+            End If
             File.EndEntry()
         End Sub
 

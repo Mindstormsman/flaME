@@ -128,10 +128,10 @@ Partial Public Class clsMap
             End If
         End Function
 
-        Public Sub WriteJson(File As clsJSONWrite, PlayerCount As Integer)
+        Public Sub WriteJson(File As clsJSONWrite, PlayerCount As Integer, Index As Integer)
 
             If HasLabel() Then
-                File.WriteName("object_" & InvariantToString_int(MapLink.ArrayPosition))
+                File.WriteName("object_" & InvariantToString_int(Index))
                 File.WriteProperty("label", _Label)
                 File.EndLine()
                 Dim TypeNum As Integer
@@ -153,7 +153,7 @@ Partial Public Class clsMap
                     File.WriteNum("type", InvariantToString_int(TypeNum))
                 End If
                 File.EndEntry()
-                End If
+            End If
         End Sub
 
         Public Sub WriteWZLabel(File As clsINIWrite, PlayerCount As Integer)
