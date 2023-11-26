@@ -588,7 +588,7 @@ Partial Public Class frmMain
         View_DrawViewLater()
     End Sub
 
-    Public Sub Load_TTP_Prompt() 'TODO This is for load Tile Types from the toolbar after loading the map. Add .json support
+    Public Sub Load_TTP_Prompt() 'TODO? This is for load Tile Types from the toolbar after loading the map. Is .json support needed?
         Dim Dialog As New OpenFileDialog
 
         Dim Map As clsMap = MainMap
