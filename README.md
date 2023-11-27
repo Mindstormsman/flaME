@@ -78,6 +78,12 @@ Script Generator for Campaign Scripts
 
     about 4 clicks instead of typing 4 lines of code
 
+Random Object Brush
+
+	A brush that places one of the selected Objects at random with a specified density
+
+ 	Good for Rocks Trees and Buildings
+
 # "Chicken and Egg" Problems
 
 These are Suggestions that would require support from something else before I can start adding support to Flame
@@ -104,7 +110,7 @@ Animated Tiles
 
 Multiple Objects per tile
 
-    This is already possible but currently looks very strange, new models would probably be needed 
+    Allow overlapping features for more detailed maps
 
 Off Grid Objects
     
