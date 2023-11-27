@@ -24,6 +24,10 @@ This is a pretty small update, I'm still trying to figure out some of these TODO
 
 # Known Issues
 
+Droids made with "Convert to Design" fail to appear in game
+
+	I'm not sure where this bug occurs, if it's when compiling or when the game loads the map
+
 Most Levels -- Failed to set label ____ on unit with Id ____
 
 	Labels can't be added to building upgrades yet, Important
