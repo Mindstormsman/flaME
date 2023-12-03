@@ -465,7 +465,7 @@ Public Class frmCompile
         End If
 
         ReturnResult.Add(ValidateMap())
-        'ReturnResult.Add(ValidateMap_UnitPositions())  'DEBUG - Commented out to test how game reacts to overlapping units
+        ReturnResult.Add(ValidateMap_UnitPositions())  'DEBUG - overlapping units check
 
         Dim MapName As String
         Dim TypeNum As Integer

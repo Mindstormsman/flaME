@@ -10,17 +10,17 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 # What's new
 
-Built in 64 bit to remove the 2GB memory limit 
+TileTypes.json Implementation
 
-    This lets the program use more memory an make larger maps
+    If Flame finds tileTypes.json while loading it will load it instead of .ttp files
 
-    Maps up to 2048x2048 in size are possible with ~4GB of memory
+    .ttp files can still be loaded after Flame is running
 
-    That's 1GB per Million Tiles!
+    .json files can not be loaded while Flame is running
 
-This is a pretty small update, I'm still trying to figure out some of these TODOs
+Allow Erasing Object Labels
 
-    Some of the TODOs might not be nessesary anymore but would still be nice to keep memory usage low
+Allow Labels on Modules
 
 # Known Issues
 
@@ -28,25 +28,11 @@ Droids made with "Convert to Design" fail to appear in game
 
 	I'm not sure where this bug occurs, if it's when compiling or when the game loads the map
 
-Most Levels -- Failed to set label ____ on unit with Id ____
-
-	Labels can't be added to building upgrades yet, Important
-
-Many Levels -- Radius/Subscriber label property is only partially supported
-
-cam1 sub1-1 -- Failed to find Unit with Id 160831 when creating Label: artifact 1
-
-	This appears to only be used to try to remove an artifact that dosen't exist anymore, Ignore
-
-cam1 sub1-5 -- Failed to find Unit with Id 486 when creating Label: NPRepairFaciliy
-
-	the Repair Facility Id is 513, but this doesn't seem to be used anyway, Ignore
-
 # TODO
 
-allow labels to be added to modules
+Support for transparent textures
 
-tileTypes.json implementation
+    Warzone uses some transparent textures, even in the Classic tilesets
 
 modification of the tileset loading functions to be able to load from the Warzone2100/data/base directory
 
@@ -111,6 +97,8 @@ Animated Tiles
 Multiple Objects per tile
 
     Allow overlapping features for more detailed maps
+
+    Already supported 
 
 Off Grid Objects
     
