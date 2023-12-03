@@ -10,33 +10,47 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 # What's new
 
-Implemented Support for TileTypes.json
+Built in 64 bit to remove the 2GB memory limit 
 
-    If TileTypes.json is found by Flame it will load it instead of .ttp files
+    This lets the program use more memory an make larger maps
 
-    .ttp files can still be loaded after initialization.
+    Maps up to 2048x2048 in size are possible with ~4GB of memory
 
-    Json can not be loaded after initialization
+    That's 1GB per Million Tiles!
 
-Enabled erasing Labels from Objects
+This is a pretty small update, I'm still trying to figure out some of these TODOs
 
-Enabled Support for adding Labels to Modules
+    Some of the TODOs might not be nessesary anymore but would still be nice to keep memory usage low
 
 # Known Issues
 
-No Known Issues!
+Droids made with "Convert to Design" fail to appear in game
+
+	I'm not sure where this bug occurs, if it's when compiling or when the game loads the map
+
+Most Levels -- Failed to set label ____ on unit with Id ____
+
+	Labels can't be added to building upgrades yet, Important
+
+Many Levels -- Radius/Subscriber label property is only partially supported
+
+cam1 sub1-1 -- Failed to find Unit with Id 160831 when creating Label: artifact 1
+
+	This appears to only be used to try to remove an artifact that dosen't exist anymore, Ignore
+
+cam1 sub1-5 -- Failed to find Unit with Id 486 when creating Label: NPRepairFaciliy
+
+	the Repair Facility Id is 513, but this doesn't seem to be used anyway, Ignore
 
 # TODO
 
-add UI elements to allow editing of Radius Labels and label Subscriber properties
+allow labels to be added to modules
 
-Support for transparent textures
+tileTypes.json implementation
 
 modification of the tileset loading functions to be able to load from the Warzone2100/data/base directory
 
-    Base game uses transparent textures for even classic terrain, Transparency needs support first
-
-load only models requested by objects
+load only models requested buy objects
 
 load only textures requested by models
 
@@ -64,6 +78,12 @@ Script Generator for Campaign Scripts
 
     about 4 clicks instead of typing 4 lines of code
 
+Random Object Brush
+
+	A brush that places one of the selected Objects at random with a specified density
+
+ 	Good for Rocks Trees and Buildings
+
 # "Chicken and Egg" Problems
 
 These are Suggestions that would require support from something else before I can start adding support to Flame
@@ -86,21 +106,27 @@ Animated Tiles
 
     I think water is already animated to a degree in code
     
-    further support for these textures would allow for tiles like waterfalls
+    further support for these textures would allow for tiles like waterfalls or lakes on top of mountains
 
 Multiple Objects per tile
 
-    This is already possible but Game does not support this, Flame does
+    Allow overlapping features for more detailed maps
 
 Off Grid Objects
     
     More detail could be added to maps if Objects were able to be placed on a sub-tile level
 
-Multiple Tilesets per map
-
-    This can currently be done by manually making a tileset that includes all the tiles from the tilesets used
-
 # Trouble shooting
+
+Windows Defender Wacatac.B!ml False Positive:
+
+      Sometimes Windows Defender seems to think the executables in this repo are Trojan Horse Viruses of a specific
+      
+      variety that commonly hides in "Homebrew" and "Cracked" video games
+
+      Don't run anything you don't think is safe and if you don't know if it's safe you can use a number
+      
+      of online tools such as VirusTotal.com to check
 
 Errors and Exceptions from FlaMe:
 
