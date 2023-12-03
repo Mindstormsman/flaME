@@ -44,7 +44,7 @@ Public Class clsTileset
         Dim strTemp As String = ""
 
         Try
-            strTemp = ReadOldTextOfLength(File, 4)
+            strTemp = ReadOldTextOfLength(File, 4) 'Reads the first 4 bytes as characters
             If strTemp <> "ttyp" Then
                 ReturnResult.Problem = "Bad identifier."
                 Return ReturnResult
@@ -75,6 +75,197 @@ Public Class clsTileset
 
         ReturnResult.Success = True
         Return ReturnResult
+    End Function
+
+    'Find the Value between Two Delimiters after Keyword in Entry
+    Public Function FindInString(Entry As String, Keyword As String, Delimiter1 As String, Delimiter2 As String) As String
+        Dim Start As Integer
+        Dim Finish As Integer
+        Dim Key As Integer
+        Dim Value As String
+        Dim Length As Integer
+
+        Key = InStr(Entry, Keyword)
+        If Key = 0 Then
+            Return "Default"
+        End If
+        Start = InStr(Key + Len(Keyword), Entry, Delimiter1)
+        Finish = InStr(Start + 1, Entry, Delimiter2)
+        If Finish = 0 Then
+            Finish = InStr(Start + 1, Entry, "}")
+        End If
+        Length = Finish - Start - 1
+        Value = Mid(Entry, Start + 1, Length)
+        Value = Replace(Value, "}", "")
+        Value = Value.Trim
+
+        Return Value
+    End Function
+
+    Public Function LoadJsonTileset(Path As String, TargetEntry As Integer) As clsResult
+        Dim ReturnResult As New clsResult("Loading Json file " & ControlChars.Quote & Path & ControlChars.Quote)
+        Dim Reader As IO.StreamReader
+
+        Try
+            Reader = New IO.StreamReader(Path, UTF8Encoding)
+        Catch ex As Exception
+            ReturnResult.ProblemAdd(ex.Message)
+            Return ReturnResult
+        End Try
+
+        Dim EntryNum As Integer = 0
+        Dim Entry As String = ""
+        Dim Line As String
+        Dim Layer As Integer = 0
+        Dim Found As Boolean = False
+
+        Do Until Reader.EndOfStream 'Start Reading
+            Line = Reader.ReadLine 'get a line
+            Line = Line.Trim
+            Entry &= Line 'add it to Entry
+            If InStr(Line, "{") > 0 Then
+                Layer += 1
+            End If
+            If InStr(Line, "}") > 0 Then
+                Layer -= 1
+                If Layer = 1 Then 'If we closed a nest and are now on Layer 1 then we know we reached the end of the entry
+                    If EntryNum = TargetEntry Then
+                        Found = True
+                        Dim Id As String = FindInString(Entry, "", ControlChars.Quote, ControlChars.Quote) 'Tileset name
+                        If Id = "Default" Then
+                            ReturnResult.ProblemAdd("Something very bad happened while reading IDs from Json! No ID for Tileset Entry")
+                            Name = Id
+                            Return ReturnResult
+
+                        ElseIf Id = "Arizona" Then
+                            Name = "tertilesc1hw"
+
+                        ElseIf Id = "Urban" Then
+                            Name = "tertilesc2hw"
+
+                        ElseIf Id = "Rockies" Then
+                            Name = "tertilesc3hw"
+
+                        Else
+                            Name = Id
+                        End If
+
+                        Dim Data As String = FindInString(Entry, "", ":", "}") 'Tile count
+                        Data = Replace(Data, "{", "")
+                        Data = Data.Trim
+                        Dim SplitData() As String = Split(Data, ",")
+                        TileCount = SplitData.Length
+                        ReDim Tiles(TileCount - 1)
+
+                        For A As Integer = 0 To TileCount - 1 'Tile types
+                            Dim Type() As String = Split(SplitData(A), ":")
+                            Type(1) = Type(1).trim
+                            Tiles(A).Default_Type = CByte(Type(1))
+                        Next
+                    End If
+                End If
+                Entry = ""
+                EntryNum += 1
+            End If
+        Loop
+
+        Reader.Close() 'Finished Reading
+
+        If Found = False Then
+            ReturnResult.ProblemAdd("Didn't find Entry #" & TargetEntry & " in " & Path)
+            Return ReturnResult
+        End If
+
+        Dim Bitmap As Bitmap = Nothing
+        Dim SplitPath As New sSplitPath(Path)
+        Dim SlashPath As String = SplitPath.FilePath
+        Dim Result As sResult
+        Dim RedTotal As Integer
+        Dim GreenTotal As Integer
+        Dim BlueTotal As Integer
+        Dim TileNum As Integer
+        Dim strTile As String
+        Dim BitmapTextureArgs As sBitmapGLTexture
+        Dim AverageColour(3) As Single
+        Dim X As Integer
+        Dim Y As Integer
+        Dim Pixel As Color
+        Dim GraphicPath As String
+
+        For TileNum = 0 To TileCount - 1 'Start Loading Tile Textures
+            strTile = "tile-" & MinDigits(TileNum, 2) & ".png"
+
+            '-------- 128 --------
+
+            GraphicPath = SlashPath & Name & "-128" & PlatformPathSeparator & strTile
+
+            Result = LoadBitmap(GraphicPath, Bitmap)
+            If Not Result.Success Then
+                'ignore and exit, since not all tile types have a corresponding tile graphic
+                Return ReturnResult
+            End If
+
+            If Bitmap.Width <> 128 Or Bitmap.Height <> 128 Then
+                ReturnResult.WarningAdd("Tile graphic " & GraphicPath & " from tileset " & Name & " is not 128x128.")
+                Return ReturnResult
+            End If
+
+            BitmapTextureArgs.Texture = Bitmap
+            BitmapTextureArgs.MipMapLevel = 0
+            BitmapTextureArgs.MagFilter = TextureMagFilter.Nearest
+            BitmapTextureArgs.MinFilter = TextureMinFilter.Nearest
+            BitmapTextureArgs.TextureNum = 0
+            BitmapTextureArgs.Perform()
+            Tiles(TileNum).TextureView_GL_Texture_Num = BitmapTextureArgs.TextureNum
+
+            BitmapTextureArgs.MagFilter = TextureMagFilter.Nearest
+            If Settings.Mipmaps Then
+                BitmapTextureArgs.MinFilter = TextureMinFilter.LinearMipmapLinear
+            Else
+                BitmapTextureArgs.MinFilter = TextureMinFilter.Nearest
+            End If
+            BitmapTextureArgs.TextureNum = 0
+
+            BitmapTextureArgs.Perform()
+            Tiles(TileNum).MapView_GL_Texture_Num = BitmapTextureArgs.TextureNum
+
+            If Settings.Mipmaps Then
+                If Settings.MipmapsHardware Then
+                    GL.Enable(EnableCap.Texture2D)
+                    GL.GenerateMipmap(GenerateMipmapTarget.Texture2D)
+                    GL.Disable(EnableCap.Texture2D)
+                Else
+                    Dim MipmapResult As clsResult
+                    MipmapResult = GenerateMipMaps(SlashPath, strTile, BitmapTextureArgs, TileNum)
+                    ReturnResult.Add(MipmapResult)
+                    If MipmapResult.HasProblems Then
+                        Return ReturnResult
+                    End If
+                End If
+                GL.GetTexImage(Of Single)(TextureTarget.Texture2D, 7, PixelFormat.Rgba, PixelType.Float, AverageColour)
+                Tiles(TileNum).AverageColour.Red = AverageColour(0)
+                Tiles(TileNum).AverageColour.Green = AverageColour(1)
+                Tiles(TileNum).AverageColour.Blue = AverageColour(2)
+            Else
+                RedTotal = 0
+                GreenTotal = 0
+                BlueTotal = 0
+                For Y = 0 To Bitmap.Height - 1
+                    For X = 0 To Bitmap.Width - 1
+                        Pixel = Bitmap.GetPixel(X, Y)
+                        RedTotal += Pixel.R
+                        GreenTotal += Pixel.G
+                        BlueTotal += Pixel.B
+                    Next
+                Next
+                Tiles(TileNum).AverageColour.Red = CSng(RedTotal / 4177920.0#)
+                Tiles(TileNum).AverageColour.Green = CSng(GreenTotal / 4177920.0#)
+                Tiles(TileNum).AverageColour.Blue = CSng(BlueTotal / 4177920.0#)
+            End If
+
+        Next 'Finished Loading Tile Textures
+
+        Return ReturnResult 'Finished Loading Tileset
     End Function
 
     Public Function LoadDirectory(Path As String) As clsResult

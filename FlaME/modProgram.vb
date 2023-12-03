@@ -3,7 +3,7 @@ Public Module modProgram
 
     Public Const ProgramName As String = "FlaME - Json"
 
-    Public Const ProgramVersionNumber As String = "1.29.3"
+    Public Const ProgramVersionNumber As String = "1.29.4"
 
 #If Mono <> 0.0# Then
     Public Const ProgramPlatform As String = "Mono 2.10"
@@ -449,12 +449,54 @@ Public Module modProgram
         End Sub
     End Class
 
+    Private Function ReadTilesetCount(Path As String) As Integer
+        Dim Reader As IO.StreamReader
+        Dim Result As Integer
+
+        Try
+            Reader = New IO.StreamReader(Path, UTF8Encoding)
+        Catch ex As Exception
+
+        End Try
+
+        Dim Entry As String = ""
+        Dim Line As String
+        Dim Layer As Integer = 0
+
+        Do Until Reader.EndOfStream
+            Line = Reader.ReadLine 'get a line
+            Line = Line.Trim
+            Entry &= Line 'add it to Entry
+            If InStr(Line, "{") > 0 Then
+                Layer += 1
+            End If
+            If InStr(Line, "}") > 0 Then
+                Layer -= 1
+                If Layer = 1 Then 'If we closed a nest and are now on Layer 1 then we know we reached the end of the entry
+                    Result += 1 'We only care how many entries there are
+                End If
+            End If
+        Loop
+
+        Reader.Close()
+
+        Return Result
+    End Function
+
     Public Function LoadTilesets(TilesetsPath As String) As clsResult 'TODO This loads Tilesets at Initialization
         Dim ReturnResult As New clsResult("Loading tilesets")
 
         Dim TilesetDirs() As String
         Try
             TilesetDirs = IO.Directory.GetDirectories(TilesetsPath)
+        Catch ex As Exception
+            ReturnResult.ProblemAdd(ex.Message)
+            Return ReturnResult
+        End Try
+
+        Dim TilesetDirFiles() As String
+        Try
+            TilesetDirFiles = IO.Directory.GetFiles(TilesetsPath)
         Catch ex As Exception
             ReturnResult.ProblemAdd(ex.Message)
             Return ReturnResult
@@ -467,33 +509,83 @@ Public Module modProgram
         Dim Result As clsResult
         Dim Path As String
         Dim Tileset As clsTileset
+        Dim JsonFound = False
+        Dim JsonPath As String
 
-        For Each Path In TilesetDirs
-            Tileset = New clsTileset
-            Result = Tileset.LoadDirectory(Path)
-            ReturnResult.Add(Result)
-            If Not Result.HasProblems Then
-                Tilesets.Add(Tileset)
+        For Each Path In TilesetDirFiles
+            If IO.File.Exists(Path) Then
+                Dim File As New sSplitPath(Path)
+                If File.FileExtension = "json" Then
+                    If JsonFound Then
+                        ReturnResult.WarningAdd("Extra Json File found at: " & Path)
+                    Else
+                        JsonFound = True
+                        JsonPath = Path
+                    End If
+                End If
             End If
         Next
 
+        If JsonFound Then
+            Dim TilesetCount As Integer
+            Try
+                TilesetCount = ReadTilesetCount(JsonPath)
+            Catch ex As exception
+                ReturnResult.WarningAdd("Exeption while reading Json File: " & ex.Message)
+            End Try
+            For A As Integer = 0 To TilesetCount - 1
+                Tileset = New clsTileset
+                Result = Tileset.LoadJsonTileset(JsonPath, A)
+                ReturnResult.Add(Result)
+                If Not Result.HasProblems Then
+                    Tilesets.Add(Tileset)
+                End If
+            Next
+        Else
+            For Each Path In TilesetDirs
+                Tileset = New clsTileset
+                Result = Tileset.LoadDirectory(Path)
+                ReturnResult.Add(Result)
+                If Not Result.HasProblems Then
+                    Tilesets.Add(Tileset)
+                End If
+            Next
+        End If
+
+        Dim count = 0
         For Each Tileset In Tilesets
             If Tileset.Name = "tertilesc1hw" Then 'TODO Tilesets aren't organized into seperate directories in Warzone
-                Tileset.Name = "Arizona"
-                Tileset_Arizona = Tileset
-                Tileset.IsOriginal = True
-                Tileset.BGColour = New sRGB_sng(204.0# / 255.0#, 149.0# / 255.0#, 70.0# / 255.0#)
+                If (Tileset_Arizona Is Nothing) = False Then
+                    ReturnResult.WarningAdd("An extra copy of Arizona Tileset found. Adding as Tileset_" & count)
+                    Tileset.Name = "Tileset_" & count
+                Else
+                    Tileset.Name = "Arizona"
+                    Tileset_Arizona = Tileset
+                    Tileset.IsOriginal = True
+                    Tileset.BGColour = New sRGB_sng(204.0# / 255.0#, 149.0# / 255.0#, 70.0# / 255.0#)
+                End If
             ElseIf Tileset.Name = "tertilesc2hw" Then
-                Tileset.Name = "Urban"
-                Tileset_Urban = Tileset
-                Tileset.IsOriginal = True
-                Tileset.BGColour = New sRGB_sng(118.0# / 255.0#, 165.0# / 255.0#, 203.0# / 255.0#)
+                If (Tileset_Urban Is Nothing) = False Then
+                    ReturnResult.WarningAdd("An extra copy of Urban Tileset found. Adding as Tileset_" & count)
+                    Tileset.Name = "Tileset_" & count
+                Else
+                    Tileset.Name = "Urban"
+                    Tileset_Urban = Tileset
+                    Tileset.IsOriginal = True
+                    Tileset.BGColour = New sRGB_sng(118.0# / 255.0#, 165.0# / 255.0#, 203.0# / 255.0#)
+                End If
             ElseIf Tileset.Name = "tertilesc3hw" Then
-                Tileset.Name = "Rocky Mountains"
-                Tileset_Rockies = Tileset
-                Tileset.IsOriginal = True
-                Tileset.BGColour = New sRGB_sng(182.0# / 255.0#, 225.0# / 255.0#, 236.0# / 255.0#)
+                If (Tileset_Rockies Is Nothing) = False Then
+                    ReturnResult.WarningAdd("An extra copy of Rockies Tileset found. Adding as Tileset_" & count)
+                    Tileset.Name = "Tileset_" & count
+                Else
+                    Tileset.Name = "Rocky Mountains"
+                    Tileset_Rockies = Tileset
+                    Tileset.IsOriginal = True
+                    Tileset.BGColour = New sRGB_sng(182.0# / 255.0#, 225.0# / 255.0#, 236.0# / 255.0#)
+                End If
             End If
+            count += 1
         Next
 
         If Tileset_Arizona Is Nothing Then

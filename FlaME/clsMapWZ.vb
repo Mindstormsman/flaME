@@ -1644,10 +1644,15 @@ Partial Public Class clsMap
                                 NewArea.SetLabel(Label)
                                 If Subscriber <> "Default" Then
                                     InvariantParse_int(Subscriber, NewArea.Subscriber)
-                                    Result.WarningAdd("Subscriber property is only partially supported, Label: " & Label)
+                                    'Result.WarningAdd("Subscriber property is only partially supported, Label: " & Label)
+                                End If
+                                If Position1.Pos.X <> NewArea.PosAX Or Position1.Pos.Y <> NewArea.PosAY Or Position2.Pos.X <> NewArea.PosBX Or Position2.Pos.Y <> NewArea.PosBY Then
+                                    Result.WarningAdd("Clamping " & Label & " to map size." & ControlChars.NewLine &
+                                                      "  Loaded: Pos1 [" & Position1.Pos.X & ", " & Position1.Pos.Y & "] Pos2 [" & Position2.Pos.X & ", " & Position2.Pos.Y & "]" & ControlChars.NewLine &
+                                                      " Clamped: Pos1 [" & NewArea.PosAX & ", " & NewArea.PosAY & "] Pos2 [" & NewArea.PosBX & ", " & NewArea.PosBY & "]")
                                 End If
                             Else
-                                Result.WarningAdd("Failed to add position data for Label: " & Label)
+                                    Result.WarningAdd("Failed to add position data for Label: " & Label)
                             End If
 
                         Case "object"
@@ -1665,7 +1670,7 @@ Partial Public Class clsMap
                             End If
 
                         Case "radius" 'DONE? Implement Radius Type Labels
-                            Result.WarningAdd("Radius labels are only partially supported, Label: " & Label)
+                            'Result.WarningAdd("Radius labels are only partially supported, Label: " & Label)
                             Dim Pos As String = FindInString(Entry, ControlChars.Quote & "pos" & ControlChars.Quote, "[", "]")
                             Dim Position = New clsPositionFromText
                             Dim Radius As String = FindInString(Entry, ControlChars.Quote & "radius" & ControlChars.Quote, ": ", ",")
@@ -1676,7 +1681,7 @@ Partial Public Class clsMap
                                 NewRadius.SetLabel(Label)
                                 If Subscriber <> "Default" Then
                                     InvariantParse_int(Subscriber, NewRadius.Subscriber)
-                                    Result.WarningAdd("Subscriber property is only partially supported, Label: " & Label)
+                                    'Result.WarningAdd("Subscriber property is only partially supported, Label: " & Label)
                                 End If
                                 InvariantParse_int(Radius, NewRadius.Radius)
                             Else

@@ -588,7 +588,7 @@ Partial Public Class frmMain
         View_DrawViewLater()
     End Sub
 
-    Public Sub Load_TTP_Prompt() 'TODO? This is for load Tile Types from the toolbar after loading the map. Is .json support needed?
+    Public Sub Load_TTP_Prompt() 'TODO? This is for load Tile Types from the toolbar after loading the map, add .json support
         Dim Dialog As New OpenFileDialog
 
         Dim Map As clsMap = MainMap
@@ -617,7 +617,11 @@ Partial Public Class frmMain
 
         cboTileset.Items.Clear()
         For A = 0 To Tilesets.Count - 1
-            cboTileset.Items.Add(Tilesets(A).Name)
+            If Tilesets(A).Name IsNot Nothing Then
+                cboTileset.Items.Add(Tilesets(A).Name)
+            Else
+                MsgBox("Tileset #" & A & "'s name was not set")
+            End If
         Next
         cboTileset.SelectedIndex = NewSelectedIndex
     End Sub
@@ -1446,11 +1450,11 @@ Partial Public Class frmMain
                 txtObjectPriority.Enabled = True
                 txtObjectHealth.Enabled = True
                 Dim LabelEnabled As Boolean = True
-                If .Type.Type = clsUnitType.enumType.PlayerStructure Then
-                    If CType(.Type, clsStructureType).IsModule Then
-                        LabelEnabled = False
-                    End If
-                End If
+                'If .Type.Type = clsUnitType.enumType.PlayerStructure Then
+                '    If CType(.Type, clsStructureType).IsModule Then
+                '        LabelEnabled = False
+                '    End If
+                'End If
                 If LabelEnabled Then
                     txtObjectLabel.Text = .Label
                     txtObjectLabel.Enabled = True
@@ -3404,7 +3408,7 @@ Partial Public Class frmMain
         Dim ResultUnit As clsMap.clsUnit = New clsMap.clsUnit(OldUnit, Map)
         Map.UnitSwap(OldUnit, ResultUnit)
         Dim Result As sResult = ResultUnit.SetLabel(txtObjectLabel.Text)
-        If Not Result.Success Then
+        If Not Result.Success And txtObjectLabel.text <> Nothing Then
             MsgBox("Unable to set label: " & Result.Problem)
         End If
 

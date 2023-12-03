@@ -89,16 +89,16 @@ Partial Public Class clsMap
         Public Function SetLabel(Text As String) As sResult
             Dim Result As sResult
 
-            If Type.Type = clsUnitType.enumType.PlayerStructure Then
-                Dim StructureType As clsStructureType = CType(Type, clsStructureType)
-                Dim StructureTypeType As clsStructureType.enumStructureType = StructureType.StructureType
-                If StructureTypeType = clsStructureType.enumStructureType.FactoryModule _
-                    Or StructureTypeType = clsStructureType.enumStructureType.PowerModule _
-                    Or StructureTypeType = clsStructureType.enumStructureType.ResearchModule Then
-                    Result.Problem = "Error: Trying to assign label to structure module."
-                    Return Result
-                End If
-            End If
+            'If Type.Type = clsUnitType.enumType.PlayerStructure Then
+            '    Dim StructureType As clsStructureType = CType(Type, clsStructureType)
+            '    Dim StructureTypeType As clsStructureType.enumStructureType = StructureType.StructureType
+            '    If StructureTypeType = clsStructureType.enumStructureType.FactoryModule Then _
+            '        Or StructureTypeType = clsStructureType.enumStructureType.PowerModule Then _
+            '        Or StructureTypeType = clsStructureType.enumStructureType.ResearchModule Then
+            '        Result.Problem = "Error: Trying to assign label to structure module."
+            '        Return Result
+            '    End If
+            'End If
 
             If Not MapLink.IsConnected Then
                 Stop
@@ -115,6 +115,10 @@ Partial Public Class clsMap
                 Result = MapLink.Source.ScriptLabelIsValid(Text)
                 If Result.Success Then
                     _Label = Text
+                Else
+                    _Label = Nothing
+                    Result.Success = True
+                    Result.Problem = ""
                 End If
                 Return Result
             End If

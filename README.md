@@ -10,43 +10,33 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 # What's new
 
-Built in 64 bit to remove the 2GB memory limit 
+Implemented Support for TileTypes.json
 
-    This lets the program use more memory an make larger maps
+    If TileTypes.json is found by Flame it will load it instead of .ttp files
 
-    Maps up to 2048x2048 in size are possible with ~4GB of memory
+    .ttp files can still be loaded after initialization.
 
-    That's 1GB per Million Tiles!
+    Json can not be loaded after initialization
 
-This is a pretty small update, I'm still trying to figure out some of these TODOs
+Enabled erasing Labels from Objects
 
-    Some of the TODOs might not be nessesary anymore but would still be nice to keep memory usage low
+Enabled Support for adding Labels to Modules
 
 # Known Issues
 
-Most Levels -- Failed to set label ____ on unit with Id ____
-
-	Labels can't be added to building upgrades yet, Important
-
-Many Levels -- Radius/Subscriber label property is only partially supported
-
-cam1 sub1-1 -- Failed to find Unit with Id 160831 when creating Label: artifact 1
-
-	This appears to only be used to try to remove an artifact that dosen't exist anymore, Ignore
-
-cam1 sub1-5 -- Failed to find Unit with Id 486 when creating Label: NPRepairFaciliy
-
-	the Repair Facility Id is 513, but this doesn't seem to be used anyway, Ignore
+No Known Issues!
 
 # TODO
 
-allow labels to be added to modules
+add UI elements to allow editing of Radius Labels and label Subscriber properties
 
-tileTypes.json implementation
+Support for transparent textures
 
 modification of the tileset loading functions to be able to load from the Warzone2100/data/base directory
 
-load only models requested buy objects
+    Base game uses transparent textures for even classic terrain, Transparency needs support first
+
+load only models requested by objects
 
 load only textures requested by models
 
@@ -96,27 +86,21 @@ Animated Tiles
 
     I think water is already animated to a degree in code
     
-    further support for these textures would allow for tiles like waterfalls or lakes on top of mountains
+    further support for these textures would allow for tiles like waterfalls
 
 Multiple Objects per tile
 
-    This is already possible but currently looks very strange, new models would probably be needed 
+    This is already possible but Game does not support this, Flame does
 
 Off Grid Objects
     
     More detail could be added to maps if Objects were able to be placed on a sub-tile level
 
+Multiple Tilesets per map
+
+    This can currently be done by manually making a tileset that includes all the tiles from the tilesets used
+
 # Trouble shooting
-
-Windows Defender Wacatac.B!ml False Positive:
-
-      Sometimes Windows Defender seems to think the executables in this repo are Trojan Horse Viruses of a specific
-      
-      variety that commonly hides in "Homebrew" and "Cracked" video games
-
-      Don't run anything you don't think is safe and if you don't know if it's safe you can use a number
-      
-      of online tools such as VirusTotal.com to check
 
 Errors and Exceptions from FlaMe:
 
