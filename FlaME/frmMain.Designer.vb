@@ -2969,7 +2969,7 @@ Partial Class frmMain
         '
         Me.menuSaveFME.Name = "menuSaveFME"
         Me.menuSaveFME.Size = New System.Drawing.Size(284, 24)
-        Me.menuSaveFME.Text = "Map fme (1.19 compatability)..."
+        Me.menuSaveFME.Text = "Map fme (1.19 compatibility)..."
         '
         'ToolStripSeparator5
         '
