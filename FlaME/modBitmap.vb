@@ -77,7 +77,7 @@ Public Module modBitmap
     End Structure
 
     Public Function BitmapIsGLCompatible(BitmapToCheck As Bitmap) As clsResult
-        Dim ReturnResult As New clsResult("Compatability check")
+        Dim ReturnResult As New clsResult("Compatibility check")
 
         If Not SizeIsPowerOf2(BitmapToCheck.Width) Then
             ReturnResult.WarningAdd("Image width is not a power of 2.")
