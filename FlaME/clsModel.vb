@@ -122,7 +122,7 @@ Public Class clsModel
 Reeval:
             If Left(strTemp, 3) = "PIE" Then
                 PIEVersion = CInt(Right(strTemp, strTemp.Length - 4))
-                If PIEVersion <> 2 And PIEVersion <> 3 And PIEVersion <> 4 Then             'DONE? Warzone uses PIE 4 now, and some files lack compatability features, Implement support for PIE 4
+                If PIEVersion <> 2 And PIEVersion <> 3 And PIEVersion <> 4 Then             'DONE? Warzone uses PIE 4 now, and some files lack compatibility features, Implement support for PIE 4
                     ReturnResult.ProblemAdd("Version is unknown.")
                     Return ReturnResult
                 End If

@@ -399,7 +399,7 @@ Partial Public Class frmMain
         ObjectData = New clsObjectData
         Dim ObjectDataNum As Integer = CType(Settings.Value(Setting_DefaultObjectDataPathNum), Integer)
         Dim ObjectDataList As SimpleList(Of String) = CType(Settings.Value(Setting_ObjectDataDirectories), SimpleList(Of String))
-        If ObjectDataNum >= 0 And ObjectDataNum < TilesetsList.Count Then
+        If ObjectDataNum >= 0 And ObjectDataNum < ObjectDataList.Count Then
             Dim ObjectDataPath As String = ObjectDataList(ObjectDataNum)
             If ObjectDataPath IsNot Nothing And ObjectDataPath <> "" Then
                 InitializeStatus = "Loading object data"
@@ -3735,9 +3735,11 @@ Partial Public Class frmMain
 
         SelectedObjectTypes.Clear()
         For Each selection As DataGridViewRow In dataView.SelectedRows
-            Dim objectType As clsUnitType = CType(selection.Cells(0).Value, clsUnitType)
-            If Not objectType.UnitType_frmMainSelectedLink.IsConnected Then
-                SelectedObjectTypes.Add(objectType.UnitType_frmMainSelectedLink)
+            If (TypeOf selection.Cells(0).Value IsNot System.DBNull) And (selection.Cells(0).Value IsNot Nothing) Then
+                Dim objectType As clsUnitType = CType(selection.Cells(0).Value, clsUnitType)
+                If Not objectType.UnitType_frmMainSelectedLink.IsConnected Then
+                    SelectedObjectTypes.Add(objectType.UnitType_frmMainSelectedLink)
+                End If
             End If
         Next
         Dim Map As clsMap = MainMap

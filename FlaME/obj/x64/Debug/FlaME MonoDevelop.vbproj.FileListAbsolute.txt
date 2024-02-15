@@ -11,3 +11,16 @@ C:\Users\minds\Documents\GitHub\flaME\FlaME\obj\x64\Debug\FlaME MonoDevelop.vbpr
 C:\Users\minds\Documents\GitHub\flaME\FlaME\obj\x64\Debug\FlaME MonoDevelop.vbproj.CopyComplete
 C:\Users\minds\Documents\GitHub\flaME\FlaME\obj\x64\Debug\FlaME.exe
 C:\Users\minds\Documents\GitHub\flaME\FlaME\obj\x64\Debug\FlaME.pdb
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\bin\MonoDevelop\FlaME.exe
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\bin\MonoDevelop\FlaME.pdb
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\bin\MonoDevelop\ICSharpCode.SharpZipLib.dll
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\bin\MonoDevelop\Matrix3D.dll
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\bin\MonoDevelop\OpenTK.dll
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\bin\MonoDevelop\OpenTK.GLControl.dll
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME MonoDevelop.vbproj.AssemblyReference.cache
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.Resources.resources
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME MonoDevelop.vbproj.GenerateResource.cache
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME MonoDevelop.vbproj.CoreCompileInputs.cache
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME MonoDevelop.vbproj.CopyComplete
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.exe
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.pdb

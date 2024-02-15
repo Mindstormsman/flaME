@@ -3,7 +3,7 @@ Public Module modProgram
 
     Public Const ProgramName As String = "FlaME - Json"
 
-    Public Const ProgramVersionNumber As String = "1.29.4"
+    Public Const ProgramVersionNumber As String = "1.29.4.1"
 
 #If Mono <> 0.0# Then
     Public Const ProgramPlatform As String = "Mono 2.10"

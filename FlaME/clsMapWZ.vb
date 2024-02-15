@@ -32,6 +32,7 @@ Partial Public Class clsMap
         Dim B As Integer
         Dim C As Integer
         Dim D As Integer
+        Dim LevFound As Boolean = False
 
         Dim File As IO.FileStream
         Try
@@ -53,6 +54,7 @@ Partial Public Class clsMap
             SplitPath = New sZipSplitPath(ZipEntry.Name)
 
             If SplitPath.FileExtension = "lev" And SplitPath.PartCount = 1 Then
+                LevFound = True
                 If ZipEntry.Size > 10 * 1024 * 1024 Then
                     ReturnResult.ProblemAdd("lev file is too large.")
                     ZipStream.Close()
@@ -123,6 +125,10 @@ Partial Public Class clsMap
             End If
         Loop
         ZipStream.Close()
+
+        If Not LevFound Then
+            ReturnResult.WarningAdd(".lev file not found")
+        End If
 
         Dim MapLoadName As String
 
@@ -2495,7 +2501,7 @@ Partial Public Class clsMap
             File_MAP.Write(CUInt(Gateways.Count))
             Dim Gateway As clsGateway
             For Each Gateway In Gateways
-                File_MAP.Write(CByte(Clamp_int(Gateway.PosA.X, 0, 255)))
+                File_MAP.Write(CByte(Clamp_int(Gateway.PosA.X, 0, 255))) 'These clamps will need to change to allow larger maps in the future
                 File_MAP.Write(CByte(Clamp_int(Gateway.PosA.Y, 0, 255)))
                 File_MAP.Write(CByte(Clamp_int(Gateway.PosB.X, 0, 255)))
                 File_MAP.Write(CByte(Clamp_int(Gateway.PosB.Y, 0, 255)))

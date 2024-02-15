@@ -10,17 +10,23 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 # What's new
 
-TileTypes.json Implementation
+Forgot to update the Readme for Version 1.29.4.0, mostly bugfixes any typos
 
-    If Flame finds tileTypes.json while loading it will load it instead of .ttp files
+Fixed some typos - Thanks Evulant!
 
-    .ttp files can still be loaded after Flame is running
+Fixed a pair of crashes when selecting empty space at the bottom of object lists
 
-    .json files can not be loaded while Flame is running
+Fixed an old bug when loading Object Data
 
-Allow Erasing Object Labels
+    The selected Object Directory was being compared to the amount of Tileset Directories
 
-Allow Labels on Modules
+    This prevented Flame from loading Objects in some cases
+
+TileTypes.json Implementation Adjustment
+
+    Adjusted the load priority for Tile Type files to prefer .ttp files again
+
+    .json files can still be loaded at initialization if needed
 
 # Known Issues
 
@@ -29,6 +35,16 @@ Droids made with "Convert to Design" fail to appear in game
 	I'm not sure where this bug occurs, if it's when compiling or when the game loads the map
 
 # TODO
+
+Include the Multiplayer Object Data
+
+Fix/Add support for some Map Formats
+
+    Flame is still reliant on a .lev file and a .gam file inside of .wz maps
+
+    and Java Script based maps need to be given a seperate error message as
+    
+    they are unlikely to ever be supported by Flame
 
 Support for transparent textures
 
@@ -45,6 +61,12 @@ load only textures requested by models
 Once other todos are completed, repath objectData to be able to load from the Warzone2100/data/base directory
 
 # Suggested
+
+Improvements to Generator Functions
+
+    Currently the Generator tools can only be used on maps created by the generator and cannot be used
+
+    on loaded maps (even if they were made with the generator) or for detailing hand scuplted maps
 
 Support for multiple oil level variants on one map
 
@@ -90,7 +112,7 @@ Gateway Types
 
 Animated Tiles
 
-    I think water is already animated to a degree in code
+    I think water is already animated to a degree in code by the game
     
     further support for these textures would allow for tiles like waterfalls or lakes on top of mountains
 
@@ -98,7 +120,7 @@ Multiple Objects per tile
 
     Allow overlapping features for more detailed maps
 
-    Already supported 
+    this feature is turned off behind the scenes in Flame because it isn't supported by the game
 
 Off Grid Objects
     
