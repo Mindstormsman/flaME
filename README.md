@@ -12,7 +12,9 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 Fixed yet more crashes when selecting the empty space at the bottom of lists
 
-Fixed the Multiplayer Dataset with the help of Arithyce
+Fixed the Multiplayer Dataset, Thanks Arithyce!
+
+Changed the notile.png image to something less jarring, Thanks PathForger!
 
 Added UI elements to show Radius type Labels
 
