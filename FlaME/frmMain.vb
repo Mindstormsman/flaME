@@ -421,14 +421,14 @@ Partial Public Class frmMain
         VisionRadius_2E = 10
         VisionRadius_2E_Changed()
 
-        HeightSetPalette(0) = 0
-        HeightSetPalette(1) = 85
-        HeightSetPalette(2) = 170
-        HeightSetPalette(3) = 255
-        HeightSetPalette(4) = 64
-        HeightSetPalette(5) = 128
-        HeightSetPalette(6) = 192
-        HeightSetPalette(7) = 255
+        HeightSetPalette(0) = CType(Settings.Value(Setting_HeightPreset1), Byte)
+        HeightSetPalette(1) = CType(Settings.Value(Setting_HeightPreset2), Byte)
+        HeightSetPalette(2) = CType(Settings.Value(Setting_HeightPreset3), Byte)
+        HeightSetPalette(3) = CType(Settings.Value(Setting_HeightPreset4), Byte)
+        HeightSetPalette(4) = CType(Settings.Value(Setting_HeightPreset5), Byte)
+        HeightSetPalette(5) = CType(Settings.Value(Setting_HeightPreset6), Byte)
+        HeightSetPalette(6) = CType(Settings.Value(Setting_HeightPreset7), Byte)
+        HeightSetPalette(7) = CType(Settings.Value(Setting_HeightPreset8), Byte)
         For A As Integer = 0 To 7
             tabHeightSetL.TabPages(A).Text = InvariantToString_byte(HeightSetPalette(A))
             tabHeightSetR.TabPages(A).Text = InvariantToString_byte(HeightSetPalette(A))
@@ -2106,6 +2106,24 @@ Partial Public Class frmMain
         End If
         Height = CByte(Clamp_dbl(Height_dbl, Byte.MinValue, Byte.MaxValue))
         HeightSetPalette(tabHeightSetL.SelectedIndex) = Height
+        Select Case tabHeightSetL.SelectedIndex
+            Case 0
+                Settings.HeightPreset1 = Height
+            Case 1
+                Settings.HeightPreset2 = Height
+            Case 2
+                Settings.HeightPreset3 = Height
+            Case 3
+                Settings.HeightPreset4 = Height
+            Case 4
+                Settings.HeightPreset5 = Height
+            Case 5
+                Settings.HeightPreset6 = Height
+            Case 6
+                Settings.HeightPreset7 = Height
+            Case 7
+                Settings.HeightPreset8 = Height
+        End Select
         If tabHeightSetL.SelectedIndex = tabHeightSetL.SelectedIndex Then
             tabHeightSetL_SelectedIndexChanged(Nothing, Nothing)
         End If
@@ -3098,9 +3116,9 @@ Partial Public Class frmMain
             Exit Sub
         End If
 
-        NewArea.SetPositions(New sXY_int(Map.Selected_Area_VertexA.X * TerrainGridSpacing, _
-        Map.Selected_Area_VertexA.Y * TerrainGridSpacing), _
-        New sXY_int(Map.Selected_Area_VertexB.X * TerrainGridSpacing, _
+        NewArea.SetPositions(New sXY_int(Map.Selected_Area_VertexA.X * TerrainGridSpacing,
+        Map.Selected_Area_VertexA.Y * TerrainGridSpacing),
+        New sXY_int(Map.Selected_Area_VertexB.X * TerrainGridSpacing,
         Map.Selected_Area_VertexB.Y * TerrainGridSpacing))
 
         ScriptMarkerLists_Update()
@@ -3111,15 +3129,18 @@ Partial Public Class frmMain
 
     Private lstScriptPositions_Objects(-1) As clsMap.clsScriptPosition
     Private lstScriptAreas_Objects(-1) As clsMap.clsScriptArea
+    Private lstScriptRadii_Objects(-1) As clsMap.clsScriptRadius
 
     Public Sub ScriptMarkerLists_Update()
         Dim Map As clsMap = MainMap
 
         lstScriptPositions.Enabled = False
         lstScriptAreas.Enabled = False
+        lstScriptRadii.Enabled = False
 
         lstScriptPositions.Items.Clear()
         lstScriptAreas.Items.Clear()
+        lstScriptRadii.Items.Clear()
 
         If Map Is Nothing Then
             _SelectedScriptMarker = Nothing
@@ -3129,10 +3150,12 @@ Partial Public Class frmMain
         Dim ListPosition As Integer
         Dim ScriptPosition As clsMap.clsScriptPosition
         Dim ScriptArea As clsMap.clsScriptArea
+        Dim ScriptRadius As clsMap.clsScriptRadius
         Dim NewSelectedScriptMarker As Object = Nothing
 
         ReDim lstScriptPositions_Objects(Map.ScriptPositions.Count - 1)
         ReDim lstScriptAreas_Objects(Map.ScriptAreas.Count - 1)
+        ReDim lstScriptRadii_Objects(Map.ScriptRadii.Count - 1)
 
         For Each ScriptPosition In Map.ScriptPositions
             ListPosition = lstScriptPositions.Items.Add(ScriptPosition.Label)
@@ -3140,6 +3163,15 @@ Partial Public Class frmMain
             If ScriptPosition Is _SelectedScriptMarker Then
                 NewSelectedScriptMarker = ScriptPosition
                 lstScriptPositions.SelectedIndex = ListPosition
+            End If
+        Next
+
+        For Each ScriptRadius In Map.ScriptRadii
+            ListPosition = lstScriptRadii.Items.Add(ScriptRadius.Label)
+            lstScriptRadii_Objects(ListPosition) = ScriptRadius
+            If ScriptRadius Is _SelectedScriptMarker Then
+                NewSelectedScriptMarker = ScriptRadius
+                lstScriptRadii.SelectedIndex = ListPosition
             End If
         Next
 
@@ -3154,6 +3186,7 @@ Partial Public Class frmMain
 
         lstScriptPositions.Enabled = True
         lstScriptAreas.Enabled = True
+        lstScriptRadii.Enabled = True
 
         _SelectedScriptMarker = NewSelectedScriptMarker
 
@@ -3172,11 +3205,45 @@ Partial Public Class frmMain
             Exit Sub
         End If
 
-        _SelectedScriptMarker = lstScriptPositions_Objects(lstScriptPositions.SelectedIndex)
+        Try
+            _SelectedScriptMarker = lstScriptPositions_Objects(lstScriptPositions.SelectedIndex)
+        Catch ex As Exception
+            _SelectedScriptMarker = Nothing
+            lstScriptPositions.SelectedIndex = -1
+        End Try
 
         lstScriptAreas.Enabled = False
         lstScriptAreas.SelectedIndex = -1
         lstScriptAreas.Enabled = True
+
+        lstScriptRadii.Enabled = False
+        lstScriptRadii.SelectedIndex = -1
+        lstScriptRadii.Enabled = True
+
+        SelectedScriptMarker_Update()
+
+        View_DrawViewLater()
+    End Sub
+
+    Private Sub lstScriptRadii_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lstScriptRadii.SelectedIndexChanged
+        If Not lstScriptRadii.Enabled Then
+            Exit Sub
+        End If
+
+        Try
+            _SelectedScriptMarker = lstScriptRadii_Objects(lstScriptRadii.SelectedIndex)
+        Catch ex As Exception
+            _SelectedScriptMarker = Nothing
+            lstScriptRadii.SelectedIndex = -1
+        End Try
+
+        lstScriptAreas.Enabled = False
+        lstScriptAreas.SelectedIndex = -1
+        lstScriptAreas.Enabled = True
+
+        lstScriptPositions.Enabled = False
+        lstScriptPositions.SelectedIndex = -1
+        lstScriptPositions.Enabled = True
 
         SelectedScriptMarker_Update()
 
@@ -3188,11 +3255,20 @@ Partial Public Class frmMain
             Exit Sub
         End If
 
-        _SelectedScriptMarker = lstScriptAreas_Objects(lstScriptAreas.SelectedIndex)
+        Try
+            _SelectedScriptMarker = lstScriptAreas_Objects(lstScriptAreas.SelectedIndex)
+        Catch ex As Exception
+            _SelectedScriptMarker = Nothing
+            lstScriptAreas.SelectedIndex = -1
+        End Try
 
         lstScriptPositions.Enabled = False
         lstScriptPositions.SelectedIndex = -1
         lstScriptPositions.Enabled = True
+
+        lstScriptRadii.Enabled = False
+        lstScriptRadii.SelectedIndex = -1
+        lstScriptRadii.Enabled = True
 
         SelectedScriptMarker_Update()
 
@@ -3206,11 +3282,15 @@ Partial Public Class frmMain
         txtScriptMarkerY.Enabled = False
         txtScriptMarkerX2.Enabled = False
         txtScriptMarkerY2.Enabled = False
+        txtScriptMarkerR.Enabled = False
+        txtScriptMarkerSubscriber.Enabled = False
         txtScriptMarkerLabel.Text = ""
         txtScriptMarkerX.Text = ""
         txtScriptMarkerY.Text = ""
         txtScriptMarkerX2.Text = ""
         txtScriptMarkerY2.Text = ""
+        txtScriptMarkerR.Text = ""
+        txtScriptMarkerSubscriber.Text = ""
         If _SelectedScriptMarker IsNot Nothing Then
             If TypeOf _SelectedScriptMarker Is clsMap.clsScriptPosition Then
                 Dim ScriptPosition As clsMap.clsScriptPosition = CType(_SelectedScriptMarker, clsMap.clsScriptPosition)
@@ -3227,11 +3307,25 @@ Partial Public Class frmMain
                 txtScriptMarkerY.Text = InvariantToString_int(ScriptArea.PosAY)
                 txtScriptMarkerX2.Text = InvariantToString_int(ScriptArea.PosBX)
                 txtScriptMarkerY2.Text = InvariantToString_int(ScriptArea.PosBY)
+                txtScriptMarkerSubscriber.Text = InvariantToString_int(ScriptArea.Subscriber)
                 txtScriptMarkerLabel.Enabled = True
                 txtScriptMarkerX.Enabled = True
                 txtScriptMarkerY.Enabled = True
                 txtScriptMarkerX2.Enabled = True
                 txtScriptMarkerY2.Enabled = True
+                txtScriptMarkerSubscriber.Enabled = True
+            ElseIf TypeOf _SelectedScriptMarker Is clsMap.clsScriptRadius Then
+                Dim ScriptRadius As clsMap.clsScriptRadius = CType(_SelectedScriptMarker, clsMap.clsScriptRadius)
+                txtScriptMarkerLabel.Text = ScriptRadius.Label
+                txtScriptMarkerX.Text = InvariantToString_int(ScriptRadius.PosX)
+                txtScriptMarkerY.Text = InvariantToString_int(ScriptRadius.PosY)
+                txtScriptMarkerR.Text = InvariantToString_int(ScriptRadius.Radius)
+                txtScriptMarkerSubscriber.Text = InvariantToString_int(ScriptRadius.Subscriber)
+                txtScriptMarkerLabel.Enabled = True
+                txtScriptMarkerX.Enabled = True
+                txtScriptMarkerY.Enabled = True
+                txtScriptMarkerR.Enabled = True
+                txtScriptMarkerSubscriber.Enabled = True
             End If
         End If
     End Sub
@@ -3320,6 +3414,9 @@ Partial Public Class frmMain
         ElseIf TypeOf _SelectedScriptMarker Is clsMap.clsScriptArea Then
             Dim ScriptArea As clsMap.clsScriptArea = CType(_SelectedScriptMarker, clsMap.clsScriptArea)
             InvariantParse_int(txtScriptMarkerX.Text, ScriptArea.PosAX)
+        ElseIf TypeOf _SelectedScriptMarker Is clsMap.clsScriptRadius Then
+            Dim ScriptRadius As clsMap.clsScriptRadius = CType(_SelectedScriptMarker, clsMap.clsScriptRadius)
+            InvariantParse_int(txtScriptMarkerX.Text, ScriptRadius.PosX)
         Else
             MsgBox("Error: unhandled type.")
         End If
@@ -3342,6 +3439,9 @@ Partial Public Class frmMain
         ElseIf TypeOf _SelectedScriptMarker Is clsMap.clsScriptArea Then
             Dim ScriptArea As clsMap.clsScriptArea = CType(_SelectedScriptMarker, clsMap.clsScriptArea)
             InvariantParse_int(txtScriptMarkerY.Text, ScriptArea.PosAY)
+        ElseIf TypeOf _SelectedScriptMarker Is clsMap.clsScriptRadius Then
+            Dim ScriptRadius As clsMap.clsScriptRadius = CType(_SelectedScriptMarker, clsMap.clsScriptRadius)
+            InvariantParse_int(txtScriptMarkerY.Text, ScriptRadius.PosY)
         Else
             MsgBox("Error: unhandled type.")
         End If
@@ -3388,6 +3488,46 @@ Partial Public Class frmMain
         View_DrawViewLater()
     End Sub
 
+    Private Sub txtScriptMarkerR_LostFocus(sender As System.Object, e As System.EventArgs) Handles txtScriptMarkerR.Leave
+        If Not txtScriptMarkerR.Enabled Then
+            Exit Sub
+        End If
+        If _SelectedScriptMarker Is Nothing Then
+            Exit Sub
+        End If
+
+        If TypeOf _SelectedScriptMarker Is clsMap.clsScriptRadius Then
+            Dim ScriptRadius As clsMap.clsScriptRadius = CType(_SelectedScriptMarker, clsMap.clsScriptRadius)
+            InvariantParse_int(txtScriptMarkerR.Text, ScriptRadius.Radius)
+        Else
+            MsgBox("Error: unhandled type.")
+        End If
+
+        SelectedScriptMarker_Update()
+        View_DrawViewLater()
+    End Sub
+
+    Private Sub txtScriptMarkerSubscriber_LostFocus(sender As System.Object, e As System.EventArgs) Handles txtScriptMarkerSubscriber.Leave
+        If Not txtScriptMarkerSubscriber.Enabled Then
+            Exit Sub
+        End If
+        If _SelectedScriptMarker Is Nothing Then
+            Exit Sub
+        End If
+
+        If TypeOf _SelectedScriptMarker Is clsMap.clsScriptRadius Then
+            Dim ScriptRadius As clsMap.clsScriptRadius = CType(_SelectedScriptMarker, clsMap.clsScriptRadius)
+            InvariantParse_int(txtScriptMarkerSubscriber.Text, ScriptRadius.Subscriber)
+        ElseIf TypeOf _SelectedScriptMarker Is clsMap.clsScriptArea Then
+            Dim ScriptArea As clsMap.clsScriptArea = CType(_SelectedScriptMarker, clsMap.clsScriptArea)
+            InvariantParse_int(txtScriptMarkerSubscriber.Text, ScriptArea.Subscriber)
+        Else
+            MsgBox("Error: unhandled type.")
+        End If
+
+        SelectedScriptMarker_Update()
+        View_DrawViewLater()
+    End Sub
     Private Sub txtObjectLabel_LostFocus(sender As System.Object, e As System.EventArgs) Handles txtObjectLabel.Leave
         If Not txtObjectLabel.Enabled Then
             Exit Sub

@@ -92,6 +92,15 @@ Public Module modSettings
     Public Setting_DefaultObjectDataPathNum As clsOption(Of Integer)
     Public Setting_PickOrientation As clsOption(Of Boolean)
 
+    Public Setting_HeightPreset1 As clsOption(Of Byte)
+    Public Setting_HeightPreset2 As clsOption(Of Byte)
+    Public Setting_HeightPreset3 As clsOption(Of Byte)
+    Public Setting_HeightPreset4 As clsOption(Of Byte)
+    Public Setting_HeightPreset5 As clsOption(Of Byte)
+    Public Setting_HeightPreset6 As clsOption(Of Byte)
+    Public Setting_HeightPreset7 As clsOption(Of Byte)
+    Public Setting_HeightPreset8 As clsOption(Of Byte)
+
     Public Class clsSettings
         Inherits clsOptionProfile
 
@@ -246,6 +255,71 @@ Public Module modSettings
             End Get
         End Property
 
+        Public Property HeightPreset1 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset1), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset1) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset2 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset2), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset2) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset3 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset3), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset3) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset4 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset4), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset4) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset5 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset5), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset5) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset6 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset6), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset6) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset7 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset7), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset7) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+        Public Property HeightPreset8 As Byte
+            Get
+                Return CType(Value(Setting_HeightPreset8), Byte)
+            End Get
+            Set(value As Byte)
+                Changes(Setting_HeightPreset8) = New clsOptionProfile.clsChange(Of Byte)(value)
+            End Set
+        End Property
+
         Public Function MakeFont() As Font
 
             Dim style As FontStyle = FontStyle.Regular
@@ -317,6 +391,14 @@ Public Module modSettings
         Setting_DefaultTilesetsPathNum = CreateSetting(Of Integer)("DefaultTilesetsPathNum", -1)
         Setting_DefaultObjectDataPathNum = CreateSetting(Of Integer)("DefaultObjectDataPathNum", -1)
         Setting_PickOrientation = CreateSetting(Of Boolean)("PickOrientation", True)
+        Setting_HeightPreset1 = CreateSetting(Of Byte)("HeightPreset1", 0)
+        Setting_HeightPreset2 = CreateSetting(Of Byte)("HeightPreset2", 85)
+        Setting_HeightPreset3 = CreateSetting(Of Byte)("HeightPreset3", 170)
+        Setting_HeightPreset4 = CreateSetting(Of Byte)("HeightPreset4", 255)
+        Setting_HeightPreset5 = CreateSetting(Of Byte)("HeightPreset5", 64)
+        Setting_HeightPreset6 = CreateSetting(Of Byte)("HeightPreset6", 128)
+        Setting_HeightPreset7 = CreateSetting(Of Byte)("HeightPreset7", 196)
+        Setting_HeightPreset8 = CreateSetting(Of Byte)("HeightPreset8", 255)
     End Sub
 
     Public Function Read_Settings(File As IO.StreamReader, ByRef Result As clsSettings) As clsResult

@@ -3,7 +3,7 @@ Public Module modProgram
 
     Public Const ProgramName As String = "FlaME - Json"
 
-    Public Const ProgramVersionNumber As String = "1.29.4.1"
+    Public Const ProgramVersionNumber As String = "1.29.4.2"
 
 #If Mono <> 0.0# Then
     Public Const ProgramPlatform As String = "Mono 2.10"
@@ -276,6 +276,7 @@ Public Module modProgram
     Public TemplateDroidType_Transporter As clsDroidDesign.clsTemplateDroidType
     Public TemplateDroidType_Person As clsDroidDesign.clsTemplateDroidType
     Public TemplateDroidType_Null As clsDroidDesign.clsTemplateDroidType
+    Public TemplateDroidType_SuperTransporter As clsDroidDesign.clsTemplateDroidType
 
     Public Sub CreateTemplateDroidTypes()
 
@@ -302,6 +303,9 @@ Public Module modProgram
 
         TemplateDroidType_Null = New clsDroidDesign.clsTemplateDroidType("Null Droid", "ZNULLDROID")
         TemplateDroidType_Null.Num = TemplateDroidType_Add(TemplateDroidType_Null)
+
+        TemplateDroidType_SuperTransporter = New clsDroidDesign.clsTemplateDroidType("Super Transporter", "SUPERTRANSPORTER")
+        TemplateDroidType_SuperTransporter.Num = TemplateDroidType_Add(TemplateDroidType_SuperTransporter)
     End Sub
 
     Public Function GetTemplateDroidTypeFromTemplateCode(Code As String) As clsDroidDesign.clsTemplateDroidType
@@ -341,6 +345,7 @@ Public Module modProgram
         Cyborg_Construct = 10
         Cyborg_Repair = 11
         Cyborg_Super = 12
+        Super_Transporter = 13
     End Enum
 
     Public Sub ShowWarnings(Result As clsResult)

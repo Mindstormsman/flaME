@@ -626,6 +626,8 @@ Public Class clsDroidDesign
             Result = enumDroidType.Cyborg_Repair
         ElseIf TemplateDroidType Is TemplateDroidType_Transporter Then
             Result = enumDroidType.Transporter
+        ElseIf TemplateDroidType Is TemplateDroidType_SuperTransporter Then
+            Result = enumDroidType.Super_Transporter
         ElseIf Turret1 Is Nothing Then
             Result = enumDroidType.Default_
         ElseIf Turret1.TurretType = clsTurret.enumTurretType.Brain Then
@@ -675,6 +677,8 @@ Public Class clsDroidDesign
                 TemplateDroidType = TemplateDroidType_CyborgRepair
             Case enumDroidType.Cyborg_Super
                 TemplateDroidType = TemplateDroidType_CyborgSuper
+            Case enumDroidType.Super_Transporter
+                TemplateDroidType = TemplateDroidType_SuperTransporter
             Case Else
                 TemplateDroidType = Nothing
                 Return False

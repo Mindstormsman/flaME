@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMain
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,7 +21,7 @@ Partial Class frmMain
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
 
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TabControl = New System.Windows.Forms.TabControl()
@@ -194,13 +194,19 @@ Partial Class frmMain
         Me.txtObjectID = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.tpLabels = New System.Windows.Forms.TabPage()
+        Me.Label45 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.lstScriptRadii = New System.Windows.Forms.ListBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
         Me.lstScriptAreas = New System.Windows.Forms.ListBox()
         Me.lstScriptPositions = New System.Windows.Forms.ListBox()
         Me.btnScriptAreaCreate = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.txtScriptMarkerSubscriber = New System.Windows.Forms.TextBox()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.txtScriptMarkerR = New System.Windows.Forms.TextBox()
         Me.txtScriptMarkerLabel = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.btnScriptMarkerRemove = New System.Windows.Forms.Button()
@@ -386,11 +392,11 @@ Partial Class frmMain
         'tpTextures
         '
         Me.tpTextures.Controls.Add(Me.TableLayoutPanel6)
-        Me.tpTextures.Location = New System.Drawing.Point(4, 51)
+        Me.tpTextures.Location = New System.Drawing.Point(4, 26)
         Me.tpTextures.Margin = New System.Windows.Forms.Padding(0)
         Me.tpTextures.Name = "tpTextures"
         Me.tpTextures.Padding = New System.Windows.Forms.Padding(4)
-        Me.tpTextures.Size = New System.Drawing.Size(410, 557)
+        Me.tpTextures.Size = New System.Drawing.Size(410, 582)
         Me.tpTextures.TabIndex = 0
         Me.tpTextures.Text = "Textures"
         Me.tpTextures.UseVisualStyleBackColor = True
@@ -409,7 +415,7 @@ Partial Class frmMain
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175.0!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(402, 549)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(402, 574)
         Me.TableLayoutPanel6.TabIndex = 8
         '
         'Panel5
@@ -439,7 +445,7 @@ Partial Class frmMain
         Me.rdoTextureRemoveTerrain.Location = New System.Drawing.Point(280, 129)
         Me.rdoTextureRemoveTerrain.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoTextureRemoveTerrain.Name = "rdoTextureRemoveTerrain"
-        Me.rdoTextureRemoveTerrain.Size = New System.Drawing.Size(122, 21)
+        Me.rdoTextureRemoveTerrain.Size = New System.Drawing.Size(103, 18)
         Me.rdoTextureRemoveTerrain.TabIndex = 48
         Me.rdoTextureRemoveTerrain.Text = "Remove Terrain"
         Me.rdoTextureRemoveTerrain.UseCompatibleTextRendering = True
@@ -452,7 +458,7 @@ Partial Class frmMain
         Me.rdoTextureReinterpretTerrain.Location = New System.Drawing.Point(280, 109)
         Me.rdoTextureReinterpretTerrain.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoTextureReinterpretTerrain.Name = "rdoTextureReinterpretTerrain"
-        Me.rdoTextureReinterpretTerrain.Size = New System.Drawing.Size(92, 21)
+        Me.rdoTextureReinterpretTerrain.Size = New System.Drawing.Size(78, 18)
         Me.rdoTextureReinterpretTerrain.TabIndex = 47
         Me.rdoTextureReinterpretTerrain.TabStop = True
         Me.rdoTextureReinterpretTerrain.Text = "Reinterpret"
@@ -465,7 +471,7 @@ Partial Class frmMain
         Me.rdoTextureIgnoreTerrain.Location = New System.Drawing.Point(280, 87)
         Me.rdoTextureIgnoreTerrain.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoTextureIgnoreTerrain.Name = "rdoTextureIgnoreTerrain"
-        Me.rdoTextureIgnoreTerrain.Size = New System.Drawing.Size(110, 21)
+        Me.rdoTextureIgnoreTerrain.Size = New System.Drawing.Size(93, 18)
         Me.rdoTextureIgnoreTerrain.TabIndex = 46
         Me.rdoTextureIgnoreTerrain.Text = "Ignore Terrain"
         Me.rdoTextureIgnoreTerrain.UseCompatibleTextRendering = True
@@ -484,7 +490,7 @@ Partial Class frmMain
         Me.chkTextureOrientationRandomize.Location = New System.Drawing.Point(157, 137)
         Me.chkTextureOrientationRandomize.Margin = New System.Windows.Forms.Padding(4)
         Me.chkTextureOrientationRandomize.Name = "chkTextureOrientationRandomize"
-        Me.chkTextureOrientationRandomize.Size = New System.Drawing.Size(95, 21)
+        Me.chkTextureOrientationRandomize.Size = New System.Drawing.Size(81, 18)
         Me.chkTextureOrientationRandomize.TabIndex = 44
         Me.chkTextureOrientationRandomize.Text = "Randomize"
         Me.chkTextureOrientationRandomize.UseCompatibleTextRendering = True
@@ -531,7 +537,7 @@ Partial Class frmMain
         Me.chkSetTextureOrientation.Location = New System.Drawing.Point(25, 110)
         Me.chkSetTextureOrientation.Margin = New System.Windows.Forms.Padding(4)
         Me.chkSetTextureOrientation.Name = "chkSetTextureOrientation"
-        Me.chkSetTextureOrientation.Size = New System.Drawing.Size(116, 21)
+        Me.chkSetTextureOrientation.Size = New System.Drawing.Size(99, 18)
         Me.chkSetTextureOrientation.TabIndex = 40
         Me.chkSetTextureOrientation.Text = "Set Orientation"
         Me.chkSetTextureOrientation.UseCompatibleTextRendering = True
@@ -545,7 +551,7 @@ Partial Class frmMain
         Me.chkSetTexture.Location = New System.Drawing.Point(25, 81)
         Me.chkSetTexture.Margin = New System.Windows.Forms.Padding(4)
         Me.chkSetTexture.Name = "chkSetTexture"
-        Me.chkSetTexture.Size = New System.Drawing.Size(96, 21)
+        Me.chkSetTexture.Size = New System.Drawing.Size(82, 18)
         Me.chkSetTexture.TabIndex = 39
         Me.chkSetTexture.Text = "Set Texture"
         Me.chkSetTexture.UseCompatibleTextRendering = True
@@ -573,7 +579,7 @@ Partial Class frmMain
         Me.cboTileset.Location = New System.Drawing.Point(103, 16)
         Me.cboTileset.Margin = New System.Windows.Forms.Padding(4)
         Me.cboTileset.Name = "cboTileset"
-        Me.cboTileset.Size = New System.Drawing.Size(161, 24)
+        Me.cboTileset.Size = New System.Drawing.Size(161, 21)
         Me.cboTileset.TabIndex = 0
         '
         'Panel6
@@ -583,7 +589,7 @@ Partial Class frmMain
         Me.Panel6.Controls.Add(Me.Label20)
         Me.Panel6.Controls.Add(Me.cboTileType)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel6.Location = New System.Drawing.Point(4, 474)
+        Me.Panel6.Location = New System.Drawing.Point(4, 499)
         Me.Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(394, 71)
@@ -629,7 +635,7 @@ Partial Class frmMain
         Me.cboTileType.Location = New System.Drawing.Point(103, 4)
         Me.cboTileType.Margin = New System.Windows.Forms.Padding(4)
         Me.cboTileType.Name = "cboTileType"
-        Me.cboTileType.Size = New System.Drawing.Size(151, 24)
+        Me.cboTileType.Size = New System.Drawing.Size(151, 21)
         Me.cboTileType.TabIndex = 0
         '
         'tpAutoTexture
@@ -657,10 +663,10 @@ Partial Class frmMain
         Me.tpAutoTexture.Controls.Add(Me.Label1)
         Me.tpAutoTexture.Controls.Add(Me.lstAutoTexture)
         Me.tpAutoTexture.Controls.Add(Me.Label3)
-        Me.tpAutoTexture.Location = New System.Drawing.Point(4, 51)
+        Me.tpAutoTexture.Location = New System.Drawing.Point(4, 26)
         Me.tpAutoTexture.Margin = New System.Windows.Forms.Padding(4)
         Me.tpAutoTexture.Name = "tpAutoTexture"
-        Me.tpAutoTexture.Size = New System.Drawing.Size(410, 557)
+        Me.tpAutoTexture.Size = New System.Drawing.Size(410, 582)
         Me.tpAutoTexture.TabIndex = 2
         Me.tpAutoTexture.Text = "Terrain"
         Me.tpAutoTexture.UseVisualStyleBackColor = True
@@ -694,7 +700,7 @@ Partial Class frmMain
         Me.rdoFillCliffIgnore.Location = New System.Drawing.Point(4, 4)
         Me.rdoFillCliffIgnore.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoFillCliffIgnore.Name = "rdoFillCliffIgnore"
-        Me.rdoFillCliffIgnore.Size = New System.Drawing.Size(91, 21)
+        Me.rdoFillCliffIgnore.Size = New System.Drawing.Size(77, 18)
         Me.rdoFillCliffIgnore.TabIndex = 52
         Me.rdoFillCliffIgnore.TabStop = True
         Me.rdoFillCliffIgnore.Text = "Ignore Cliff"
@@ -707,7 +713,7 @@ Partial Class frmMain
         Me.rdoFillCliffStopBefore.Location = New System.Drawing.Point(4, 24)
         Me.rdoFillCliffStopBefore.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoFillCliffStopBefore.Name = "rdoFillCliffStopBefore"
-        Me.rdoFillCliffStopBefore.Size = New System.Drawing.Size(123, 21)
+        Me.rdoFillCliffStopBefore.Size = New System.Drawing.Size(105, 18)
         Me.rdoFillCliffStopBefore.TabIndex = 50
         Me.rdoFillCliffStopBefore.Text = "Stop Before Cliff"
         Me.rdoFillCliffStopBefore.UseCompatibleTextRendering = True
@@ -719,7 +725,7 @@ Partial Class frmMain
         Me.rdoFillCliffStopAfter.Location = New System.Drawing.Point(4, 43)
         Me.rdoFillCliffStopAfter.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoFillCliffStopAfter.Name = "rdoFillCliffStopAfter"
-        Me.rdoFillCliffStopAfter.Size = New System.Drawing.Size(112, 21)
+        Me.rdoFillCliffStopAfter.Size = New System.Drawing.Size(95, 18)
         Me.rdoFillCliffStopAfter.TabIndex = 51
         Me.rdoFillCliffStopAfter.Text = "Stop After Cliff"
         Me.rdoFillCliffStopAfter.UseCompatibleTextRendering = True
@@ -731,7 +737,7 @@ Partial Class frmMain
         Me.rdoCliffTriBrush.Location = New System.Drawing.Point(11, 491)
         Me.rdoCliffTriBrush.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoCliffTriBrush.Name = "rdoCliffTriBrush"
-        Me.rdoCliffTriBrush.Size = New System.Drawing.Size(101, 21)
+        Me.rdoCliffTriBrush.Size = New System.Drawing.Size(86, 18)
         Me.rdoCliffTriBrush.TabIndex = 49
         Me.rdoCliffTriBrush.Text = "Cliff Triangle"
         Me.rdoCliffTriBrush.UseCompatibleTextRendering = True
@@ -743,7 +749,7 @@ Partial Class frmMain
         Me.rdoRoadRemove.Location = New System.Drawing.Point(11, 452)
         Me.rdoRoadRemove.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoRoadRemove.Name = "rdoRoadRemove"
-        Me.rdoRoadRemove.Size = New System.Drawing.Size(76, 21)
+        Me.rdoRoadRemove.Size = New System.Drawing.Size(64, 18)
         Me.rdoRoadRemove.TabIndex = 48
         Me.rdoRoadRemove.Text = "Remove"
         Me.rdoRoadRemove.UseCompatibleTextRendering = True
@@ -765,8 +771,6 @@ Partial Class frmMain
         '
         'cbxInvalidTiles
         '
-        Me.cbxInvalidTiles.Checked = True
-        Me.cbxInvalidTiles.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cbxInvalidTiles.Location = New System.Drawing.Point(183, 59)
         Me.cbxInvalidTiles.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxInvalidTiles.Name = "cbxInvalidTiles"
@@ -816,7 +820,7 @@ Partial Class frmMain
         Me.rdoAutoRoadLine.Location = New System.Drawing.Point(11, 423)
         Me.rdoAutoRoadLine.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoAutoRoadLine.Name = "rdoAutoRoadLine"
-        Me.rdoAutoRoadLine.Size = New System.Drawing.Size(58, 21)
+        Me.rdoAutoRoadLine.Size = New System.Drawing.Size(49, 18)
         Me.rdoAutoRoadLine.TabIndex = 32
         Me.rdoAutoRoadLine.Text = "Lines"
         Me.rdoAutoRoadLine.UseCompatibleTextRendering = True
@@ -850,7 +854,7 @@ Partial Class frmMain
         Me.rdoAutoRoadPlace.Location = New System.Drawing.Point(11, 394)
         Me.rdoAutoRoadPlace.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoAutoRoadPlace.Name = "rdoAutoRoadPlace"
-        Me.rdoAutoRoadPlace.Size = New System.Drawing.Size(59, 21)
+        Me.rdoAutoRoadPlace.Size = New System.Drawing.Size(51, 18)
         Me.rdoAutoRoadPlace.TabIndex = 29
         Me.rdoAutoRoadPlace.Text = "Sides"
         Me.rdoAutoRoadPlace.UseCompatibleTextRendering = True
@@ -859,12 +863,11 @@ Partial Class frmMain
         'lstAutoRoad
         '
         Me.lstAutoRoad.FormattingEnabled = True
-        Me.lstAutoRoad.ItemHeight = 16
         Me.lstAutoRoad.Location = New System.Drawing.Point(11, 350)
         Me.lstAutoRoad.Margin = New System.Windows.Forms.Padding(4)
         Me.lstAutoRoad.Name = "lstAutoRoad"
         Me.lstAutoRoad.ScrollAlwaysVisible = True
-        Me.lstAutoRoad.Size = New System.Drawing.Size(159, 36)
+        Me.lstAutoRoad.Size = New System.Drawing.Size(159, 30)
         Me.lstAutoRoad.TabIndex = 27
         '
         'rdoAutoTexturePlace
@@ -873,7 +876,7 @@ Partial Class frmMain
         Me.rdoAutoTexturePlace.Location = New System.Drawing.Point(11, 214)
         Me.rdoAutoTexturePlace.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoAutoTexturePlace.Name = "rdoAutoTexturePlace"
-        Me.rdoAutoTexturePlace.Size = New System.Drawing.Size(59, 21)
+        Me.rdoAutoTexturePlace.Size = New System.Drawing.Size(51, 18)
         Me.rdoAutoTexturePlace.TabIndex = 26
         Me.rdoAutoTexturePlace.Text = "Place"
         Me.rdoAutoTexturePlace.UseCompatibleTextRendering = True
@@ -885,7 +888,7 @@ Partial Class frmMain
         Me.rdoAutoTextureFill.Location = New System.Drawing.Point(11, 244)
         Me.rdoAutoTextureFill.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoAutoTextureFill.Name = "rdoAutoTextureFill"
-        Me.rdoAutoTextureFill.Size = New System.Drawing.Size(43, 21)
+        Me.rdoAutoTextureFill.Size = New System.Drawing.Size(37, 18)
         Me.rdoAutoTextureFill.TabIndex = 25
         Me.rdoAutoTextureFill.Text = "Fill"
         Me.rdoAutoTextureFill.UseCompatibleTextRendering = True
@@ -897,7 +900,7 @@ Partial Class frmMain
         Me.rdoAutoCliffBrush.Location = New System.Drawing.Point(11, 540)
         Me.rdoAutoCliffBrush.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoAutoCliffBrush.Name = "rdoAutoCliffBrush"
-        Me.rdoAutoCliffBrush.Size = New System.Drawing.Size(88, 21)
+        Me.rdoAutoCliffBrush.Size = New System.Drawing.Size(74, 18)
         Me.rdoAutoCliffBrush.TabIndex = 22
         Me.rdoAutoCliffBrush.Text = "Cliff Brush"
         Me.rdoAutoCliffBrush.UseCompatibleTextRendering = True
@@ -909,7 +912,7 @@ Partial Class frmMain
         Me.rdoAutoCliffRemove.Location = New System.Drawing.Point(11, 570)
         Me.rdoAutoCliffRemove.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoAutoCliffRemove.Name = "rdoAutoCliffRemove"
-        Me.rdoAutoCliffRemove.Size = New System.Drawing.Size(102, 21)
+        Me.rdoAutoCliffRemove.Size = New System.Drawing.Size(87, 18)
         Me.rdoAutoCliffRemove.TabIndex = 21
         Me.rdoAutoCliffRemove.Text = "Cliff Remove"
         Me.rdoAutoCliffRemove.UseCompatibleTextRendering = True
@@ -920,7 +923,7 @@ Partial Class frmMain
         Me.txtAutoCliffSlope.Location = New System.Drawing.Point(117, 516)
         Me.txtAutoCliffSlope.Margin = New System.Windows.Forms.Padding(4)
         Me.txtAutoCliffSlope.Name = "txtAutoCliffSlope"
-        Me.txtAutoCliffSlope.Size = New System.Drawing.Size(52, 22)
+        Me.txtAutoCliffSlope.Size = New System.Drawing.Size(52, 20)
         Me.txtAutoCliffSlope.TabIndex = 7
         Me.txtAutoCliffSlope.Text = "35"
         Me.txtAutoCliffSlope.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -939,12 +942,11 @@ Partial Class frmMain
         'lstAutoTexture
         '
         Me.lstAutoTexture.FormattingEnabled = True
-        Me.lstAutoTexture.ItemHeight = 16
         Me.lstAutoTexture.Location = New System.Drawing.Point(11, 59)
         Me.lstAutoTexture.Margin = New System.Windows.Forms.Padding(4)
         Me.lstAutoTexture.Name = "lstAutoTexture"
         Me.lstAutoTexture.ScrollAlwaysVisible = True
-        Me.lstAutoTexture.Size = New System.Drawing.Size(159, 148)
+        Me.lstAutoTexture.Size = New System.Drawing.Size(159, 147)
         Me.lstAutoTexture.TabIndex = 4
         '
         'Label3
@@ -983,11 +985,11 @@ Partial Class frmMain
         Me.tpHeight.Controls.Add(Me.rdoHeightSet)
         Me.tpHeight.Controls.Add(Me.txtHeightSetL)
         Me.tpHeight.Controls.Add(Me.Label5)
-        Me.tpHeight.Location = New System.Drawing.Point(4, 51)
+        Me.tpHeight.Location = New System.Drawing.Point(4, 26)
         Me.tpHeight.Margin = New System.Windows.Forms.Padding(4)
         Me.tpHeight.Name = "tpHeight"
         Me.tpHeight.Padding = New System.Windows.Forms.Padding(4)
-        Me.tpHeight.Size = New System.Drawing.Size(410, 557)
+        Me.tpHeight.Size = New System.Drawing.Size(410, 582)
         Me.tpHeight.TabIndex = 1
         Me.tpHeight.Text = "Height"
         Me.tpHeight.UseVisualStyleBackColor = True
@@ -1245,7 +1247,7 @@ Partial Class frmMain
         Me.txtHeightSetR.Location = New System.Drawing.Point(121, 140)
         Me.txtHeightSetR.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHeightSetR.Name = "txtHeightSetR"
-        Me.txtHeightSetR.Size = New System.Drawing.Size(73, 22)
+        Me.txtHeightSetR.Size = New System.Drawing.Size(73, 20)
         Me.txtHeightSetR.TabIndex = 31
         Me.txtHeightSetR.Text = "#"
         Me.txtHeightSetR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1276,7 +1278,7 @@ Partial Class frmMain
         Me.txtHeightOffset.Location = New System.Drawing.Point(19, 455)
         Me.txtHeightOffset.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHeightOffset.Name = "txtHeightOffset"
-        Me.txtHeightOffset.Size = New System.Drawing.Size(89, 22)
+        Me.txtHeightOffset.Size = New System.Drawing.Size(89, 20)
         Me.txtHeightOffset.TabIndex = 27
         Me.txtHeightOffset.Text = "0"
         Me.txtHeightOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1297,7 +1299,7 @@ Partial Class frmMain
         Me.txtHeightMultiply.Location = New System.Drawing.Point(19, 386)
         Me.txtHeightMultiply.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHeightMultiply.Name = "txtHeightMultiply"
-        Me.txtHeightMultiply.Size = New System.Drawing.Size(89, 22)
+        Me.txtHeightMultiply.Size = New System.Drawing.Size(89, 20)
         Me.txtHeightMultiply.TabIndex = 24
         Me.txtHeightMultiply.Text = "1"
         Me.txtHeightMultiply.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1307,7 +1309,7 @@ Partial Class frmMain
         Me.txtHeightChangeRate.Location = New System.Drawing.Point(96, 246)
         Me.txtHeightChangeRate.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHeightChangeRate.Name = "txtHeightChangeRate"
-        Me.txtHeightChangeRate.Size = New System.Drawing.Size(73, 22)
+        Me.txtHeightChangeRate.Size = New System.Drawing.Size(73, 20)
         Me.txtHeightChangeRate.TabIndex = 23
         Me.txtHeightChangeRate.Text = "16"
         Me.txtHeightChangeRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1329,7 +1331,7 @@ Partial Class frmMain
         Me.rdoHeightChange.Location = New System.Drawing.Point(11, 217)
         Me.rdoHeightChange.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoHeightChange.Name = "rdoHeightChange"
-        Me.rdoHeightChange.Size = New System.Drawing.Size(73, 21)
+        Me.rdoHeightChange.Size = New System.Drawing.Size(62, 18)
         Me.rdoHeightChange.TabIndex = 21
         Me.rdoHeightChange.Text = "Change"
         Me.rdoHeightChange.UseCompatibleTextRendering = True
@@ -1351,7 +1353,7 @@ Partial Class frmMain
         Me.txtSmoothRate.Location = New System.Drawing.Point(100, 311)
         Me.txtSmoothRate.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSmoothRate.Name = "txtSmoothRate"
-        Me.txtSmoothRate.Size = New System.Drawing.Size(73, 22)
+        Me.txtSmoothRate.Size = New System.Drawing.Size(73, 20)
         Me.txtSmoothRate.TabIndex = 10
         Me.txtSmoothRate.Text = "3"
         Me.txtSmoothRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1373,7 +1375,7 @@ Partial Class frmMain
         Me.rdoHeightSmooth.Location = New System.Drawing.Point(11, 286)
         Me.rdoHeightSmooth.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoHeightSmooth.Name = "rdoHeightSmooth"
-        Me.rdoHeightSmooth.Size = New System.Drawing.Size(72, 21)
+        Me.rdoHeightSmooth.Size = New System.Drawing.Size(61, 18)
         Me.rdoHeightSmooth.TabIndex = 8
         Me.rdoHeightSmooth.Text = "Smooth"
         Me.rdoHeightSmooth.UseCompatibleTextRendering = True
@@ -1386,7 +1388,7 @@ Partial Class frmMain
         Me.rdoHeightSet.Location = New System.Drawing.Point(11, 49)
         Me.rdoHeightSet.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoHeightSet.Name = "rdoHeightSet"
-        Me.rdoHeightSet.Size = New System.Drawing.Size(46, 21)
+        Me.rdoHeightSet.Size = New System.Drawing.Size(39, 18)
         Me.rdoHeightSet.TabIndex = 7
         Me.rdoHeightSet.TabStop = True
         Me.rdoHeightSet.Text = "Set"
@@ -1398,7 +1400,7 @@ Partial Class frmMain
         Me.txtHeightSetL.Location = New System.Drawing.Point(121, 79)
         Me.txtHeightSetL.Margin = New System.Windows.Forms.Padding(4)
         Me.txtHeightSetL.Name = "txtHeightSetL"
-        Me.txtHeightSetL.Size = New System.Drawing.Size(73, 22)
+        Me.txtHeightSetL.Size = New System.Drawing.Size(73, 20)
         Me.txtHeightSetL.TabIndex = 6
         Me.txtHeightSetL.Text = "#"
         Me.txtHeightSetL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1426,10 +1428,10 @@ Partial Class frmMain
         Me.tpResize.Controls.Add(Me.Label13)
         Me.tpResize.Controls.Add(Me.txtSizeX)
         Me.tpResize.Controls.Add(Me.Label12)
-        Me.tpResize.Location = New System.Drawing.Point(4, 51)
+        Me.tpResize.Location = New System.Drawing.Point(4, 26)
         Me.tpResize.Margin = New System.Windows.Forms.Padding(4)
         Me.tpResize.Name = "tpResize"
-        Me.tpResize.Size = New System.Drawing.Size(410, 557)
+        Me.tpResize.Size = New System.Drawing.Size(410, 582)
         Me.tpResize.TabIndex = 4
         Me.tpResize.Text = "Resize"
         Me.tpResize.UseVisualStyleBackColor = True
@@ -1461,7 +1463,7 @@ Partial Class frmMain
         Me.txtOffsetY.Location = New System.Drawing.Point(117, 98)
         Me.txtOffsetY.Margin = New System.Windows.Forms.Padding(4)
         Me.txtOffsetY.Name = "txtOffsetY"
-        Me.txtOffsetY.Size = New System.Drawing.Size(52, 22)
+        Me.txtOffsetY.Size = New System.Drawing.Size(52, 20)
         Me.txtOffsetY.TabIndex = 15
         Me.txtOffsetY.Text = "0"
         '
@@ -1481,7 +1483,7 @@ Partial Class frmMain
         Me.txtOffsetX.Location = New System.Drawing.Point(117, 69)
         Me.txtOffsetX.Margin = New System.Windows.Forms.Padding(4)
         Me.txtOffsetX.Name = "txtOffsetX"
-        Me.txtOffsetX.Size = New System.Drawing.Size(52, 22)
+        Me.txtOffsetX.Size = New System.Drawing.Size(52, 20)
         Me.txtOffsetX.TabIndex = 13
         Me.txtOffsetX.Text = "0"
         '
@@ -1501,7 +1503,7 @@ Partial Class frmMain
         Me.txtSizeY.Location = New System.Drawing.Point(117, 39)
         Me.txtSizeY.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSizeY.Name = "txtSizeY"
-        Me.txtSizeY.Size = New System.Drawing.Size(52, 22)
+        Me.txtSizeY.Size = New System.Drawing.Size(52, 20)
         Me.txtSizeY.TabIndex = 11
         Me.txtSizeY.Text = "0"
         '
@@ -1521,7 +1523,7 @@ Partial Class frmMain
         Me.txtSizeX.Location = New System.Drawing.Point(117, 10)
         Me.txtSizeX.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSizeX.Name = "txtSizeX"
-        Me.txtSizeX.Size = New System.Drawing.Size(52, 22)
+        Me.txtSizeX.Size = New System.Drawing.Size(52, 20)
         Me.txtSizeX.TabIndex = 9
         Me.txtSizeX.Text = "0"
         '
@@ -1540,10 +1542,10 @@ Partial Class frmMain
         '
         Me.tpObjects.AutoScroll = True
         Me.tpObjects.Controls.Add(Me.TableLayoutPanel1)
-        Me.tpObjects.Location = New System.Drawing.Point(4, 51)
+        Me.tpObjects.Location = New System.Drawing.Point(4, 26)
         Me.tpObjects.Margin = New System.Windows.Forms.Padding(4)
         Me.tpObjects.Name = "tpObjects"
-        Me.tpObjects.Size = New System.Drawing.Size(410, 557)
+        Me.tpObjects.Size = New System.Drawing.Size(410, 582)
         Me.tpObjects.TabIndex = 5
         Me.tpObjects.Text = "Place Objects"
         Me.tpObjects.UseVisualStyleBackColor = True
@@ -1561,7 +1563,7 @@ Partial Class frmMain
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 192.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(410, 557)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(410, 582)
         Me.TableLayoutPanel1.TabIndex = 16
         '
         'Panel1
@@ -1623,7 +1625,7 @@ Partial Class frmMain
         Me.rdoObjectPlace.Location = New System.Drawing.Point(7, 22)
         Me.rdoObjectPlace.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoObjectPlace.Name = "rdoObjectPlace"
-        Me.rdoObjectPlace.Size = New System.Drawing.Size(59, 21)
+        Me.rdoObjectPlace.Size = New System.Drawing.Size(51, 18)
         Me.rdoObjectPlace.TabIndex = 54
         Me.rdoObjectPlace.TabStop = True
         Me.rdoObjectPlace.Text = "Place"
@@ -1636,7 +1638,7 @@ Partial Class frmMain
         Me.rdoObjectLines.Location = New System.Drawing.Point(7, 47)
         Me.rdoObjectLines.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoObjectLines.Name = "rdoObjectLines"
-        Me.rdoObjectLines.Size = New System.Drawing.Size(58, 21)
+        Me.rdoObjectLines.Size = New System.Drawing.Size(49, 18)
         Me.rdoObjectLines.TabIndex = 55
         Me.rdoObjectLines.Text = "Lines"
         Me.rdoObjectLines.UseCompatibleTextRendering = True
@@ -1646,7 +1648,7 @@ Partial Class frmMain
         '
         Me.txtObjectFind.Location = New System.Drawing.Point(47, 160)
         Me.txtObjectFind.Name = "txtObjectFind"
-        Me.txtObjectFind.Size = New System.Drawing.Size(175, 22)
+        Me.txtObjectFind.Size = New System.Drawing.Size(175, 20)
         Me.txtObjectFind.TabIndex = 53
         '
         'cbxFootprintRotate
@@ -1665,7 +1667,7 @@ Partial Class frmMain
         Me.txtNewObjectRotation.Location = New System.Drawing.Point(85, 122)
         Me.txtNewObjectRotation.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNewObjectRotation.Name = "txtNewObjectRotation"
-        Me.txtNewObjectRotation.Size = New System.Drawing.Size(41, 22)
+        Me.txtNewObjectRotation.Size = New System.Drawing.Size(41, 20)
         Me.txtNewObjectRotation.TabIndex = 51
         Me.txtNewObjectRotation.Text = "0"
         Me.txtNewObjectRotation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1728,7 +1730,7 @@ Partial Class frmMain
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 195)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(404, 359)
+        Me.Panel2.Size = New System.Drawing.Size(404, 384)
         Me.Panel2.TabIndex = 1
         '
         'btnObjectTypeSelect
@@ -1752,15 +1754,15 @@ Partial Class frmMain
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(404, 359)
+        Me.TabControl1.Size = New System.Drawing.Size(404, 384)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.dgvFeatures)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(396, 327)
+        Me.TabPage1.Size = New System.Drawing.Size(396, 355)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Features"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -1776,15 +1778,15 @@ Partial Class frmMain
         Me.dgvFeatures.RowHeadersVisible = False
         Me.dgvFeatures.RowTemplate.Height = 24
         Me.dgvFeatures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvFeatures.Size = New System.Drawing.Size(396, 327)
+        Me.dgvFeatures.Size = New System.Drawing.Size(396, 355)
         Me.dgvFeatures.TabIndex = 0
         '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.dgvStructures)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(396, 327)
+        Me.TabPage2.Size = New System.Drawing.Size(396, 355)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Structures"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1800,15 +1802,15 @@ Partial Class frmMain
         Me.dgvStructures.RowHeadersVisible = False
         Me.dgvStructures.RowTemplate.Height = 24
         Me.dgvStructures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvStructures.Size = New System.Drawing.Size(396, 327)
+        Me.dgvStructures.Size = New System.Drawing.Size(396, 355)
         Me.dgvStructures.TabIndex = 1
         '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.dgvDroids)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(396, 327)
+        Me.TabPage3.Size = New System.Drawing.Size(396, 355)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Droids"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1824,16 +1826,16 @@ Partial Class frmMain
         Me.dgvDroids.RowHeadersVisible = False
         Me.dgvDroids.RowTemplate.Height = 24
         Me.dgvDroids.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDroids.Size = New System.Drawing.Size(396, 327)
+        Me.dgvDroids.Size = New System.Drawing.Size(396, 355)
         Me.dgvDroids.TabIndex = 1
         '
         'tpObject
         '
         Me.tpObject.Controls.Add(Me.TableLayoutPanel8)
-        Me.tpObject.Location = New System.Drawing.Point(4, 51)
+        Me.tpObject.Location = New System.Drawing.Point(4, 26)
         Me.tpObject.Margin = New System.Windows.Forms.Padding(4)
         Me.tpObject.Name = "tpObject"
-        Me.tpObject.Size = New System.Drawing.Size(410, 557)
+        Me.tpObject.Size = New System.Drawing.Size(410, 582)
         Me.tpObject.TabIndex = 6
         Me.tpObject.Text = "Object"
         Me.tpObject.UseVisualStyleBackColor = True
@@ -1851,7 +1853,7 @@ Partial Class frmMain
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350.0!))
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 192.0!))
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(410, 557)
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(410, 582)
         Me.TableLayoutPanel8.TabIndex = 55
         '
         'TableLayoutPanel9
@@ -1894,7 +1896,7 @@ Partial Class frmMain
         Me.cboDroidTurret3.Location = New System.Drawing.Point(100, 158)
         Me.cboDroidTurret3.Margin = New System.Windows.Forms.Padding(4)
         Me.cboDroidTurret3.Name = "cboDroidTurret3"
-        Me.cboDroidTurret3.Size = New System.Drawing.Size(300, 24)
+        Me.cboDroidTurret3.Size = New System.Drawing.Size(300, 21)
         Me.cboDroidTurret3.TabIndex = 48
         '
         'cboDroidTurret2
@@ -1907,7 +1909,7 @@ Partial Class frmMain
         Me.cboDroidTurret2.Location = New System.Drawing.Point(100, 127)
         Me.cboDroidTurret2.Margin = New System.Windows.Forms.Padding(4)
         Me.cboDroidTurret2.Name = "cboDroidTurret2"
-        Me.cboDroidTurret2.Size = New System.Drawing.Size(300, 24)
+        Me.cboDroidTurret2.Size = New System.Drawing.Size(300, 21)
         Me.cboDroidTurret2.TabIndex = 47
         '
         'Panel13
@@ -1925,7 +1927,7 @@ Partial Class frmMain
         Me.rdoDroidTurret3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.rdoDroidTurret3.Location = New System.Drawing.Point(48, 2)
         Me.rdoDroidTurret3.Name = "rdoDroidTurret3"
-        Me.rdoDroidTurret3.Size = New System.Drawing.Size(33, 21)
+        Me.rdoDroidTurret3.Size = New System.Drawing.Size(28, 18)
         Me.rdoDroidTurret3.TabIndex = 51
         Me.rdoDroidTurret3.TabStop = True
         Me.rdoDroidTurret3.Text = "3"
@@ -1943,7 +1945,7 @@ Partial Class frmMain
         Me.cboDroidTurret1.Location = New System.Drawing.Point(100, 96)
         Me.cboDroidTurret1.Margin = New System.Windows.Forms.Padding(4)
         Me.cboDroidTurret1.Name = "cboDroidTurret1"
-        Me.cboDroidTurret1.Size = New System.Drawing.Size(300, 24)
+        Me.cboDroidTurret1.Size = New System.Drawing.Size(300, 21)
         Me.cboDroidTurret1.TabIndex = 45
         '
         'cboDroidPropulsion
@@ -1956,7 +1958,7 @@ Partial Class frmMain
         Me.cboDroidPropulsion.Location = New System.Drawing.Point(100, 65)
         Me.cboDroidPropulsion.Margin = New System.Windows.Forms.Padding(4)
         Me.cboDroidPropulsion.Name = "cboDroidPropulsion"
-        Me.cboDroidPropulsion.Size = New System.Drawing.Size(300, 24)
+        Me.cboDroidPropulsion.Size = New System.Drawing.Size(300, 21)
         Me.cboDroidPropulsion.TabIndex = 43
         '
         'cboDroidBody
@@ -1969,7 +1971,7 @@ Partial Class frmMain
         Me.cboDroidBody.Location = New System.Drawing.Point(100, 34)
         Me.cboDroidBody.Margin = New System.Windows.Forms.Padding(4)
         Me.cboDroidBody.Name = "cboDroidBody"
-        Me.cboDroidBody.Size = New System.Drawing.Size(300, 24)
+        Me.cboDroidBody.Size = New System.Drawing.Size(300, 21)
         Me.cboDroidBody.TabIndex = 41
         '
         'cboDroidType
@@ -1982,7 +1984,7 @@ Partial Class frmMain
         Me.cboDroidType.Location = New System.Drawing.Point(100, 4)
         Me.cboDroidType.Margin = New System.Windows.Forms.Padding(4)
         Me.cboDroidType.Name = "cboDroidType"
-        Me.cboDroidType.Size = New System.Drawing.Size(300, 24)
+        Me.cboDroidType.Size = New System.Drawing.Size(300, 21)
         Me.cboDroidType.TabIndex = 52
         '
         'Panel12
@@ -2001,7 +2003,7 @@ Partial Class frmMain
         Me.rdoDroidTurret0.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.rdoDroidTurret0.Location = New System.Drawing.Point(7, 1)
         Me.rdoDroidTurret0.Name = "rdoDroidTurret0"
-        Me.rdoDroidTurret0.Size = New System.Drawing.Size(33, 21)
+        Me.rdoDroidTurret0.Size = New System.Drawing.Size(28, 18)
         Me.rdoDroidTurret0.TabIndex = 54
         Me.rdoDroidTurret0.TabStop = True
         Me.rdoDroidTurret0.Text = "0"
@@ -2015,7 +2017,7 @@ Partial Class frmMain
         Me.rdoDroidTurret2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.rdoDroidTurret2.Location = New System.Drawing.Point(48, 1)
         Me.rdoDroidTurret2.Name = "rdoDroidTurret2"
-        Me.rdoDroidTurret2.Size = New System.Drawing.Size(33, 21)
+        Me.rdoDroidTurret2.Size = New System.Drawing.Size(28, 18)
         Me.rdoDroidTurret2.TabIndex = 50
         Me.rdoDroidTurret2.TabStop = True
         Me.rdoDroidTurret2.Text = "2"
@@ -2050,7 +2052,7 @@ Partial Class frmMain
         Me.rdoDroidTurret1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.rdoDroidTurret1.Location = New System.Drawing.Point(49, 1)
         Me.rdoDroidTurret1.Name = "rdoDroidTurret1"
-        Me.rdoDroidTurret1.Size = New System.Drawing.Size(33, 21)
+        Me.rdoDroidTurret1.Size = New System.Drawing.Size(28, 18)
         Me.rdoDroidTurret1.TabIndex = 49
         Me.rdoDroidTurret1.TabStop = True
         Me.rdoDroidTurret1.Text = "1"
@@ -2199,7 +2201,7 @@ Partial Class frmMain
         Me.cbxDesignableOnly.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cbxDesignableOnly.Location = New System.Drawing.Point(258, 310)
         Me.cbxDesignableOnly.Name = "cbxDesignableOnly"
-        Me.cbxDesignableOnly.Size = New System.Drawing.Size(132, 21)
+        Me.cbxDesignableOnly.Size = New System.Drawing.Size(112, 18)
         Me.cbxDesignableOnly.TabIndex = 44
         Me.cbxDesignableOnly.Text = "Designables Only"
         Me.cbxDesignableOnly.UseCompatibleTextRendering = True
@@ -2221,7 +2223,7 @@ Partial Class frmMain
         Me.txtObjectLabel.Location = New System.Drawing.Point(91, 181)
         Me.txtObjectLabel.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObjectLabel.Name = "txtObjectLabel"
-        Me.txtObjectLabel.Size = New System.Drawing.Size(137, 22)
+        Me.txtObjectLabel.Size = New System.Drawing.Size(137, 20)
         Me.txtObjectLabel.TabIndex = 42
         '
         'Label35
@@ -2294,7 +2296,7 @@ Partial Class frmMain
         Me.txtObjectHealth.Location = New System.Drawing.Point(91, 245)
         Me.txtObjectHealth.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObjectHealth.Name = "txtObjectHealth"
-        Me.txtObjectHealth.Size = New System.Drawing.Size(54, 22)
+        Me.txtObjectHealth.Size = New System.Drawing.Size(54, 20)
         Me.txtObjectHealth.TabIndex = 37
         Me.txtObjectHealth.Text = "#"
         Me.txtObjectHealth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -2304,7 +2306,7 @@ Partial Class frmMain
         Me.txtObjectRotation.Location = New System.Drawing.Point(91, 121)
         Me.txtObjectRotation.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObjectRotation.Name = "txtObjectRotation"
-        Me.txtObjectRotation.Size = New System.Drawing.Size(41, 22)
+        Me.txtObjectRotation.Size = New System.Drawing.Size(41, 20)
         Me.txtObjectRotation.TabIndex = 25
         Me.txtObjectRotation.Text = "#"
         Me.txtObjectRotation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -2336,7 +2338,7 @@ Partial Class frmMain
         Me.txtObjectPriority.Location = New System.Drawing.Point(91, 215)
         Me.txtObjectPriority.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObjectPriority.Name = "txtObjectPriority"
-        Me.txtObjectPriority.Size = New System.Drawing.Size(54, 22)
+        Me.txtObjectPriority.Size = New System.Drawing.Size(54, 20)
         Me.txtObjectPriority.TabIndex = 35
         Me.txtObjectPriority.Text = "#"
         Me.txtObjectPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -2368,7 +2370,7 @@ Partial Class frmMain
         Me.txtObjectID.Location = New System.Drawing.Point(91, 151)
         Me.txtObjectID.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObjectID.Name = "txtObjectID"
-        Me.txtObjectID.Size = New System.Drawing.Size(80, 22)
+        Me.txtObjectID.Size = New System.Drawing.Size(80, 20)
         Me.txtObjectID.TabIndex = 31
         Me.txtObjectID.Text = "#"
         Me.txtObjectID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -2386,19 +2388,32 @@ Partial Class frmMain
         '
         'tpLabels
         '
+        Me.tpLabels.Controls.Add(Me.Label45)
         Me.tpLabels.Controls.Add(Me.Label11)
+        Me.tpLabels.Controls.Add(Me.lstScriptRadii)
         Me.tpLabels.Controls.Add(Me.Label43)
         Me.tpLabels.Controls.Add(Me.Label42)
         Me.tpLabels.Controls.Add(Me.lstScriptAreas)
         Me.tpLabels.Controls.Add(Me.lstScriptPositions)
         Me.tpLabels.Controls.Add(Me.btnScriptAreaCreate)
         Me.tpLabels.Controls.Add(Me.GroupBox1)
-        Me.tpLabels.Location = New System.Drawing.Point(4, 51)
+        Me.tpLabels.Location = New System.Drawing.Point(4, 26)
         Me.tpLabels.Name = "tpLabels"
-        Me.tpLabels.Size = New System.Drawing.Size(410, 557)
+        Me.tpLabels.Size = New System.Drawing.Size(410, 582)
         Me.tpLabels.TabIndex = 7
         Me.tpLabels.Text = "Labels"
         Me.tpLabels.UseVisualStyleBackColor = True
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(204, 252)
+        Me.Label45.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(33, 17)
+        Me.Label45.TabIndex = 55
+        Me.Label45.Text = "Radii:"
+        Me.Label45.UseCompatibleTextRendering = True
         '
         'Label11
         '
@@ -2410,13 +2425,21 @@ Partial Class frmMain
         Me.Label11.Text = "Hold P and click to make positions."
         Me.Label11.UseCompatibleTextRendering = True
         '
+        'lstScriptRadii
+        '
+        Me.lstScriptRadii.FormattingEnabled = True
+        Me.lstScriptRadii.Location = New System.Drawing.Point(203, 275)
+        Me.lstScriptRadii.Name = "lstScriptRadii"
+        Me.lstScriptRadii.Size = New System.Drawing.Size(178, 147)
+        Me.lstScriptRadii.TabIndex = 54
+        '
         'Label43
         '
         Me.Label43.AutoSize = True
         Me.Label43.Location = New System.Drawing.Point(203, 66)
         Me.Label43.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(44, 20)
+        Me.Label43.Size = New System.Drawing.Size(37, 17)
         Me.Label43.TabIndex = 52
         Me.Label43.Text = "Areas:"
         Me.Label43.UseCompatibleTextRendering = True
@@ -2427,7 +2450,7 @@ Partial Class frmMain
         Me.Label42.Location = New System.Drawing.Point(18, 66)
         Me.Label42.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(63, 20)
+        Me.Label42.Size = New System.Drawing.Size(53, 17)
         Me.Label42.TabIndex = 51
         Me.Label42.Text = "Positions:"
         Me.Label42.UseCompatibleTextRendering = True
@@ -2435,19 +2458,17 @@ Partial Class frmMain
         'lstScriptAreas
         '
         Me.lstScriptAreas.FormattingEnabled = True
-        Me.lstScriptAreas.ItemHeight = 16
         Me.lstScriptAreas.Location = New System.Drawing.Point(202, 89)
         Me.lstScriptAreas.Name = "lstScriptAreas"
-        Me.lstScriptAreas.Size = New System.Drawing.Size(178, 148)
+        Me.lstScriptAreas.Size = New System.Drawing.Size(178, 147)
         Me.lstScriptAreas.TabIndex = 47
         '
         'lstScriptPositions
         '
         Me.lstScriptPositions.FormattingEnabled = True
-        Me.lstScriptPositions.ItemHeight = 16
         Me.lstScriptPositions.Location = New System.Drawing.Point(18, 89)
         Me.lstScriptPositions.Name = "lstScriptPositions"
-        Me.lstScriptPositions.Size = New System.Drawing.Size(178, 148)
+        Me.lstScriptPositions.Size = New System.Drawing.Size(178, 147)
         Me.lstScriptPositions.TabIndex = 46
         '
         'btnScriptAreaCreate
@@ -2462,6 +2483,10 @@ Partial Class frmMain
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label46)
+        Me.GroupBox1.Controls.Add(Me.txtScriptMarkerSubscriber)
+        Me.GroupBox1.Controls.Add(Me.Label47)
+        Me.GroupBox1.Controls.Add(Me.txtScriptMarkerR)
         Me.GroupBox1.Controls.Add(Me.txtScriptMarkerLabel)
         Me.GroupBox1.Controls.Add(Me.Label41)
         Me.GroupBox1.Controls.Add(Me.btnScriptMarkerRemove)
@@ -2475,18 +2500,56 @@ Partial Class frmMain
         Me.GroupBox1.Controls.Add(Me.txtScriptMarkerX2)
         Me.GroupBox1.Location = New System.Drawing.Point(18, 243)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(178, 231)
+        Me.GroupBox1.Size = New System.Drawing.Size(178, 260)
         Me.GroupBox1.TabIndex = 44
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Selected Marker"
         Me.GroupBox1.UseCompatibleTextRendering = True
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(91, 175)
+        Me.Label46.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(62, 17)
+        Me.Label46.TabIndex = 56
+        Me.Label46.Text = "Subscriber:"
+        Me.Label46.UseCompatibleTextRendering = True
+        '
+        'txtScriptMarkerSubscriber
+        '
+        Me.txtScriptMarkerSubscriber.Location = New System.Drawing.Point(91, 196)
+        Me.txtScriptMarkerSubscriber.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtScriptMarkerSubscriber.Name = "txtScriptMarkerSubscriber"
+        Me.txtScriptMarkerSubscriber.Size = New System.Drawing.Size(61, 20)
+        Me.txtScriptMarkerSubscriber.TabIndex = 55
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Location = New System.Drawing.Point(22, 175)
+        Me.Label47.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(11, 17)
+        Me.Label47.TabIndex = 54
+        Me.Label47.Text = "r:"
+        Me.Label47.UseCompatibleTextRendering = True
+        '
+        'txtScriptMarkerR
+        '
+        Me.txtScriptMarkerR.Location = New System.Drawing.Point(22, 196)
+        Me.txtScriptMarkerR.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtScriptMarkerR.Name = "txtScriptMarkerR"
+        Me.txtScriptMarkerR.Size = New System.Drawing.Size(61, 20)
+        Me.txtScriptMarkerR.TabIndex = 53
         '
         'txtScriptMarkerLabel
         '
         Me.txtScriptMarkerLabel.Location = New System.Drawing.Point(56, 32)
         Me.txtScriptMarkerLabel.Margin = New System.Windows.Forms.Padding(4)
         Me.txtScriptMarkerLabel.Name = "txtScriptMarkerLabel"
-        Me.txtScriptMarkerLabel.Size = New System.Drawing.Size(96, 22)
+        Me.txtScriptMarkerLabel.Size = New System.Drawing.Size(96, 20)
         Me.txtScriptMarkerLabel.TabIndex = 50
         '
         'Label41
@@ -2495,14 +2558,14 @@ Partial Class frmMain
         Me.Label41.Location = New System.Drawing.Point(7, 35)
         Me.Label41.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(41, 20)
+        Me.Label41.Size = New System.Drawing.Size(35, 17)
         Me.Label41.TabIndex = 49
         Me.Label41.Text = "Label:"
         Me.Label41.UseCompatibleTextRendering = True
         '
         'btnScriptMarkerRemove
         '
-        Me.btnScriptMarkerRemove.Location = New System.Drawing.Point(10, 185)
+        Me.btnScriptMarkerRemove.Location = New System.Drawing.Point(10, 223)
         Me.btnScriptMarkerRemove.Name = "btnScriptMarkerRemove"
         Me.btnScriptMarkerRemove.Size = New System.Drawing.Size(142, 31)
         Me.btnScriptMarkerRemove.TabIndex = 48
@@ -2516,7 +2579,7 @@ Partial Class frmMain
         Me.Label2.Location = New System.Drawing.Point(22, 66)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(15, 20)
+        Me.Label2.Size = New System.Drawing.Size(13, 17)
         Me.Label2.TabIndex = 33
         Me.Label2.Text = "x:"
         Me.Label2.UseCompatibleTextRendering = True
@@ -2526,7 +2589,7 @@ Partial Class frmMain
         Me.txtScriptMarkerY.Location = New System.Drawing.Point(91, 87)
         Me.txtScriptMarkerY.Margin = New System.Windows.Forms.Padding(4)
         Me.txtScriptMarkerY.Name = "txtScriptMarkerY"
-        Me.txtScriptMarkerY.Size = New System.Drawing.Size(61, 22)
+        Me.txtScriptMarkerY.Size = New System.Drawing.Size(61, 20)
         Me.txtScriptMarkerY.TabIndex = 34
         '
         'txtScriptMarkerX
@@ -2534,7 +2597,7 @@ Partial Class frmMain
         Me.txtScriptMarkerX.Location = New System.Drawing.Point(22, 87)
         Me.txtScriptMarkerX.Margin = New System.Windows.Forms.Padding(4)
         Me.txtScriptMarkerX.Name = "txtScriptMarkerX"
-        Me.txtScriptMarkerX.Size = New System.Drawing.Size(61, 22)
+        Me.txtScriptMarkerX.Size = New System.Drawing.Size(61, 20)
         Me.txtScriptMarkerX.TabIndex = 32
         '
         'Label7
@@ -2543,7 +2606,7 @@ Partial Class frmMain
         Me.Label7.Location = New System.Drawing.Point(91, 66)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(15, 20)
+        Me.Label7.Size = New System.Drawing.Size(13, 17)
         Me.Label7.TabIndex = 35
         Me.Label7.Text = "y:"
         Me.Label7.UseCompatibleTextRendering = True
@@ -2553,7 +2616,7 @@ Partial Class frmMain
         Me.txtScriptMarkerY2.Location = New System.Drawing.Point(91, 143)
         Me.txtScriptMarkerY2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtScriptMarkerY2.Name = "txtScriptMarkerY2"
-        Me.txtScriptMarkerY2.Size = New System.Drawing.Size(61, 22)
+        Me.txtScriptMarkerY2.Size = New System.Drawing.Size(61, 20)
         Me.txtScriptMarkerY2.TabIndex = 38
         '
         'Label4
@@ -2562,7 +2625,7 @@ Partial Class frmMain
         Me.Label4.Location = New System.Drawing.Point(91, 122)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(23, 20)
+        Me.Label4.Size = New System.Drawing.Size(19, 17)
         Me.Label4.TabIndex = 39
         Me.Label4.Text = "y2:"
         Me.Label4.UseCompatibleTextRendering = True
@@ -2573,7 +2636,7 @@ Partial Class frmMain
         Me.Label8.Location = New System.Drawing.Point(22, 122)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(23, 20)
+        Me.Label8.Size = New System.Drawing.Size(19, 17)
         Me.Label8.TabIndex = 37
         Me.Label8.Text = "x2:"
         Me.Label8.UseCompatibleTextRendering = True
@@ -2583,7 +2646,7 @@ Partial Class frmMain
         Me.txtScriptMarkerX2.Location = New System.Drawing.Point(22, 143)
         Me.txtScriptMarkerX2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtScriptMarkerX2.Name = "txtScriptMarkerX2"
-        Me.txtScriptMarkerX2.Size = New System.Drawing.Size(61, 22)
+        Me.txtScriptMarkerX2.Size = New System.Drawing.Size(61, 20)
         Me.txtScriptMarkerX2.TabIndex = 36
         '
         'TableLayoutPanel7
@@ -2679,14 +2742,14 @@ Partial Class frmMain
         Me.tsSelection.Location = New System.Drawing.Point(98, 0)
         Me.tsSelection.Name = "tsSelection"
         Me.tsSelection.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsSelection.Size = New System.Drawing.Size(250, 25)
+        Me.tsSelection.Size = New System.Drawing.Size(235, 25)
         Me.tsSelection.TabIndex = 0
         Me.tsSelection.Text = "ToolStrip1"
         '
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(73, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(58, 22)
         Me.ToolStripLabel1.Text = "Selection:"
         '
         'tsbSelection
@@ -2717,7 +2780,7 @@ Partial Class frmMain
         'menuRotateUnits
         '
         Me.menuRotateUnits.Name = "menuRotateUnits"
-        Me.menuRotateUnits.Size = New System.Drawing.Size(244, 24)
+        Me.menuRotateUnits.Size = New System.Drawing.Size(204, 22)
         Me.menuRotateUnits.Text = "Rotate All Objects"
         '
         'menuRotateWalls
@@ -2725,19 +2788,19 @@ Partial Class frmMain
         Me.menuRotateWalls.Checked = True
         Me.menuRotateWalls.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuRotateWalls.Name = "menuRotateWalls"
-        Me.menuRotateWalls.Size = New System.Drawing.Size(244, 24)
+        Me.menuRotateWalls.Size = New System.Drawing.Size(204, 22)
         Me.menuRotateWalls.Text = "Rotate Walls Only"
         '
         'menuRotateNothing
         '
         Me.menuRotateNothing.Name = "menuRotateNothing"
-        Me.menuRotateNothing.Size = New System.Drawing.Size(244, 24)
+        Me.menuRotateNothing.Size = New System.Drawing.Size(204, 22)
         Me.menuRotateNothing.Text = "No Object Rotation"
         '
         'ToolStripSeparator10
         '
         Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
-        Me.ToolStripSeparator10.Size = New System.Drawing.Size(241, 6)
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(201, 6)
         '
         'menuSelPasteHeights
         '
@@ -2745,7 +2808,7 @@ Partial Class frmMain
         Me.menuSelPasteHeights.CheckOnClick = True
         Me.menuSelPasteHeights.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuSelPasteHeights.Name = "menuSelPasteHeights"
-        Me.menuSelPasteHeights.Size = New System.Drawing.Size(244, 24)
+        Me.menuSelPasteHeights.Size = New System.Drawing.Size(204, 22)
         Me.menuSelPasteHeights.Text = "Paste Heights"
         '
         'menuSelPasteTextures
@@ -2754,35 +2817,35 @@ Partial Class frmMain
         Me.menuSelPasteTextures.CheckOnClick = True
         Me.menuSelPasteTextures.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuSelPasteTextures.Name = "menuSelPasteTextures"
-        Me.menuSelPasteTextures.Size = New System.Drawing.Size(244, 24)
+        Me.menuSelPasteTextures.Size = New System.Drawing.Size(204, 22)
         Me.menuSelPasteTextures.Text = "Paste Textures"
         '
         'menuSelPasteUnits
         '
         Me.menuSelPasteUnits.CheckOnClick = True
         Me.menuSelPasteUnits.Name = "menuSelPasteUnits"
-        Me.menuSelPasteUnits.Size = New System.Drawing.Size(244, 24)
+        Me.menuSelPasteUnits.Size = New System.Drawing.Size(204, 22)
         Me.menuSelPasteUnits.Text = "Paste Objects"
         '
         'menuSelPasteGateways
         '
         Me.menuSelPasteGateways.CheckOnClick = True
         Me.menuSelPasteGateways.Name = "menuSelPasteGateways"
-        Me.menuSelPasteGateways.Size = New System.Drawing.Size(244, 24)
+        Me.menuSelPasteGateways.Size = New System.Drawing.Size(204, 22)
         Me.menuSelPasteGateways.Text = "Paste Gateways"
         '
         'menuSelPasteDeleteUnits
         '
         Me.menuSelPasteDeleteUnits.CheckOnClick = True
         Me.menuSelPasteDeleteUnits.Name = "menuSelPasteDeleteUnits"
-        Me.menuSelPasteDeleteUnits.Size = New System.Drawing.Size(244, 24)
+        Me.menuSelPasteDeleteUnits.Size = New System.Drawing.Size(204, 22)
         Me.menuSelPasteDeleteUnits.Text = "Delete Existing Objects"
         '
         'menuSelPasteDeleteGateways
         '
         Me.menuSelPasteDeleteGateways.CheckOnClick = True
         Me.menuSelPasteDeleteGateways.Name = "menuSelPasteDeleteGateways"
-        Me.menuSelPasteDeleteGateways.Size = New System.Drawing.Size(244, 24)
+        Me.menuSelPasteDeleteGateways.Size = New System.Drawing.Size(204, 22)
         Me.menuSelPasteDeleteGateways.Text = "Delete Existing Gateways"
         '
         'tsbSelectionPaste
@@ -2833,7 +2896,7 @@ Partial Class frmMain
         Me.tsMinimap.Location = New System.Drawing.Point(0, 0)
         Me.tsMinimap.Name = "tsMinimap"
         Me.tsMinimap.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.tsMinimap.Size = New System.Drawing.Size(84, 27)
+        Me.tsMinimap.Size = New System.Drawing.Size(71, 25)
         Me.tsMinimap.TabIndex = 1
         '
         'menuMinimap
@@ -2842,7 +2905,7 @@ Partial Class frmMain
         Me.menuMinimap.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuMiniShowTex, Me.menuMiniShowHeight, Me.menuMiniShowCliffs, Me.menuMiniShowUnits, Me.menuMiniShowGateways})
         Me.menuMinimap.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.menuMinimap.Name = "menuMinimap"
-        Me.menuMinimap.Size = New System.Drawing.Size(81, 24)
+        Me.menuMinimap.Size = New System.Drawing.Size(68, 22)
         Me.menuMinimap.Text = "Minimap"
         '
         'menuMiniShowTex
@@ -2851,7 +2914,7 @@ Partial Class frmMain
         Me.menuMiniShowTex.CheckOnClick = True
         Me.menuMiniShowTex.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuMiniShowTex.Name = "menuMiniShowTex"
-        Me.menuMiniShowTex.Size = New System.Drawing.Size(181, 24)
+        Me.menuMiniShowTex.Size = New System.Drawing.Size(156, 22)
         Me.menuMiniShowTex.Text = "Show Textures"
         '
         'menuMiniShowHeight
@@ -2860,14 +2923,14 @@ Partial Class frmMain
         Me.menuMiniShowHeight.CheckOnClick = True
         Me.menuMiniShowHeight.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuMiniShowHeight.Name = "menuMiniShowHeight"
-        Me.menuMiniShowHeight.Size = New System.Drawing.Size(181, 24)
+        Me.menuMiniShowHeight.Size = New System.Drawing.Size(156, 22)
         Me.menuMiniShowHeight.Text = "Show Heights"
         '
         'menuMiniShowCliffs
         '
         Me.menuMiniShowCliffs.CheckOnClick = True
         Me.menuMiniShowCliffs.Name = "menuMiniShowCliffs"
-        Me.menuMiniShowCliffs.Size = New System.Drawing.Size(181, 24)
+        Me.menuMiniShowCliffs.Size = New System.Drawing.Size(156, 22)
         Me.menuMiniShowCliffs.Text = "Show Cliffs"
         '
         'menuMiniShowUnits
@@ -2876,14 +2939,14 @@ Partial Class frmMain
         Me.menuMiniShowUnits.CheckOnClick = True
         Me.menuMiniShowUnits.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuMiniShowUnits.Name = "menuMiniShowUnits"
-        Me.menuMiniShowUnits.Size = New System.Drawing.Size(181, 24)
+        Me.menuMiniShowUnits.Size = New System.Drawing.Size(156, 22)
         Me.menuMiniShowUnits.Text = "Show Objects"
         '
         'menuMiniShowGateways
         '
         Me.menuMiniShowGateways.CheckOnClick = True
         Me.menuMiniShowGateways.Name = "menuMiniShowGateways"
-        Me.menuMiniShowGateways.Size = New System.Drawing.Size(181, 24)
+        Me.menuMiniShowGateways.Size = New System.Drawing.Size(156, 22)
         Me.menuMiniShowGateways.Text = "Show Gateways"
         '
         'pnlView
@@ -2911,207 +2974,207 @@ Partial Class frmMain
         '
         Me.menuFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewMapToolStripMenuItem, Me.ToolStripSeparator3, Me.OpenToolStripMenuItem, Me.ToolStripSeparator2, Me.SaveToolStripMenuItem, Me.ToolStripSeparator1, Me.ToolStripMenuItem4, Me.ToolStripMenuItem2, Me.MapWZToolStripMenuItem, Me.ToolStripSeparator4, Me.CloseToolStripMenuItem})
         Me.menuFile.Name = "menuFile"
-        Me.menuFile.Size = New System.Drawing.Size(44, 27)
+        Me.menuFile.Size = New System.Drawing.Size(37, 27)
         Me.menuFile.Text = "File"
         '
         'NewMapToolStripMenuItem
         '
         Me.NewMapToolStripMenuItem.Name = "NewMapToolStripMenuItem"
-        Me.NewMapToolStripMenuItem.Size = New System.Drawing.Size(177, 24)
+        Me.NewMapToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.NewMapToolStripMenuItem.Text = "New Map"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(152, 6)
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(177, 24)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.OpenToolStripMenuItem.Text = "Open..."
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(152, 6)
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSaveFMap, Me.ToolStripSeparator7, Me.menuSaveFMapQuick, Me.ToolStripSeparator11, Me.menuSaveFME, Me.ToolStripSeparator5, Me.MapLNDToolStripMenuItem, Me.ToolStripSeparator6, Me.menuExportMapTileTypes, Me.ToolStripMenuItem1, Me.MinimapBMPToolStripMenuItem, Me.ToolStripMenuItem3})
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(177, 24)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'menuSaveFMap
         '
         Me.menuSaveFMap.Name = "menuSaveFMap"
-        Me.menuSaveFMap.Size = New System.Drawing.Size(284, 24)
+        Me.menuSaveFMap.Size = New System.Drawing.Size(236, 22)
         Me.menuSaveFMap.Text = "Map fmap..."
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(281, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(233, 6)
         '
         'menuSaveFMapQuick
         '
         Me.menuSaveFMapQuick.Name = "menuSaveFMapQuick"
-        Me.menuSaveFMapQuick.Size = New System.Drawing.Size(284, 24)
+        Me.menuSaveFMapQuick.Size = New System.Drawing.Size(236, 22)
         Me.menuSaveFMapQuick.Text = "Quick Save fmap"
         '
         'ToolStripSeparator11
         '
         Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(281, 6)
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(233, 6)
         '
         'menuSaveFME
         '
         Me.menuSaveFME.Name = "menuSaveFME"
-        Me.menuSaveFME.Size = New System.Drawing.Size(284, 24)
+        Me.menuSaveFME.Size = New System.Drawing.Size(236, 22)
         Me.menuSaveFME.Text = "Map fme (1.19 compatibility)..."
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(281, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(233, 6)
         '
         'MapLNDToolStripMenuItem
         '
         Me.MapLNDToolStripMenuItem.Name = "MapLNDToolStripMenuItem"
-        Me.MapLNDToolStripMenuItem.Size = New System.Drawing.Size(284, 24)
+        Me.MapLNDToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
         Me.MapLNDToolStripMenuItem.Text = "Export Map LND..."
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(281, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(233, 6)
         '
         'menuExportMapTileTypes
         '
         Me.menuExportMapTileTypes.Name = "menuExportMapTileTypes"
-        Me.menuExportMapTileTypes.Size = New System.Drawing.Size(284, 24)
+        Me.menuExportMapTileTypes.Size = New System.Drawing.Size(236, 22)
         Me.menuExportMapTileTypes.Text = "Export Tile Types..."
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(281, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(233, 6)
         '
         'MinimapBMPToolStripMenuItem
         '
         Me.MinimapBMPToolStripMenuItem.Name = "MinimapBMPToolStripMenuItem"
-        Me.MinimapBMPToolStripMenuItem.Size = New System.Drawing.Size(284, 24)
+        Me.MinimapBMPToolStripMenuItem.Size = New System.Drawing.Size(236, 22)
         Me.MinimapBMPToolStripMenuItem.Text = "Minimap Bitmap..."
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(284, 24)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(236, 22)
         Me.ToolStripMenuItem3.Text = "Heightmap Bitmap..."
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(152, 6)
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportHeightmapToolStripMenuItem, Me.ToolStripSeparator8, Me.menuImportTileTypes})
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(177, 24)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(155, 22)
         Me.ToolStripMenuItem4.Text = "Import"
         '
         'ImportHeightmapToolStripMenuItem
         '
         Me.ImportHeightmapToolStripMenuItem.Name = "ImportHeightmapToolStripMenuItem"
-        Me.ImportHeightmapToolStripMenuItem.Size = New System.Drawing.Size(162, 24)
+        Me.ImportHeightmapToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
         Me.ImportHeightmapToolStripMenuItem.Text = "Heightmap..."
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(140, 6)
         '
         'menuImportTileTypes
         '
         Me.menuImportTileTypes.Name = "menuImportTileTypes"
-        Me.menuImportTileTypes.Size = New System.Drawing.Size(162, 24)
+        Me.menuImportTileTypes.Size = New System.Drawing.Size(143, 22)
         Me.menuImportTileTypes.Text = "Tile Types..."
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 6)
         '
         'MapWZToolStripMenuItem
         '
         Me.MapWZToolStripMenuItem.Name = "MapWZToolStripMenuItem"
-        Me.MapWZToolStripMenuItem.Size = New System.Drawing.Size(177, 24)
+        Me.MapWZToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.MapWZToolStripMenuItem.Text = "Compile Map..."
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(152, 6)
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(177, 24)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.CloseToolStripMenuItem.Text = "Quit"
         '
         'menuTools
         '
         Me.menuTools.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuReinterpret, Me.menuWaterCorrection, Me.ToolStripSeparator9, Me.menuFlatOil, Me.menuFlatStructures, Me.ToolStripSeparator12, Me.menuGenerator})
         Me.menuTools.Name = "menuTools"
-        Me.menuTools.Size = New System.Drawing.Size(57, 27)
+        Me.menuTools.Size = New System.Drawing.Size(46, 27)
         Me.menuTools.Text = "Tools"
         '
         'menuReinterpret
         '
         Me.menuReinterpret.Name = "menuReinterpret"
-        Me.menuReinterpret.Size = New System.Drawing.Size(249, 24)
+        Me.menuReinterpret.Size = New System.Drawing.Size(208, 22)
         Me.menuReinterpret.Text = "Reinterpret Terrain"
         '
         'menuWaterCorrection
         '
         Me.menuWaterCorrection.Name = "menuWaterCorrection"
-        Me.menuWaterCorrection.Size = New System.Drawing.Size(249, 24)
+        Me.menuWaterCorrection.Size = New System.Drawing.Size(208, 22)
         Me.menuWaterCorrection.Text = "Water Triangle Correction"
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(205, 6)
         '
         'menuFlatOil
         '
         Me.menuFlatOil.Name = "menuFlatOil"
-        Me.menuFlatOil.Size = New System.Drawing.Size(249, 24)
+        Me.menuFlatOil.Size = New System.Drawing.Size(208, 22)
         Me.menuFlatOil.Text = "Flatten Under Oils"
         '
         'menuFlatStructures
         '
         Me.menuFlatStructures.Name = "menuFlatStructures"
-        Me.menuFlatStructures.Size = New System.Drawing.Size(249, 24)
+        Me.menuFlatStructures.Size = New System.Drawing.Size(208, 22)
         Me.menuFlatStructures.Text = "Flatten Under Structures"
         '
         'ToolStripSeparator12
         '
         Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(205, 6)
         '
         'menuGenerator
         '
         Me.menuGenerator.Name = "menuGenerator"
-        Me.menuGenerator.Size = New System.Drawing.Size(249, 24)
+        Me.menuGenerator.Size = New System.Drawing.Size(208, 22)
         Me.menuGenerator.Text = "Generator..."
         '
         'menuOptions
         '
         Me.menuOptions.Name = "menuOptions"
-        Me.menuOptions.Size = New System.Drawing.Size(82, 27)
+        Me.menuOptions.Size = New System.Drawing.Size(70, 27)
         Me.menuOptions.Text = "Options..."
         '
         'TableLayoutPanel5
@@ -3555,4 +3618,10 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Public WithEvents btnObjectTypeSelect As System.Windows.Forms.Button
+    Public WithEvents Label45 As Label
+    Friend WithEvents lstScriptRadii As ListBox
+    Public WithEvents Label47 As Label
+    Public WithEvents txtScriptMarkerR As TextBox
+    Public WithEvents Label46 As Label
+    Public WithEvents txtScriptMarkerSubscriber As TextBox
 End Class

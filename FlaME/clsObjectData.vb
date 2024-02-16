@@ -540,9 +540,10 @@ Public Class clsObjectData
                                 BodyPropulsionPIEs(Body.ObjectDataLink.ArrayPosition, Propulsion.ObjectDataLink.ArrayPosition).LeftPIE = Temp4(1).ToLower
                             Case "right"
                                 BodyPropulsionPIEs(Body.ObjectDataLink.ArrayPosition, Propulsion.ObjectDataLink.ArrayPosition).RightPIE = Temp4(1).ToLower
-                            Case "moving"
+                            Case "moving" 'Usually used for particle effects, Things don't move in Flame so do nothing with it
+                            Case "still"  'This is for Helicopter Rotor Blades, need to find a way to draw them
                             Case Else
-                                ReturnResult.WarningAdd("Model type was not left right or moving during Body-Prop association for " & Fields(0) & " and " & Temp2(0))
+                                ReturnResult.WarningAdd("Model type was not left right moving or still during Body-Prop association for " & Fields(0) & " and " & Temp2(0) & ". Type was " & Temp4(0))
                         End Select
                     Next
                 Next
@@ -850,6 +851,8 @@ Public Class clsObjectData
                     Template.TemplateDroidType = TemplateDroidType_Droid
                 Case "CONSTRUCT"
                     Template.TemplateDroidType = TemplateDroidType_Droid
+                Case "SUPERTRANSPORTER"
+                    Template.TemplateDroidType = TemplateDroidType_SuperTransporter
                 Case Else
                     Template.TemplateDroidType = TemplateDroidType_Droid
                     ReturnResult.WarningAdd("Template " & Template.GetDisplayTextCode & " had an unrecognised type: " & Fields(9) & ". Defaulting to Droid")

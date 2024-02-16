@@ -10,23 +10,19 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 # What's new
 
-Forgot to update the Readme for Version 1.29.4.0, mostly bugfixes any typos
+Fixed yet more crashes when selecting the empty space at the bottom of lists
 
-Fixed some typos - Thanks Evulant!
+Fixed the Multiplayer Dataset with the help of Arithyce
 
-Fixed a pair of crashes when selecting empty space at the bottom of object lists
+Added UI elements to show Radius type Labels
 
-Fixed an old bug when loading Object Data
+    This includes the Radius property of these Labels as well as the Subscriber
+    
+    property shared with Area Labels
 
-    The selected Object Directory was being compared to the amount of Tileset Directories
+Added the Height Preset options to the settings menu and made them persist
 
-    This prevented Flame from loading Objects in some cases
-
-TileTypes.json Implementation Adjustment
-
-    Adjusted the load priority for Tile Type files to prefer .ttp files again
-
-    .json files can still be loaded at initialization if needed
+    these could always be edited while running Flame but would revert to Defaults if Flame was closed
 
 # Known Issues
 
@@ -36,7 +32,9 @@ Droids made with "Convert to Design" fail to appear in game
 
 # TODO
 
-Include the Multiplayer Object Data
+Draw a Radius around Radius Type Labels on the map
+
+    Currently they just show their origin point
 
 Fix/Add support for some Map Formats
 

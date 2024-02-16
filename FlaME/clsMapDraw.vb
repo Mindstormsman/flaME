@@ -706,10 +706,14 @@ Partial Public Class clsMap
         If Draw_ScriptMarkers Then
             Dim ScriptPosition As clsScriptPosition
             Dim ScriptArea As clsScriptArea
+            Dim ScriptRadius As clsScriptRadius
             GL.PushMatrix()
             GL.Translate(-ViewInfo.ViewPos.X, -ViewInfo.ViewPos.Y, ViewInfo.ViewPos.Z)
             For Each ScriptPosition In ScriptPositions
                 ScriptPosition.GLDraw()
+            Next
+            For Each ScriptRadius In ScriptRadii
+                ScriptRadius.GLDraw()
             Next
             For Each ScriptArea In ScriptAreas
                 ScriptArea.GLDraw()
@@ -738,6 +742,30 @@ Partial Public Class clsMap
                 End If
             Next
             DebugGLError("Script positions")
+            For Each ScriptRadius In ScriptRadii
+                If ScriptMarkerTextLabels.AtMaxCount Then
+                    Exit For
+                End If
+                XYZ_dbl.X = ScriptRadius.PosX - ViewInfo.ViewPos.X
+                XYZ_dbl.Z = -ScriptRadius.PosY - ViewInfo.ViewPos.Z
+                XYZ_dbl.Y = GetTerrainHeight(New sXY_int(ScriptRadius.PosX, ScriptRadius.PosY)) - ViewInfo.ViewPos.Y
+                Matrix3D.VectorRotationByMatrix(ViewInfo.ViewAngleMatrix_Inverted, XYZ_dbl, XYZ_dbl2)
+                If ViewInfo.Pos_Get_Screen_XY(XYZ_dbl2, ScreenPos) Then
+                    If ScreenPos.X >= 0 And ScreenPos.X <= GLSize.X And ScreenPos.Y >= 0 And ScreenPos.Y <= GLSize.Y Then
+                        TextLabel = New clsTextLabel
+                        TextLabel.Colour.Red = 1.0F
+                        TextLabel.Colour.Green = 1.0F
+                        TextLabel.Colour.Blue = 0.5F
+                        TextLabel.Colour.Alpha = 0.75F
+                        TextLabel.TextFont = UnitLabelFont
+                        TextLabel.SizeY = Settings.FontSize
+                        TextLabel.Pos = ScreenPos
+                        TextLabel.Text = ScriptRadius.Label
+                        ScriptMarkerTextLabels.Add(TextLabel)
+                    End If
+                End If
+            Next
+            DebugGLError("Script radii")
             For Each ScriptArea In ScriptAreas
                 If ScriptMarkerTextLabels.AtMaxCount Then
                     Exit For

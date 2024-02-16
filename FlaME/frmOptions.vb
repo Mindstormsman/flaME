@@ -67,6 +67,15 @@ Public Class frmOptions
         txtTexturesBPP.Text = InvariantToString_int(Settings.TextureViewBPP)
         txtTexturesDepth.Text = InvariantToString_int(Settings.TextureViewDepth)
 
+        HeightPreset1.Text = InvariantToString_byte(Settings.HeightPreset1)
+        HeightPreset2.Text = InvariantToString_byte(Settings.HeightPreset2)
+        HeightPreset3.Text = InvariantToString_byte(Settings.HeightPreset3)
+        HeightPreset4.Text = InvariantToString_byte(Settings.HeightPreset4)
+        HeightPreset5.Text = InvariantToString_byte(Settings.HeightPreset5)
+        HeightPreset6.Text = InvariantToString_byte(Settings.HeightPreset6)
+        HeightPreset7.Text = InvariantToString_byte(Settings.HeightPreset7)
+        HeightPreset8.Text = InvariantToString_byte(Settings.HeightPreset8)
+
         cbxPickerOrientation.Checked = Settings.PickOrientation
 
         UpdateKeyboardControls(-1)
@@ -77,6 +86,7 @@ Public Class frmOptions
         Dim NewSettings As clsSettings = CType(Settings.GetCopy(New clsSettingsCreator), clsSettings)
         Dim dblTemp As Double
         Dim intTemp As Integer
+        Dim byteTemp As Byte
 
         If InvariantParse_dbl(txtAutosaveChanges.Text, dblTemp) Then
             NewSettings.Changes(Setting_AutoSaveMinChanges) = New clsOptionProfile.clsChange(Of UInteger)(CUInt(Clamp_dbl(dblTemp, 1.0#, CDbl(UInteger.MaxValue) - 1.0#)))
@@ -131,6 +141,31 @@ Public Class frmOptions
             NewSettings.Changes(Setting_TextureViewDepth) = New clsOptionProfile.clsChange(Of Integer)(intTemp)
         End If
         NewSettings.Changes(Setting_PickOrientation) = New clsOptionProfile.clsChange(Of Boolean)(cbxPickerOrientation.Checked)
+
+        If InvariantParse_byte(HeightPreset1.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset1) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset2.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset2) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset3.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset3) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset4.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset4) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset5.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset5) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset6.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset6) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset7.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset7) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
+        If InvariantParse_byte(HeightPreset8.Text, byteTemp) Then
+            NewSettings.Changes(Setting_HeightPreset8) = New clsOptionProfile.clsChange(Of Byte)(byteTemp)
+        End If
 
         UpdateSettings(NewSettings)
 

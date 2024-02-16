@@ -28,6 +28,15 @@ Partial Class frmOptions
         Me.cbxAskDirectories = New System.Windows.Forms.CheckBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.HeightPresetGroup = New System.Windows.Forms.GroupBox()
+        Me.HeightPreset8 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset7 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset6 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset5 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset4 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset3 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset2 = New System.Windows.Forms.TextBox()
+        Me.HeightPreset1 = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.cbxPickerOrientation = New System.Windows.Forms.CheckBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
@@ -80,6 +89,7 @@ Partial Class frmOptions
         Me.TabControl1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.HeightPresetGroup.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -99,7 +109,7 @@ Partial Class frmOptions
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(637, 398)
+        Me.TabControl1.Size = New System.Drawing.Size(637, 454)
         Me.TabControl1.TabIndex = 35
         '
         'TabPage3
@@ -107,10 +117,10 @@ Partial Class frmOptions
         Me.TabPage3.Controls.Add(Me.Label12)
         Me.TabPage3.Controls.Add(Me.cbxAskDirectories)
         Me.TabPage3.Controls.Add(Me.TableLayoutPanel1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(629, 369)
+        Me.TabPage3.Size = New System.Drawing.Size(629, 428)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Directories"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -121,7 +131,7 @@ Partial Class frmOptions
         Me.Label12.Location = New System.Drawing.Point(302, 15)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(245, 20)
+        Me.Label12.Size = New System.Drawing.Size(207, 17)
         Me.Label12.TabIndex = 42
         Me.Label12.Text = "Options on this tab take effect on restart."
         Me.Label12.UseCompatibleTextRendering = True
@@ -132,7 +142,7 @@ Partial Class frmOptions
         Me.cbxAskDirectories.Location = New System.Drawing.Point(24, 14)
         Me.cbxAskDirectories.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxAskDirectories.Name = "cbxAskDirectories"
-        Me.cbxAskDirectories.Size = New System.Drawing.Size(225, 21)
+        Me.cbxAskDirectories.Size = New System.Drawing.Size(191, 18)
         Me.cbxAskDirectories.TabIndex = 39
         Me.cbxAskDirectories.Text = "Show options before loading data"
         Me.cbxAskDirectories.UseCompatibleTextRendering = True
@@ -148,11 +158,12 @@ Partial Class frmOptions
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(623, 324)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(623, 383)
         Me.TableLayoutPanel1.TabIndex = 41
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.HeightPresetGroup)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.GroupBox8)
         Me.TabPage1.Controls.Add(Me.GroupBox7)
@@ -161,13 +172,103 @@ Partial Class frmOptions
         Me.TabPage1.Controls.Add(Me.GroupBox4)
         Me.TabPage1.Controls.Add(Me.GroupBox2)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(629, 369)
+        Me.TabPage1.Size = New System.Drawing.Size(629, 428)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'HeightPresetGroup
+        '
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset8)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset7)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset6)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset5)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset4)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset3)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset2)
+        Me.HeightPresetGroup.Controls.Add(Me.HeightPreset1)
+        Me.HeightPresetGroup.Location = New System.Drawing.Point(6, 369)
+        Me.HeightPresetGroup.Name = "HeightPresetGroup"
+        Me.HeightPresetGroup.Size = New System.Drawing.Size(304, 54)
+        Me.HeightPresetGroup.TabIndex = 52
+        Me.HeightPresetGroup.TabStop = False
+        Me.HeightPresetGroup.Text = "Height Presets"
+        Me.HeightPresetGroup.UseCompatibleTextRendering = True
+        '
+        'HeightPreset8
+        '
+        Me.HeightPreset8.Location = New System.Drawing.Point(260, 20)
+        Me.HeightPreset8.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset8.Name = "HeightPreset8"
+        Me.HeightPreset8.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset8.TabIndex = 58
+        Me.HeightPreset8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset7
+        '
+        Me.HeightPreset7.Location = New System.Drawing.Point(224, 20)
+        Me.HeightPreset7.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset7.Name = "HeightPreset7"
+        Me.HeightPreset7.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset7.TabIndex = 57
+        Me.HeightPreset7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset6
+        '
+        Me.HeightPreset6.Location = New System.Drawing.Point(188, 20)
+        Me.HeightPreset6.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset6.Name = "HeightPreset6"
+        Me.HeightPreset6.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset6.TabIndex = 56
+        Me.HeightPreset6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset5
+        '
+        Me.HeightPreset5.Location = New System.Drawing.Point(152, 20)
+        Me.HeightPreset5.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset5.Name = "HeightPreset5"
+        Me.HeightPreset5.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset5.TabIndex = 55
+        Me.HeightPreset5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset4
+        '
+        Me.HeightPreset4.Location = New System.Drawing.Point(116, 20)
+        Me.HeightPreset4.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset4.Name = "HeightPreset4"
+        Me.HeightPreset4.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset4.TabIndex = 54
+        Me.HeightPreset4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset3
+        '
+        Me.HeightPreset3.Location = New System.Drawing.Point(80, 20)
+        Me.HeightPreset3.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset3.Name = "HeightPreset3"
+        Me.HeightPreset3.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset3.TabIndex = 53
+        Me.HeightPreset3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset2
+        '
+        Me.HeightPreset2.Location = New System.Drawing.Point(44, 20)
+        Me.HeightPreset2.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset2.Name = "HeightPreset2"
+        Me.HeightPreset2.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset2.TabIndex = 52
+        Me.HeightPreset2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'HeightPreset1
+        '
+        Me.HeightPreset1.Location = New System.Drawing.Point(8, 20)
+        Me.HeightPreset1.Margin = New System.Windows.Forms.Padding(4)
+        Me.HeightPreset1.Name = "HeightPreset1"
+        Me.HeightPreset1.Size = New System.Drawing.Size(28, 20)
+        Me.HeightPreset1.TabIndex = 51
+        Me.HeightPreset1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GroupBox3
         '
@@ -186,7 +287,7 @@ Partial Class frmOptions
         Me.cbxPickerOrientation.Location = New System.Drawing.Point(8, 22)
         Me.cbxPickerOrientation.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxPickerOrientation.Name = "cbxPickerOrientation"
-        Me.cbxPickerOrientation.Size = New System.Drawing.Size(192, 21)
+        Me.cbxPickerOrientation.Size = New System.Drawing.Size(163, 18)
         Me.cbxPickerOrientation.TabIndex = 51
         Me.cbxPickerOrientation.Text = "Capture texture orientations"
         Me.cbxPickerOrientation.UseCompatibleTextRendering = True
@@ -218,7 +319,7 @@ Partial Class frmOptions
         Me.Label13.Location = New System.Drawing.Point(7, 96)
         Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(90, 20)
+        Me.Label13.Size = New System.Drawing.Size(76, 17)
         Me.Label13.TabIndex = 50
         Me.Label13.Text = "Textures View"
         Me.Label13.UseCompatibleTextRendering = True
@@ -228,7 +329,7 @@ Partial Class frmOptions
         Me.txtTexturesDepth.Location = New System.Drawing.Point(180, 93)
         Me.txtTexturesDepth.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTexturesDepth.Name = "txtTexturesDepth"
-        Me.txtTexturesDepth.Size = New System.Drawing.Size(61, 22)
+        Me.txtTexturesDepth.Size = New System.Drawing.Size(61, 20)
         Me.txtTexturesDepth.TabIndex = 49
         '
         'txtTexturesBPP
@@ -236,7 +337,7 @@ Partial Class frmOptions
         Me.txtTexturesBPP.Location = New System.Drawing.Point(105, 93)
         Me.txtTexturesBPP.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTexturesBPP.Name = "txtTexturesBPP"
-        Me.txtTexturesBPP.Size = New System.Drawing.Size(61, 22)
+        Me.txtTexturesBPP.Size = New System.Drawing.Size(61, 20)
         Me.txtTexturesBPP.TabIndex = 48
         '
         'Label10
@@ -245,7 +346,7 @@ Partial Class frmOptions
         Me.Label10.Location = New System.Drawing.Point(33, 67)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(64, 20)
+        Me.Label10.Size = New System.Drawing.Size(54, 17)
         Me.Label10.TabIndex = 46
         Me.Label10.Text = "Map View"
         Me.Label10.UseCompatibleTextRendering = True
@@ -255,7 +356,7 @@ Partial Class frmOptions
         Me.txtMapDepth.Location = New System.Drawing.Point(180, 67)
         Me.txtMapDepth.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMapDepth.Name = "txtMapDepth"
-        Me.txtMapDepth.Size = New System.Drawing.Size(61, 22)
+        Me.txtMapDepth.Size = New System.Drawing.Size(61, 20)
         Me.txtMapDepth.TabIndex = 44
         '
         'txtMapBPP
@@ -263,7 +364,7 @@ Partial Class frmOptions
         Me.txtMapBPP.Location = New System.Drawing.Point(105, 67)
         Me.txtMapBPP.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMapBPP.Name = "txtMapBPP"
-        Me.txtMapBPP.Size = New System.Drawing.Size(61, 22)
+        Me.txtMapBPP.Size = New System.Drawing.Size(61, 20)
         Me.txtMapBPP.TabIndex = 42
         '
         'Label8
@@ -272,7 +373,7 @@ Partial Class frmOptions
         Me.Label8.Location = New System.Drawing.Point(96, 47)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(70, 20)
+        Me.Label8.Size = New System.Drawing.Size(60, 17)
         Me.Label8.TabIndex = 45
         Me.Label8.Text = "Colour Bits"
         Me.Label8.UseCompatibleTextRendering = True
@@ -283,7 +384,7 @@ Partial Class frmOptions
         Me.Label9.Location = New System.Drawing.Point(174, 47)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(67, 20)
+        Me.Label9.Size = New System.Drawing.Size(56, 17)
         Me.Label9.TabIndex = 43
         Me.Label9.Text = "Depth Bits"
         Me.Label9.UseCompatibleTextRendering = True
@@ -294,7 +395,7 @@ Partial Class frmOptions
         Me.cbxMipmapsHardware.Location = New System.Drawing.Point(169, 22)
         Me.cbxMipmapsHardware.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxMipmapsHardware.Name = "cbxMipmapsHardware"
-        Me.cbxMipmapsHardware.Size = New System.Drawing.Size(112, 21)
+        Me.cbxMipmapsHardware.Size = New System.Drawing.Size(95, 18)
         Me.cbxMipmapsHardware.TabIndex = 41
         Me.cbxMipmapsHardware.Text = "Use Hardware"
         Me.cbxMipmapsHardware.UseCompatibleTextRendering = True
@@ -306,7 +407,7 @@ Partial Class frmOptions
         Me.cbxMipmaps.Location = New System.Drawing.Point(8, 22)
         Me.cbxMipmaps.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxMipmaps.Name = "cbxMipmaps"
-        Me.cbxMipmaps.Size = New System.Drawing.Size(141, 21)
+        Me.cbxMipmaps.Size = New System.Drawing.Size(119, 18)
         Me.cbxMipmaps.TabIndex = 40
         Me.cbxMipmaps.Text = "Generate mipmaps"
         Me.cbxMipmaps.UseCompatibleTextRendering = True
@@ -329,7 +430,7 @@ Partial Class frmOptions
         Me.txtFOV.Location = New System.Drawing.Point(159, 15)
         Me.txtFOV.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFOV.Name = "txtFOV"
-        Me.txtFOV.Size = New System.Drawing.Size(138, 22)
+        Me.txtFOV.Size = New System.Drawing.Size(138, 20)
         Me.txtFOV.TabIndex = 25
         '
         'Label4
@@ -338,7 +439,7 @@ Partial Class frmOptions
         Me.Label4.Location = New System.Drawing.Point(8, 18)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(105, 20)
+        Me.Label4.Size = New System.Drawing.Size(89, 17)
         Me.Label4.TabIndex = 26
         Me.Label4.Text = "Default Multiplier"
         Me.Label4.UseCompatibleTextRendering = True
@@ -360,7 +461,7 @@ Partial Class frmOptions
         Me.cbxPointerDirect.Location = New System.Drawing.Point(7, 22)
         Me.cbxPointerDirect.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxPointerDirect.Name = "cbxPointerDirect"
-        Me.cbxPointerDirect.Size = New System.Drawing.Size(62, 21)
+        Me.cbxPointerDirect.Size = New System.Drawing.Size(53, 18)
         Me.cbxPointerDirect.TabIndex = 40
         Me.cbxPointerDirect.Text = "Direct"
         Me.cbxPointerDirect.UseCompatibleTextRendering = True
@@ -390,7 +491,7 @@ Partial Class frmOptions
         Me.Label6.Location = New System.Drawing.Point(8, 100)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(99, 20)
+        Me.Label6.Size = New System.Drawing.Size(84, 17)
         Me.Label6.TabIndex = 45
         Me.Label6.Text = "Object Highlight"
         Me.Label6.UseCompatibleTextRendering = True
@@ -408,7 +509,7 @@ Partial Class frmOptions
         Me.Label5.Location = New System.Drawing.Point(8, 67)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(71, 20)
+        Me.Label5.Size = New System.Drawing.Size(60, 17)
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "Cliff Colour"
         Me.Label5.UseCompatibleTextRendering = True
@@ -425,7 +526,7 @@ Partial Class frmOptions
         Me.txtMinimapSize.Location = New System.Drawing.Point(159, 15)
         Me.txtMinimapSize.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMinimapSize.Name = "txtMinimapSize"
-        Me.txtMinimapSize.Size = New System.Drawing.Size(61, 22)
+        Me.txtMinimapSize.Size = New System.Drawing.Size(61, 20)
         Me.txtMinimapSize.TabIndex = 25
         '
         'cbxMinimapTeamColourFeatures
@@ -434,7 +535,7 @@ Partial Class frmOptions
         Me.cbxMinimapTeamColourFeatures.Location = New System.Drawing.Point(147, 42)
         Me.cbxMinimapTeamColourFeatures.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxMinimapTeamColourFeatures.Name = "cbxMinimapTeamColourFeatures"
-        Me.cbxMinimapTeamColourFeatures.Size = New System.Drawing.Size(139, 21)
+        Me.cbxMinimapTeamColourFeatures.Size = New System.Drawing.Size(118, 18)
         Me.cbxMinimapTeamColourFeatures.TabIndex = 41
         Me.cbxMinimapTeamColourFeatures.Text = "Except for features"
         Me.cbxMinimapTeamColourFeatures.UseCompatibleTextRendering = True
@@ -446,7 +547,7 @@ Partial Class frmOptions
         Me.cbxMinimapObjectColours.Location = New System.Drawing.Point(8, 42)
         Me.cbxMinimapObjectColours.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxMinimapObjectColours.Name = "cbxMinimapObjectColours"
-        Me.cbxMinimapObjectColours.Size = New System.Drawing.Size(131, 21)
+        Me.cbxMinimapObjectColours.Size = New System.Drawing.Size(111, 18)
         Me.cbxMinimapObjectColours.TabIndex = 40
         Me.cbxMinimapObjectColours.Text = "Use team colours"
         Me.cbxMinimapObjectColours.UseCompatibleTextRendering = True
@@ -458,7 +559,7 @@ Partial Class frmOptions
         Me.Label3.Location = New System.Drawing.Point(8, 18)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(31, 20)
+        Me.Label3.Size = New System.Drawing.Size(26, 17)
         Me.Label3.TabIndex = 26
         Me.Label3.Text = "Size"
         Me.Label3.UseCompatibleTextRendering = True
@@ -517,7 +618,7 @@ Partial Class frmOptions
         Me.txtAutosaveInterval.Location = New System.Drawing.Point(140, 74)
         Me.txtAutosaveInterval.Margin = New System.Windows.Forms.Padding(4)
         Me.txtAutosaveInterval.Name = "txtAutosaveInterval"
-        Me.txtAutosaveInterval.Size = New System.Drawing.Size(61, 22)
+        Me.txtAutosaveInterval.Size = New System.Drawing.Size(61, 20)
         Me.txtAutosaveInterval.TabIndex = 25
         '
         'txtAutosaveChanges
@@ -525,7 +626,7 @@ Partial Class frmOptions
         Me.txtAutosaveChanges.Location = New System.Drawing.Point(140, 51)
         Me.txtAutosaveChanges.Margin = New System.Windows.Forms.Padding(4)
         Me.txtAutosaveChanges.Name = "txtAutosaveChanges"
-        Me.txtAutosaveChanges.Size = New System.Drawing.Size(61, 22)
+        Me.txtAutosaveChanges.Size = New System.Drawing.Size(61, 20)
         Me.txtAutosaveChanges.TabIndex = 22
         '
         'btnAutosaveOpen
@@ -545,7 +646,7 @@ Partial Class frmOptions
         Me.cbxAutosaveCompression.Location = New System.Drawing.Point(140, 19)
         Me.cbxAutosaveCompression.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxAutosaveCompression.Name = "cbxAutosaveCompression"
-        Me.cbxAutosaveCompression.Size = New System.Drawing.Size(130, 21)
+        Me.cbxAutosaveCompression.Size = New System.Drawing.Size(111, 18)
         Me.cbxAutosaveCompression.TabIndex = 27
         Me.cbxAutosaveCompression.Text = "Use compression"
         Me.cbxAutosaveCompression.UseCompatibleTextRendering = True
@@ -557,7 +658,7 @@ Partial Class frmOptions
         Me.Label2.Location = New System.Drawing.Point(7, 54)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(125, 20)
+        Me.Label2.Size = New System.Drawing.Size(106, 17)
         Me.Label2.TabIndex = 26
         Me.Label2.Text = "Number of changes:"
         Me.Label2.UseCompatibleTextRendering = True
@@ -568,7 +669,7 @@ Partial Class frmOptions
         Me.cbxAutosaveEnabled.Location = New System.Drawing.Point(7, 22)
         Me.cbxAutosaveEnabled.Margin = New System.Windows.Forms.Padding(4)
         Me.cbxAutosaveEnabled.Name = "cbxAutosaveEnabled"
-        Me.cbxAutosaveEnabled.Size = New System.Drawing.Size(76, 21)
+        Me.cbxAutosaveEnabled.Size = New System.Drawing.Size(65, 18)
         Me.cbxAutosaveEnabled.TabIndex = 3
         Me.cbxAutosaveEnabled.Text = "Enabled"
         Me.cbxAutosaveEnabled.UseCompatibleTextRendering = True
@@ -580,7 +681,7 @@ Partial Class frmOptions
         Me.Label1.Location = New System.Drawing.Point(7, 74)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(104, 20)
+        Me.Label1.Size = New System.Drawing.Size(88, 17)
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "Time interval (s):"
         Me.Label1.UseCompatibleTextRendering = True
@@ -602,7 +703,7 @@ Partial Class frmOptions
         Me.txtUndoSteps.Location = New System.Drawing.Point(158, 15)
         Me.txtUndoSteps.Margin = New System.Windows.Forms.Padding(4)
         Me.txtUndoSteps.Name = "txtUndoSteps"
-        Me.txtUndoSteps.Size = New System.Drawing.Size(61, 22)
+        Me.txtUndoSteps.Size = New System.Drawing.Size(61, 20)
         Me.txtUndoSteps.TabIndex = 22
         '
         'Label11
@@ -611,7 +712,7 @@ Partial Class frmOptions
         Me.Label11.Location = New System.Drawing.Point(7, 18)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(143, 20)
+        Me.Label11.Size = New System.Drawing.Size(121, 17)
         Me.Label11.TabIndex = 24
         Me.Label11.Text = "Maximum stored steps:"
         Me.Label11.UseCompatibleTextRendering = True
@@ -623,10 +724,10 @@ Partial Class frmOptions
         Me.TabPage2.Controls.Add(Me.btnKeyControlChangeUnless)
         Me.TabPage2.Controls.Add(Me.btnKeyControlChange)
         Me.TabPage2.Controls.Add(Me.lstKeyboardControls)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(629, 369)
+        Me.TabPage2.Size = New System.Drawing.Size(629, 428)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Keyboard"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -673,16 +774,15 @@ Partial Class frmOptions
         'lstKeyboardControls
         '
         Me.lstKeyboardControls.FormattingEnabled = True
-        Me.lstKeyboardControls.ItemHeight = 16
         Me.lstKeyboardControls.Location = New System.Drawing.Point(17, 18)
         Me.lstKeyboardControls.Name = "lstKeyboardControls"
         Me.lstKeyboardControls.ScrollAlwaysVisible = True
-        Me.lstKeyboardControls.Size = New System.Drawing.Size(394, 324)
+        Me.lstKeyboardControls.Size = New System.Drawing.Size(394, 394)
         Me.lstKeyboardControls.TabIndex = 0
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(549, 416)
+        Me.btnCancel.Location = New System.Drawing.Point(549, 472)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(100, 29)
         Me.btnCancel.TabIndex = 39
@@ -692,7 +792,7 @@ Partial Class frmOptions
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(443, 416)
+        Me.btnSave.Location = New System.Drawing.Point(443, 472)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(100, 29)
         Me.btnSave.TabIndex = 40
@@ -703,7 +803,7 @@ Partial Class frmOptions
         'frmOptions
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(659, 452)
+        Me.ClientSize = New System.Drawing.Size(659, 511)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.TabControl1)
@@ -716,6 +816,8 @@ Partial Class frmOptions
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
+        Me.HeightPresetGroup.ResumeLayout(False)
+        Me.HeightPresetGroup.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
@@ -790,4 +892,13 @@ Partial Class frmOptions
     Public WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Public WithEvents cbxPickerOrientation As System.Windows.Forms.CheckBox
     Public WithEvents Label12 As System.Windows.Forms.Label
+    Public WithEvents HeightPresetGroup As GroupBox
+    Public WithEvents HeightPreset8 As TextBox
+    Public WithEvents HeightPreset7 As TextBox
+    Public WithEvents HeightPreset6 As TextBox
+    Public WithEvents HeightPreset5 As TextBox
+    Public WithEvents HeightPreset4 As TextBox
+    Public WithEvents HeightPreset3 As TextBox
+    Public WithEvents HeightPreset2 As TextBox
+    Public WithEvents HeightPreset1 As TextBox
 End Class

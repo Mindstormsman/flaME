@@ -56,7 +56,7 @@ C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.frmWZLo
 C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.Resources.resources
 C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.vbproj.GenerateResource.cache
 C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.vbproj.CoreCompileInputs.cache
-C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.vbproj.CopyComplete
 C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.exe
 C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.xml
 C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.pdb
+C:\Users\minds\OneDrive\Documents\Github\flaME\FlaME\obj\x64\Debug\FlaME.vbproj.Up2Date
