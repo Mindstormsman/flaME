@@ -10,29 +10,41 @@ If you have Suggestions please let me know so I can add it to this Readme!
 
 # What's new
 
-Fixed yet more crashes when selecting the empty space at the bottom of lists
+Added Tile Border View Mode
 
-Fixed the Multiplayer Dataset, Thanks Arithyce!
+    Toggled with F9
 
-Changed the notile.png image to something less jarring, Thanks PathForger!
+Added settings for color and line thicknesses of the Wireframe and Border View Modes
 
-Added UI elements to show Radius type Labels
+Added Keybind to create a new Radius Label
 
-    This includes the Radius property of these Labels as well as the Subscriber
+    Left Click + R
+
+The move camera slow keybind was moved from R to V
+
+Generator Max Map Size now uses the WZMaxMapSize Global variable rather than being hardcoded to 250
+
+    Generator Minimum Map Size is still hardcoded to 48
     
-    property shared with Area Labels
+    and bases must still be atleast 12 tile from the edge of the map
 
-Added the Height Preset options to the settings menu and made them persist
-
-    these could always be edited while running Flame but would revert to Defaults if Flame was closed
+    let me know if these are values you'd like to see changed
 
 # Known Issues
+
+Crash with Win+Shift+S screenshot tool
+
+    With Move Camera Fast bound to shift, attempting to use this screenshot method can on occasion
+    
+    cause the camera to move down in a way that causes a rendering error and crashes Flame
 
 Droids made with "Convert to Design" fail to appear in game
 
 	I'm not sure where this bug occurs, if it's when compiling or when the game loads the map
 
 # TODO
+
+Figure out what's wrong with Footprint Rotation
 
 Draw a Radius around Radius Type Labels on the map
 

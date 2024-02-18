@@ -10,6 +10,11 @@ Public Class frmOptions
     Private ObjectDataPathSet As New ctrlPathSet("Object Data Directories")
     Private TilesetsPathSet As New ctrlPathSet("Tilesets Directories")
 
+    Private WireframeColor As clsRGB_sng
+    Private clrWireframe As ctrlColour
+    Private BorderColor As clsRGB_sng
+    Private clrBorder As ctrlColour
+
     Private ChangedKeyControls As clsKeyboardProfile
 
     Private lstKeyboardControls_Items(-1) As clsOption(Of clsKeyboardControl)
@@ -45,6 +50,16 @@ Public Class frmOptions
         MinimapCliffColour = New clsRGBA_sng(Settings.MinimapCliffColour)
         clrMinimapCliffs = New ctrlColour(MinimapCliffColour)
         pnlMinimapCliffColour.Controls.Add(clrMinimapCliffs)
+
+        WireframeColor = New clsRGB_sng(Settings.WireframeColor.Red, Settings.WireframeColor.Green, Settings.WireframeColor.Blue)
+        clrWireframe = New ctrlColour(WireframeColor)
+        pnlWireframeColor.Controls.Add(clrWireframe)
+        txtWireframeThickness.Text = InvariantToString_sng(Settings.WireframeThickness)
+
+        BorderColor = New clsRGB_sng(Settings.BorderColor.Red, Settings.BorderColor.Green, Settings.BorderColor.Blue)
+        clrBorder = New ctrlColour(BorderColor)
+        pnlBorderColor.Controls.Add(clrBorder)
+        txtBorderThickness.Text = InvariantToString_sng(Settings.BorderThickness)
 
         MinimapSelectedObjectColour = New clsRGBA_sng(Settings.MinimapSelectedObjectsColour)
         clrMinimapSelectedObjects = New ctrlColour(MinimapSelectedObjectColour)
@@ -87,6 +102,7 @@ Public Class frmOptions
         Dim dblTemp As Double
         Dim intTemp As Integer
         Dim byteTemp As Byte
+        Dim sngTemp As Single
 
         If InvariantParse_dbl(txtAutosaveChanges.Text, dblTemp) Then
             NewSettings.Changes(Setting_AutoSaveMinChanges) = New clsOptionProfile.clsChange(Of UInteger)(CUInt(Clamp_dbl(dblTemp, 1.0#, CDbl(UInteger.MaxValue) - 1.0#)))
@@ -104,6 +120,14 @@ Public Class frmOptions
         End If
         NewSettings.Changes(Setting_MinimapCliffColour) = New clsOptionProfile.clsChange(Of clsRGBA_sng)(MinimapCliffColour)
         NewSettings.Changes(Setting_MinimapSelectedObjectsColour) = New clsOptionProfile.clsChange(Of clsRGBA_sng)(MinimapSelectedObjectColour)
+        NewSettings.Changes(Setting_WireframeColor) = New clsOptionProfile.clsChange(Of clsRGB_sng)(WireframeColor)
+        NewSettings.Changes(Setting_BorderColor) = New clsOptionProfile.clsChange(Of clsRGB_sng)(BorderColor)
+        If InvariantParse_sng(txtWireframeThickness.Text, sngTemp) Then
+            NewSettings.Changes(Setting_WireframeThickness) = New clsOptionProfile.clsChange(Of Single)(sngTemp)
+        End If
+        If InvariantParse_sng(txtBorderThickness.Text, sngTemp) Then
+            NewSettings.Changes(Setting_BorderThickness) = New clsOptionProfile.clsChange(Of Single)(sngTemp)
+        End If
         If InvariantParse_int(txtMinimapSize.Text, intTemp) Then
             NewSettings.Changes(Setting_MinimapSize) = New clsOptionProfile.clsChange(Of Integer)(intTemp)
         End If

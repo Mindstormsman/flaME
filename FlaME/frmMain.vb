@@ -3120,6 +3120,7 @@ Partial Public Class frmMain
         Map.Selected_Area_VertexA.Y * TerrainGridSpacing),
         New sXY_int(Map.Selected_Area_VertexB.X * TerrainGridSpacing,
         Map.Selected_Area_VertexB.Y * TerrainGridSpacing))
+        NewArea.Subscriber = -1
 
         ScriptMarkerLists_Update()
 

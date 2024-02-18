@@ -3,7 +3,7 @@ Public Module modProgram
 
     Public Const ProgramName As String = "FlaME - Json"
 
-    Public Const ProgramVersionNumber As String = "1.29.4.2"
+    Public Const ProgramVersionNumber As String = "1.29.4.3"
 
 #If Mono <> 0.0# Then
     Public Const ProgramPlatform As String = "Mono 2.10"
@@ -614,6 +614,7 @@ Public Module modProgram
     End Enum
     Public Draw_Lighting As enumDrawLighting = enumDrawLighting.Half
     Public Draw_TileWireframe As Boolean
+    Public Draw_TileBorders As Boolean
     Public Draw_Units As Boolean = True
     Public Draw_VertexTerrain As Boolean
     Public Draw_Gateways As Boolean

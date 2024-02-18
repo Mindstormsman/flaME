@@ -99,6 +99,7 @@ Partial Public Class clsMap
         Public Pos As sXY_int
         Public GLList_Textured As Integer
         Public GLList_Wireframe As Integer
+        Public GLList_Borders As Integer
         Public Units As New ConnectedList(Of clsMap.clsUnitSectorConnection, clsMap.clsSector)(Me)
 
         Public Sub DeleteLists()
@@ -110,6 +111,10 @@ Partial Public Class clsMap
             If GLList_Wireframe <> 0 Then
                 GL.DeleteLists(GLList_Wireframe, 1)
                 GLList_Wireframe = 0
+            End If
+            If GLList_Borders <> 0 Then
+                GL.DeleteLists(GLList_Borders, 1)
+                GLList_Borders = 0
             End If
         End Sub
 
@@ -786,6 +791,17 @@ Partial Public Class clsMap
         Next
 
         GL.EndList()
+
+        Sectors(X, Y).GLList_Borders = GL.GenLists(1)
+        GL.NewList(Sectors(X, Y).GLList_Borders, ListMode.Compile)
+
+        For TileY = StartY To FinishY
+            For TileX = StartX To FinishX
+                DrawTileBorders(TileX, TileY)
+            Next
+        Next
+
+        GL.EndList()
     End Sub
 
     Public Sub DrawTileWireframe(TileX As Integer, TileY As Integer)
@@ -843,6 +859,43 @@ Partial Public Class clsMap
             GL.Vertex3(Vertex1.X, Vertex1.Y, -Vertex1.Z)
             GL.Vertex3(Vertex0.X, Vertex0.Y, -Vertex0.Z)
         End If
+        GL.End()
+    End Sub
+
+    Public Sub DrawTileBorders(TileX As Integer, TileY As Integer)
+        Dim TileTerrainHeight(3) As Double
+        Dim Vertex0 As sXYZ_sng
+        Dim Vertex1 As sXYZ_sng
+        Dim Vertex2 As sXYZ_sng
+        Dim Vertex3 As sXYZ_sng
+
+        TileTerrainHeight(0) = Terrain.Vertices(TileX, TileY).Height
+        TileTerrainHeight(1) = Terrain.Vertices(TileX + 1, TileY).Height
+        TileTerrainHeight(2) = Terrain.Vertices(TileX, TileY + 1).Height
+        TileTerrainHeight(3) = Terrain.Vertices(TileX + 1, TileY + 1).Height
+
+        Vertex0.X = CSng(TileX * TerrainGridSpacing)
+        Vertex0.Y = CSng(TileTerrainHeight(0) * HeightMultiplier)
+        Vertex0.Z = CSng(-TileY * TerrainGridSpacing)
+        Vertex1.X = CSng((TileX + 1) * TerrainGridSpacing)
+        Vertex1.Y = CSng(TileTerrainHeight(1) * HeightMultiplier)
+        Vertex1.Z = CSng(-TileY * TerrainGridSpacing)
+        Vertex2.X = CSng(TileX * TerrainGridSpacing)
+        Vertex2.Y = CSng(TileTerrainHeight(2) * HeightMultiplier)
+        Vertex2.Z = CSng(-(TileY + 1) * TerrainGridSpacing)
+        Vertex3.X = CSng((TileX + 1) * TerrainGridSpacing)
+        Vertex3.Y = CSng(TileTerrainHeight(3) * HeightMultiplier)
+        Vertex3.Z = CSng(-(TileY + 1) * TerrainGridSpacing)
+
+        GL.Begin(BeginMode.Lines)
+        GL.Vertex3(Vertex0.X, Vertex0.Y, -Vertex0.Z)
+        GL.Vertex3(Vertex1.X, Vertex1.Y, -Vertex1.Z)
+        GL.Vertex3(Vertex1.X, Vertex1.Y, -Vertex1.Z)
+        GL.Vertex3(Vertex3.X, Vertex3.Y, -Vertex3.Z)
+        GL.Vertex3(Vertex3.X, Vertex3.Y, -Vertex3.Z)
+        GL.Vertex3(Vertex2.X, Vertex2.Y, -Vertex2.Z)
+        GL.Vertex3(Vertex2.X, Vertex2.Y, -Vertex2.Z)
+        GL.Vertex3(Vertex0.X, Vertex0.Y, -Vertex0.Z)
         GL.End()
     End Sub
 

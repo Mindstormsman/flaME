@@ -1313,6 +1313,15 @@ Public Class clsViewInfo
                                 NewPosition.PosY = MouseLeftDown.OverTerrain.DownPos.Horizontal.Y
                                 frmMainInstance.ScriptMarkerLists_Update()
                             End If
+                        ElseIf KeyboardProfile.Active(Control_ScriptRadius) Then
+                            Dim NewRadius As clsMap.clsScriptRadius = clsMap.clsScriptRadius.Create(Map)
+                            If NewRadius IsNot Nothing Then
+                                NewRadius.PosX = MouseLeftDown.OverTerrain.DownPos.Horizontal.X
+                                NewRadius.PosY = MouseLeftDown.OverTerrain.DownPos.Horizontal.Y
+                                NewRadius.Radius = 0
+                                NewRadius.Subscriber = -1
+                                frmMainInstance.ScriptMarkerLists_Update()
+                            End If
                         Else
                             If Not KeyboardProfile.Active(Control_Unit_Multiselect) Then
                                 Map.SelectedUnits.Clear()

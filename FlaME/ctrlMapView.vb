@@ -429,6 +429,10 @@ Public Class ctrlMapView
             Draw_TileWireframe = Not Draw_TileWireframe
             DrawViewLater()
         End If
+        If KeyboardProfile.Active(Control_View_Borders) Then
+            Draw_TileBorders = Not Draw_TileBorders
+            DrawViewLater()
+        End If
         If KeyboardProfile.Active(Control_View_Units) Then
             Draw_Units = Not Draw_Units
             Dim X As Integer

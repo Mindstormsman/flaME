@@ -141,13 +141,23 @@ Partial Public Class clsMap
         GL.Disable(EnableCap.Lighting)
 
         If Draw_TileWireframe Then
-            GL.Color3(0.0F, 1.0F, 0.0F)
-            GL.LineWidth(1.0F)
+            GL.Color3(Settings.WireframeColor.Red, Settings.WireframeColor.Green, Settings.WireframeColor.Blue)
+            GL.LineWidth(Settings.WireframeThickness)
             Dim DrawCallTerrainWireframe As New clsMap.clsDrawCallTerrainWireframe
             DrawCallTerrainWireframe.Map = Me
             VisionSectors.PerformActionMapSectors(DrawCallTerrainWireframe, DrawCentreSector)
 
             DebugGLError("Wireframe")
+        End If
+
+        If Draw_TileBorders Then
+            GL.Color3(Settings.BorderColor.Red, Settings.BorderColor.Green, Settings.BorderColor.Blue)
+            GL.LineWidth(Settings.BorderThickness)
+            Dim DrawCallTileBorders As New clsMap.clsDrawCallTileBorders
+            DrawCallTileBorders.Map = Me
+            VisionSectors.PerformActionMapSectors(DrawCallTileBorders, DrawCentreSector)
+
+            DebugGLError("BorderView")
         End If
 
         'draw tile orientation markers
@@ -1243,6 +1253,14 @@ Partial Public Class clsMap
         Public Overrides Sub ActionPerform()
 
             GL.CallList(Map.Sectors(PosNum.X, PosNum.Y).GLList_Wireframe)
+        End Sub
+    End Class
+    Public Class clsDrawCallTileBorders
+        Inherits clsMap.clsAction
+
+        Public Overrides Sub ActionPerform()
+
+            GL.CallList(Map.Sectors(PosNum.X, PosNum.Y).GLList_Borders)
         End Sub
     End Class
 

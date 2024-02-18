@@ -40,6 +40,7 @@ Public Module modControls
     Public Control_View_Textures As clsOption(Of clsKeyboardControl)
     Public Control_View_Lighting As clsOption(Of clsKeyboardControl)
     Public Control_View_Wireframe As clsOption(Of clsKeyboardControl)
+    Public Control_View_Borders As clsOption(Of clsKeyboardControl)
     Public Control_View_Units As clsOption(Of clsKeyboardControl)
     Public Control_View_ScriptMarkers As clsOption(Of clsKeyboardControl)
     Public Control_View_Move_Type As clsOption(Of clsKeyboardControl)
@@ -73,6 +74,7 @@ Public Module modControls
     Public Control_Redo As clsOption(Of clsKeyboardControl)
     'script marker controls
     Public Control_ScriptPosition As clsOption(Of clsKeyboardControl)
+    Public Control_ScriptRadius As clsOption(Of clsKeyboardControl)
 
     Public Function KeyboardControlOptionCreate(saveKey As String, keys() As Keys) As clsOption(Of clsKeyboardControl)
 
@@ -110,7 +112,7 @@ Public Module modControls
 
         'generalised controls
 
-        Control_Slow = KeyboardControlOptionCreate("ViewSlow", New Keys() {Keys.R})
+        Control_Slow = KeyboardControlOptionCreate("ViewSlow", New Keys() {Keys.V})
         Control_Fast = KeyboardControlOptionCreate("ViewFast", New Keys() {Keys.F})
 
         'picker controls
@@ -122,6 +124,7 @@ Public Module modControls
         Control_View_Textures = KeyboardControlOptionCreate("ShowTextures", New Keys() {Keys.F5})
         Control_View_Lighting = KeyboardControlOptionCreate("ShowLighting", New Keys() {Keys.F8})
         Control_View_Wireframe = KeyboardControlOptionCreate("ShowWireframe", New Keys() {Keys.F6})
+        Control_View_Borders = KeyboardControlOptionCreate("ShowTileBorders", New Keys() {Keys.F9})
         Control_View_Units = KeyboardControlOptionCreate("ShowObjects", New Keys() {Keys.F7})
         Control_View_ScriptMarkers = KeyboardControlOptionCreate("ShowLabels", New Keys() {Keys.F4})
         Control_View_Move_Type = KeyboardControlOptionCreate("ViewMoveMode", New Keys() {Keys.F1})
@@ -157,6 +160,7 @@ Public Module modControls
         Control_Undo = KeyboardControlOptionCreate("Undo", New Keys() {Keys.ControlKey, Keys.Z})
         Control_Redo = KeyboardControlOptionCreate("Redo", New Keys() {Keys.ControlKey, Keys.Y})
         Control_ScriptPosition = KeyboardControlOptionCreate("PositionLabel", New Keys() {Keys.P})
+        Control_ScriptRadius = KeyboardControlOptionCreate("RadiusLabel", New Keys() {Keys.R})
 
         KeyboardProfile = New clsKeyboardProfile(Options_KeyboardControls)
     End Sub

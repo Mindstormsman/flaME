@@ -3,20 +3,80 @@
   "WorkspaceRootPath": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modProgram.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FlaME\\modProgram.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\frmoptions.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmoptions.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\My Project\\AssemblyInfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FlaME\\My Project\\AssemblyInfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\modsettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\modsettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\frmoptions.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmoptions.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\clsmapdraw.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\clsmapdraw.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\modio.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\modio.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\keyboardcontrols.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\keyboardcontrols.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\ctrlmapview.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\ctrlmapview.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\clsmap.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\clsmap.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\clsmapwz.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\clsmapwz.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\frmoptions.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmoptions.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modProgram.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:FlaME\\modProgram.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modMain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FlaME\\modMain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|c:\\users\\minds\\onedrive\\documents\\github\\flame\\flame\\frmgenerator.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmgenerator.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\My Project\\AssemblyInfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:FlaME\\My Project\\AssemblyInfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\frmmain.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmmain.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\clsviewinfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\clsviewinfo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\flame\\modmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{59A15906-263A-4A68-AF44-6AF69F431A99}|FlaME\\FlaME.vbproj|solutionrelative:flame\\modmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +86,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 14,
               "Title": "AssemblyInfo.vb",
               "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\My Project\\AssemblyInfo.vb",
               "RelativeDocumentMoniker": "FlaME\\My Project\\AssemblyInfo.vb",
@@ -39,18 +99,17 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-01-14T03:01:09.465Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
               "Title": "modProgram.vb",
               "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modProgram.vb",
               "RelativeDocumentMoniker": "FlaME\\modProgram.vb",
               "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modProgram.vb",
               "RelativeToolTip": "FlaME\\modProgram.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "ViewState": "AQIAAFECAAAAAAAAAAAswGcCAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-01-14T03:01:09.481Z",
               "IsPinned": true,
@@ -58,13 +117,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 12,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\README.md",
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAACIAAAAyAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACQAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
               "WhenOpened": "2024-01-14T03:01:09.482Z",
               "IsPinned": true,
@@ -72,7 +131,199 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "modIO.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modIO.vb",
+              "RelativeDocumentMoniker": "FlaME\\modIO.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modIO.vb",
+              "RelativeToolTip": "FlaME\\modIO.vb",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAjwGUAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T18:06:45.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "modSettings.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modSettings.vb",
+              "RelativeDocumentMoniker": "FlaME\\modSettings.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modSettings.vb",
+              "RelativeToolTip": "FlaME\\modSettings.vb",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAWwGAAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:10:33.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ctrlMapView.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\ctrlMapView.vb",
+              "RelativeDocumentMoniker": "FlaME\\ctrlMapView.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\ctrlMapView.vb",
+              "RelativeToolTip": "FlaME\\ctrlMapView.vb",
+              "ViewState": "AQIAAMEAAAAAAAAAAAAIwNkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T16:05:36.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmOptions.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmOptions.Designer.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmOptions.Designer.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmOptions.Designer.vb",
+              "RelativeToolTip": "FlaME\\frmOptions.Designer.vb",
+              "ViewState": "AQIAAB0DAAAAAAAAAADwvzMDAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T16:38:02.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmOptions.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmOptions.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmOptions.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmOptions.vb",
+              "RelativeToolTip": "FlaME\\frmOptions.vb",
+              "ViewState": "AQIAACIAAAAAAAAAAAAgwHsAAABsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T16:29:55.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "clsMapDraw.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsMapDraw.vb",
+              "RelativeDocumentMoniker": "FlaME\\clsMapDraw.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsMapDraw.vb",
+              "RelativeToolTip": "FlaME\\clsMapDraw.vb",
+              "ViewState": "AQIAAIQAAAAAAAAAAADwv5oAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T15:22:12.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "clsMap.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsMap.vb",
+              "RelativeDocumentMoniker": "FlaME\\clsMap.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsMap.vb",
+              "RelativeToolTip": "FlaME\\clsMap.vb",
+              "ViewState": "AQIAAPoCAAAAAAAAAADwvxADAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T15:51:57.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "KeyboardControls.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\KeyboardControls.vb",
+              "RelativeDocumentMoniker": "FlaME\\KeyboardControls.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\KeyboardControls.vb",
+              "RelativeToolTip": "FlaME\\KeyboardControls.vb",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAUwGcAAABkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:11:09.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmMain.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmMain.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmMain.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmMain.vb",
+              "RelativeToolTip": "FlaME\\frmMain.vb",
+              "ViewState": "AQIAAJEBAAAAAAAAAADwv6cBAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:15:53.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "clsMapWZ.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsMapWZ.vb",
+              "RelativeDocumentMoniker": "FlaME\\clsMapWZ.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsMapWZ.vb",
+              "RelativeToolTip": "FlaME\\clsMapWZ.vb",
+              "ViewState": "AQIAAOgGAAAAAAAAAAAjwAIHAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:15:24.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "frmOptions.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmOptions.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmOptions.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmOptions.vb [Design]",
+              "RelativeToolTip": "FlaME\\frmOptions.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-18T16:23:32.566Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "frmGenerator.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmGenerator.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmGenerator.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmGenerator.vb",
+              "RelativeToolTip": "FlaME\\frmGenerator.vb",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAK4AAABiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:30:42.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "clsViewInfo.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsViewInfo.vb",
+              "RelativeDocumentMoniker": "FlaME\\clsViewInfo.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\clsViewInfo.vb",
+              "RelativeToolTip": "FlaME\\clsViewInfo.vb",
+              "ViewState": "AQIAAP0EAAAAAAAAAAAswBcFAABlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:12:43.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "frmMain.Designer.vb",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmMain.Designer.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmMain.Designer.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmMain.Designer.vb",
+              "RelativeToolTip": "FlaME\\frmMain.Designer.vb",
+              "ViewState": "AQIAAOMNAAAAAAAAAADwv/8NAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:04:31.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "frmMain.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmMain.vb",
+              "RelativeDocumentMoniker": "FlaME\\frmMain.vb",
+              "ToolTip": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\frmMain.vb [Design]",
+              "RelativeToolTip": "FlaME\\frmMain.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-02-17T10:03:55.734Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "modMain.vb",
               "DocumentMoniker": "C:\\Users\\minds\\OneDrive\\Documents\\Github\\flaME\\FlaME\\modMain.vb",
               "RelativeDocumentMoniker": "FlaME\\modMain.vb",

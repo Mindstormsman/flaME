@@ -195,7 +195,7 @@ Partial Class frmMain
         Me.Label26 = New System.Windows.Forms.Label()
         Me.tpLabels = New System.Windows.Forms.TabPage()
         Me.Label45 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
+        Me.PositionHint = New System.Windows.Forms.Label()
         Me.lstScriptRadii = New System.Windows.Forms.ListBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -300,6 +300,7 @@ Partial Class frmMain
         Me.TabPage22 = New System.Windows.Forms.TabPage()
         Me.TabPage23 = New System.Windows.Forms.TabPage()
         Me.TabPage24 = New System.Windows.Forms.TabPage()
+        Me.RadiusHint = New System.Windows.Forms.Label()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -2388,8 +2389,9 @@ Partial Class frmMain
         '
         'tpLabels
         '
+        Me.tpLabels.Controls.Add(Me.RadiusHint)
         Me.tpLabels.Controls.Add(Me.Label45)
-        Me.tpLabels.Controls.Add(Me.Label11)
+        Me.tpLabels.Controls.Add(Me.PositionHint)
         Me.tpLabels.Controls.Add(Me.lstScriptRadii)
         Me.tpLabels.Controls.Add(Me.Label43)
         Me.tpLabels.Controls.Add(Me.Label42)
@@ -2415,15 +2417,15 @@ Partial Class frmMain
         Me.Label45.Text = "Radii:"
         Me.Label45.UseCompatibleTextRendering = True
         '
-        'Label11
+        'PositionHint
         '
-        Me.Label11.Location = New System.Drawing.Point(238, 11)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(142, 55)
-        Me.Label11.TabIndex = 53
-        Me.Label11.Text = "Hold P and click to make positions."
-        Me.Label11.UseCompatibleTextRendering = True
+        Me.PositionHint.Location = New System.Drawing.Point(238, 11)
+        Me.PositionHint.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.PositionHint.Name = "PositionHint"
+        Me.PositionHint.Size = New System.Drawing.Size(142, 29)
+        Me.PositionHint.TabIndex = 53
+        Me.PositionHint.Text = "Hold P and click to make positions."
+        Me.PositionHint.UseCompatibleTextRendering = True
         '
         'lstScriptRadii
         '
@@ -3267,6 +3269,16 @@ Partial Class frmMain
         Me.TabPage24.Text = "8"
         Me.TabPage24.UseVisualStyleBackColor = True
         '
+        'RadiusHint
+        '
+        Me.RadiusHint.Location = New System.Drawing.Point(238, 40)
+        Me.RadiusHint.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.RadiusHint.Name = "RadiusHint"
+        Me.RadiusHint.Size = New System.Drawing.Size(142, 43)
+        Me.RadiusHint.TabIndex = 56
+        Me.RadiusHint.Text = "Hold R and click to make radii."
+        Me.RadiusHint.UseCompatibleTextRendering = True
+        '
         'frmMain
         '
         Me.AllowDrop = True
@@ -3582,7 +3594,7 @@ Partial Class frmMain
     Public WithEvents Label41 As System.Windows.Forms.Label
     Public WithEvents Label43 As System.Windows.Forms.Label
     Public WithEvents Label42 As System.Windows.Forms.Label
-    Public WithEvents Label11 As System.Windows.Forms.Label
+    Public WithEvents PositionHint As System.Windows.Forms.Label
     Public WithEvents txtObjectLabel As System.Windows.Forms.TextBox
     Public WithEvents Label17 As System.Windows.Forms.Label
     Public WithEvents btnAlignObjects As System.Windows.Forms.Button
@@ -3624,4 +3636,5 @@ Partial Class frmMain
     Public WithEvents txtScriptMarkerR As TextBox
     Public WithEvents Label46 As Label
     Public WithEvents txtScriptMarkerSubscriber As TextBox
+    Public WithEvents RadiusHint As Label
 End Class

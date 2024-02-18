@@ -57,6 +57,8 @@ Public Module modSettings
     Public Setting_MinimapTeamColours As clsOption(Of Boolean)
     Public Setting_MinimapTeamColoursExceptFeatures As clsOption(Of Boolean)
     Public Setting_MinimapCliffColour As clsOption(Of clsRGBA_sng)
+    Public Setting_WireframeColor As clsOption(Of clsRGB_sng)
+    Public Setting_BorderColor As clsOption(Of clsRGB_sng)
     Public Setting_MinimapSelectedObjectsColour As clsOption(Of clsRGBA_sng)
     Public Class clsOption_FOVDefault
         Inherits clsOption(Of Double)
@@ -91,6 +93,8 @@ Public Module modSettings
     Public Setting_DefaultTilesetsPathNum As clsOption(Of Integer)
     Public Setting_DefaultObjectDataPathNum As clsOption(Of Integer)
     Public Setting_PickOrientation As clsOption(Of Boolean)
+    Public Setting_WireframeThickness As clsOption(Of Single)
+    Public Setting_BorderThickness As clsOption(Of Single)
 
     Public Setting_HeightPreset1 As clsOption(Of Byte)
     Public Setting_HeightPreset2 As clsOption(Of Byte)
@@ -183,6 +187,18 @@ Public Module modSettings
                 Return CType(Value(Setting_MinimapCliffColour), clsRGBA_sng)
             End Get
         End Property
+
+        Public ReadOnly Property WireframeColor As clsRGB_sng
+            Get
+                Return CType(Value(Setting_WireframeColor), clsRGB_sng)
+            End Get
+        End Property
+        Public ReadOnly Property BorderColor As clsRGB_sng
+            Get
+                Return CType(Value(Setting_BorderColor), clsRGB_sng)
+            End Get
+        End Property
+
         Public ReadOnly Property MinimapSelectedObjectsColour As clsRGBA_sng
             Get
                 Return CType(Value(Setting_MinimapSelectedObjectsColour), clsRGBA_sng)
@@ -191,6 +207,16 @@ Public Module modSettings
         Public ReadOnly Property FOVDefault As Double
             Get
                 Return CType(Value(Setting_FOVDefault), Double)
+            End Get
+        End Property
+        Public ReadOnly Property WireframeThickness As Single
+            Get
+                Return CType(Value(Setting_WireframeThickness), Single)
+            End Get
+        End Property
+        Public ReadOnly Property BorderThickness As Single
+            Get
+                Return CType(Value(Setting_BorderThickness), Single)
             End Get
         End Property
         Public ReadOnly Property Mipmaps As Boolean
@@ -376,6 +402,10 @@ Public Module modSettings
         Setting_MinimapTeamColours = CreateSetting(Of Boolean)("MinimapTeamColours", True)
         Setting_MinimapTeamColoursExceptFeatures = CreateSetting(Of Boolean)("MinimapTeamColoursExceptFeatures", True)
         Setting_MinimapCliffColour = CreateSetting(Of clsRGBA_sng)("MinimapCliffColour", New clsRGBA_sng(1.0F, 0.25F, 0.25F, 0.5F))
+        Setting_WireframeColor = CreateSetting(Of clsRGB_sng)("WireframeColor", New clsRGB_sng(0.0F, 1.0F, 0.0F))
+        Setting_BorderColor = CreateSetting(Of clsRGB_sng)("BorderColor", New clsRGB_sng(0.75F, 0.0F, 0.0F))
+        Setting_WireframeThickness = CreateSetting(Of Single)("WireframeThickness", 1.0F)
+        Setting_BorderThickness = CreateSetting(Of Single)("BorderThickness", 2.0F)
         Setting_MinimapSelectedObjectsColour = CreateSetting(Of clsRGBA_sng)("MinimapSelectedObjectsColour", New clsRGBA_sng(1.0F, 1.0F, 1.0F, 0.75F))
         Setting_FOVDefault = CType(CreateSetting(Of Double)(New clsOptionCreator_FOVDefault, "FOVDefault", 30.0# / (50.0# * 900.0#)), clsOption_FOVDefault)  'screenVerticalSize/(screenDist*screenVerticalPixels)
         Setting_Mipmaps = CreateSetting(Of Boolean)("Mipmaps", False)

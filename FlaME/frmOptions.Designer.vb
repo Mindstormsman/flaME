@@ -86,6 +86,15 @@ Partial Class frmOptions
         Me.lstKeyboardControls = New System.Windows.Forms.ListBox()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.txtWireframeThickness = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtBorderThickness = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.pnlWireframeColor = New System.Windows.Forms.Panel()
+        Me.pnlBorderColor = New System.Windows.Forms.Panel()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -99,6 +108,7 @@ Partial Class frmOptions
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -163,6 +173,7 @@ Partial Class frmOptions
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.GroupBox9)
         Me.TabPage1.Controls.Add(Me.HeightPresetGroup)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.GroupBox8)
@@ -800,6 +811,98 @@ Partial Class frmOptions
         Me.btnSave.UseCompatibleTextRendering = True
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'GroupBox9
+        '
+        Me.GroupBox9.Controls.Add(Me.Label17)
+        Me.GroupBox9.Controls.Add(Me.Label16)
+        Me.GroupBox9.Controls.Add(Me.pnlBorderColor)
+        Me.GroupBox9.Controls.Add(Me.pnlWireframeColor)
+        Me.GroupBox9.Controls.Add(Me.txtBorderThickness)
+        Me.GroupBox9.Controls.Add(Me.Label15)
+        Me.GroupBox9.Controls.Add(Me.txtWireframeThickness)
+        Me.GroupBox9.Controls.Add(Me.Label14)
+        Me.GroupBox9.Location = New System.Drawing.Point(316, 348)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(304, 74)
+        Me.GroupBox9.TabIndex = 46
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "View Modes"
+        Me.GroupBox9.UseCompatibleTextRendering = True
+        '
+        'txtWireframeThickness
+        '
+        Me.txtWireframeThickness.Location = New System.Drawing.Point(246, 20)
+        Me.txtWireframeThickness.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtWireframeThickness.Name = "txtWireframeThickness"
+        Me.txtWireframeThickness.Size = New System.Drawing.Size(50, 20)
+        Me.txtWireframeThickness.TabIndex = 46
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(8, 23)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(56, 17)
+        Me.Label14.TabIndex = 47
+        Me.Label14.Text = "Wireframe"
+        Me.Label14.UseCompatibleTextRendering = True
+        '
+        'txtBorderThickness
+        '
+        Me.txtBorderThickness.Location = New System.Drawing.Point(246, 47)
+        Me.txtBorderThickness.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBorderThickness.Name = "txtBorderThickness"
+        Me.txtBorderThickness.Size = New System.Drawing.Size(50, 20)
+        Me.txtBorderThickness.TabIndex = 48
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(8, 50)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(70, 17)
+        Me.Label15.TabIndex = 49
+        Me.Label15.Text = "Border mode"
+        Me.Label15.UseCompatibleTextRendering = True
+        '
+        'pnlWireframeColor
+        '
+        Me.pnlWireframeColor.Location = New System.Drawing.Point(120, 15)
+        Me.pnlWireframeColor.Name = "pnlWireframeColor"
+        Me.pnlWireframeColor.Size = New System.Drawing.Size(51, 29)
+        Me.pnlWireframeColor.TabIndex = 43
+        '
+        'pnlBorderColor
+        '
+        Me.pnlBorderColor.Location = New System.Drawing.Point(120, 45)
+        Me.pnlBorderColor.Name = "pnlBorderColor"
+        Me.pnlBorderColor.Size = New System.Drawing.Size(51, 29)
+        Me.pnlBorderColor.TabIndex = 44
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(73, 23)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(40, 17)
+        Me.Label16.TabIndex = 50
+        Me.Label16.Text = "Colors:"
+        Me.Label16.UseCompatibleTextRendering = True
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(180, 23)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(58, 17)
+        Me.Label17.TabIndex = 51
+        Me.Label17.Text = "Thickness:"
+        Me.Label17.UseCompatibleTextRendering = True
+        '
         'frmOptions
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -834,6 +937,8 @@ Partial Class frmOptions
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -901,4 +1006,13 @@ Partial Class frmOptions
     Public WithEvents HeightPreset3 As TextBox
     Public WithEvents HeightPreset2 As TextBox
     Public WithEvents HeightPreset1 As TextBox
+    Public WithEvents GroupBox9 As GroupBox
+    Friend WithEvents pnlBorderColor As Panel
+    Friend WithEvents pnlWireframeColor As Panel
+    Public WithEvents txtBorderThickness As TextBox
+    Public WithEvents Label15 As Label
+    Public WithEvents txtWireframeThickness As TextBox
+    Public WithEvents Label14 As Label
+    Public WithEvents Label16 As Label
+    Public WithEvents Label17 As Label
 End Class

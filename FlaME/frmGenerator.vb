@@ -172,8 +172,8 @@ Partial Public Class frmGenerator
             Exit Sub
         End If
 
-        Generator.TileSize.X = ValidateTextbox(txtWidth, 48.0#, 250.0#, 1.0#)
-        Generator.TileSize.Y = ValidateTextbox(txtHeight, 48.0#, 250.0#, 1.0#)
+        Generator.TileSize.X = ValidateTextbox(txtWidth, 48.0#, CType(WZMapMaxSize, Double), 1.0#)
+        Generator.TileSize.Y = ValidateTextbox(txtHeight, 48.0#, CType(WZMapMaxSize, Double), 1.0#)
         If Generator.SymmetryBlockCount = 4 Then
             If Generator.TileSize.X <> Generator.TileSize.Y And Generator.SymmetryIsRotational Then
                 MsgBox("Width and height must be equal if map is rotated on two axes.")
